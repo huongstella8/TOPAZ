@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOPAZ · IELTS Writing Task 2 Practice Hub</title>
+<style>
+  :root{
+    --orange:#d97642; --orange-soft:#e7a173; --sage:#9caf96; --sage-soft:#c3d0bd;
+    --cream:#f4f2ea; --paper:#fbfaf5; --ink:#2b2b2b; --muted:#6b6b63;
+    --line:#e2ded0; --yellow:#e9d9a6; --shadow:0 2px 10px rgba(0,0,0,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    background:var(--cream);color:var(--ink);line-height:1.6;font-size:15px}
+  h1,h2,h3,h4{font-family:Georgia,'Times New Roman',serif;line-height:1.25;margin:0}
+  a{color:var(--orange)}
+  /* Header */
+  header.top{background:linear-gradient(120deg,#2b2b2b 0%,#3a3a37 100%);color:#fff;padding:16px 26px 18px}
+  header.top .paradigm{font-family:Georgia,serif;font-size:15px;letter-spacing:7px;font-weight:700;
+    color:#fff;border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:10px;margin-bottom:12px;text-transform:uppercase}
+  header.top .brand{font-size:13px;letter-spacing:4px;color:var(--orange-soft);font-weight:700}
+  header.top h1{font-size:30px;margin:2px 0 4px;color:#fff}
+  header.top p{margin:0;color:#cfccc2;font-size:13.5px;max-width:820px}
+  /* Tabs */
+  nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);
+    display:flex;flex-wrap:wrap;gap:2px;padding:8px 14px;box-shadow:var(--shadow)}
+  nav.tabs button{border:0;background:transparent;font:inherit;font-weight:600;color:var(--muted);
+    padding:9px 15px;border-radius:8px;cursor:pointer;font-size:14px;transition:.15s;white-space:nowrap}
+  nav.tabs button:hover{background:var(--cream);color:var(--ink)}
+  nav.tabs button.active{background:var(--orange);color:#fff}
+  nav.tabs button .tno{font-size:11px;opacity:.7;margin-right:5px}
+  /* Layout */
+  main{max-width:1080px;margin:0 auto;padding:26px 22px 80px}
+  section.view{display:none;animation:fade .25s ease}
+  section.view.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  /* Sub nav */
+  .subnav{display:flex;flex-wrap:wrap;gap:8px;margin:4px 0 22px}
+  .subnav button{border:1px solid var(--line);background:var(--paper);font:inherit;font-weight:600;
+    font-size:13px;color:var(--muted);padding:7px 14px;border-radius:20px;cursor:pointer;transition:.15s}
+  .subnav button:hover{border-color:var(--sage)}
+  .subnav button.on{background:var(--sage);border-color:var(--sage);color:#fff}
+  .panel{display:none}
+  .panel.on{display:block}
+  /* Cards */
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+    margin-bottom:18px;box-shadow:var(--shadow)}
+  .card h3{font-size:20px;margin-bottom:4px}
+  .card .lead{color:var(--muted);font-size:13.5px;margin-bottom:14px}
+  .topichero{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+  .topichero .badge{width:58px;height:58px;border-radius:14px;background:var(--orange);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:24px;font-weight:700;flex-shrink:0}
+  .topichero h2{font-size:26px}
+  .topichero p{margin:2px 0 0;color:var(--muted);font-size:13.5px}
+  /* Vocab */
+  .vgroup{margin-bottom:18px}
+  .vgroup h4{font-size:15px;color:var(--orange);border-bottom:2px solid var(--sage-soft);
+    padding-bottom:5px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .chips{display:flex;flex-wrap:wrap;gap:7px}
+  .chip{background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:5px 11px;font-size:13.5px}
+  .chip b{color:var(--ink)}
+  .wtable{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:6px}
+  .wtable td{border:1px solid var(--line);padding:7px 10px;vertical-align:top}
+  .wtable td:first-child{font-weight:600;width:38%;background:var(--cream)}
+  /* Rich vocabulary entries */
+  .vsub{font-size:13px;font-weight:700;color:#8a6a3a;background:var(--yellow);display:inline-block;
+    padding:4px 12px;border-radius:6px;margin:16px 0 12px}
+  .ventry{border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin-bottom:10px;background:var(--paper)}
+  .ventry .vhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px;margin-bottom:6px}
+  .ventry .vw{font-weight:800;font-size:16px;color:var(--ink)}
+  .ventry .pos{font-size:11px;font-weight:700;color:#fff;background:var(--sage);padding:2px 8px;border-radius:12px;font-style:normal}
+  .ventry .ipa{font-family:'Segoe UI',sans-serif;color:var(--orange);font-size:14px}
+  .ventry .vspeak{margin-left:auto;border:1px solid var(--line);background:var(--cream);border-radius:8px;
+    cursor:pointer;font-size:13px;padding:3px 9px;color:var(--muted)}
+  .ventry .vspeak:hover{border-color:var(--orange);color:var(--orange)}
+  .ventry .vdef{font-size:13.6px;margin:2px 0}
+  .ventry .vdef b{color:var(--sage);font-size:11px;letter-spacing:.5px;margin-right:4px}
+  .ventry .vdef.vi b{color:var(--orange)}
+  .ventry .vex{font-size:13.2px;font-style:italic;color:var(--muted);margin-top:6px;
+    border-left:3px solid var(--sage-soft);padding-left:10px}
+  .ventry .vex b{font-style:normal;color:var(--ink)}
+  .ventry .vcol{font-size:12.4px;margin-top:8px;border-top:1px dashed var(--line);padding-top:7px;color:#5c5c54}
+  .ventry .vcol b{display:block;color:var(--orange);font-size:9.5px;letter-spacing:.7px;margin-bottom:2px;font-weight:700}
+  /* side-by-side vocabulary boxes */
+  .vgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:11px;align-items:stretch}
+  .vgrid .ventry{margin-bottom:0;display:flex;flex-direction:column}
+  @media(max-width:640px){.vgrid{grid-template-columns:1fr}}
+  /* Glossary */
+  .gsearch{width:100%;padding:11px 15px;border:1px solid var(--line);border-radius:10px;font:inherit;
+    font-size:14px;margin-bottom:16px;background:var(--paper)}
+  .gsearch:focus{outline:none;border-color:var(--orange)}
+  .gtopic{scroll-margin-top:70px}
+  .gtopic h3{font-size:19px;color:var(--ink);border-bottom:2px solid var(--orange);padding-bottom:6px;margin:22px 0 4px}
+  .gcount{font-size:12px;color:var(--muted);margin-bottom:6px}
+  .gjump{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+  .gjump a{font-size:12px;font-weight:600;text-decoration:none;color:var(--muted);border:1px solid var(--line);
+    padding:4px 10px;border-radius:16px;background:var(--paper)}
+  .gjump a:hover{border-color:var(--orange);color:var(--orange)}
+  /* Idea development */
+  .arg{border-left:4px solid var(--orange);background:var(--paper);border:1px solid var(--line);
+    border-left-width:4px;border-radius:0 12px 12px 0;padding:14px 18px;margin-bottom:14px}
+  .arg.against{border-left-color:var(--sage)}
+  .arg .claim{font-weight:700;font-size:15px;margin-bottom:8px;display:flex;gap:8px;align-items:flex-start}
+  .arg .tag{font-size:10.5px;font-weight:700;letter-spacing:.5px;padding:3px 8px;border-radius:20px;
+    color:#fff;background:var(--orange);flex-shrink:0;margin-top:2px}
+  .arg.against .tag{background:var(--sage)}
+  .chain{list-style:none;margin:0;padding:0;counter-reset:step}
+  .chain li{position:relative;padding:4px 0 4px 30px;font-size:13.8px;counter-increment:step}
+  .chain li::before{content:counter(step);position:absolute;left:0;top:4px;width:20px;height:20px;
+    background:var(--cream);border:1px solid var(--sage);border-radius:50%;font-size:11px;font-weight:700;
+    color:var(--sage);display:flex;align-items:center;justify-content:center}
+  .chain li:not(:last-child)::after{content:"";position:absolute;left:9.5px;top:24px;bottom:-2px;width:1px;background:var(--sage-soft)}
+  .themetag{display:inline-block;background:var(--yellow);color:#6b5a1f;font-size:12px;font-weight:700;
+    padding:3px 10px;border-radius:6px;margin:14px 0 8px}
+  /* Practice bank */
+  .prompt{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin-bottom:12px}
+  .prompt .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:7px}
+  .pill{font-size:11px;font-weight:700;letter-spacing:.4px;padding:3px 9px;border-radius:20px}
+  .pill.new{background:var(--orange);color:#fff}
+  .pill.file{background:var(--sage);color:#fff}
+  .pill.common{background:var(--cream);color:var(--muted);border:1px solid var(--line)}
+  .pill.type{background:#efe7db;color:#8a6a3a}
+  .prompt p{margin:0;font-size:14.5px}
+  .prompt .date{font-size:11.5px;color:var(--muted);margin-left:auto}
+  /* Checklist */
+  .crit{margin-bottom:16px}
+  .crit h4{font-size:15px;display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .crit h4 .k{background:var(--ink);color:#fff;font-size:11px;padding:3px 8px;border-radius:6px;font-family:monospace}
+  .check{display:flex;gap:10px;align-items:flex-start;padding:6px 0;font-size:14px;border-bottom:1px dashed var(--line)}
+  .check input{margin-top:5px;width:16px;height:16px;accent-color:var(--sage);flex-shrink:0;cursor:pointer}
+  .check label{cursor:pointer}
+  /* Band table */
+  .bandwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+  .bandsrc{font-size:11.6px;color:var(--muted);padding:9px 12px;border-top:1px solid var(--line);background:var(--paper)}
+  .refcard ol{margin:8px 0 0;padding-left:20px}
+  .refcard li{font-size:13.4px;margin-bottom:8px}
+  .refcard .tag2{display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:var(--sage);
+    padding:2px 8px;border-radius:12px;margin-right:6px;letter-spacing:.4px}
+  table.band{border-collapse:collapse;width:100%;min-width:760px;font-size:12.8px}
+  table.band th,table.band td{border:1px solid var(--line);padding:9px 11px;vertical-align:top;text-align:left}
+  table.band thead th{background:var(--ink);color:#fff;font-family:'Segoe UI',sans-serif;font-size:12.5px;position:sticky;top:0}
+  table.band td.bn{font-weight:800;font-size:16px;text-align:center;font-family:Georgia,serif;width:46px}
+  /* colour-coded by BAND: every criterion in one band shares the same tone (green→red) */
+  table.band tr[data-b="9"] td{background:#dcebd4}
+  table.band tr[data-b="8"] td{background:#e8f1de}
+  table.band tr[data-b="7"] td{background:#f3f0d2}
+  table.band tr[data-b="6"] td{background:#faedcc}
+  table.band tr[data-b="5"] td{background:#f7e1d0}
+  table.band tr[data-b="4"] td{background:#f3d7c7}
+  table.band tr[data-b="9"] td.bn{background:#bcd9ae;color:#2f5626}
+  table.band tr[data-b="8"] td.bn{background:#cfe3bf;color:#3a5f2b}
+  table.band tr[data-b="7"] td.bn{background:#e7dfa6;color:#6f5f16}
+  table.band tr[data-b="6"] td.bn{background:#f2dda6;color:#8a6716}
+  table.band tr[data-b="5"] td.bn{background:#efc7ac;color:#9e5228}
+  table.band tr[data-b="4"] td.bn{background:#e9b79c;color:#a8481f}
+  table.band td b{color:#141414;font-weight:800}
+  /* Sample essay */
+  .essay{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:22px 26px;font-size:14.5px}
+  .essay h3{text-align:center;margin-bottom:16px;font-size:22px}
+  .essay p{margin:0 0 13px;position:relative}
+  .essay .num{position:absolute;left:-26px;color:var(--sage);font-weight:700;font-family:Georgia,serif}
+  mark.hook{background:#f6ddc9;padding:1px 2px}
+  mark.thesis{background:#d9e6d3;padding:1px 2px}
+  mark.topic{background:#eee2c2;padding:1px 2px}
+  mark.counter{background:#e3d4ea;padding:1px 2px}
+  mark.refute{background:#cfe3e8;padding:1px 2px}
+  mark.restate{background:#d9e6d3;padding:1px 2px}
+  .legend{display:flex;flex-wrap:wrap;gap:12px;margin:14px 0 4px;font-size:12.5px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}
+  .legend i{width:14px;height:14px;border-radius:3px;display:inline-block}
+  /* Structure diagram */
+  .flow{display:flex;flex-direction:column;gap:2px;max-width:640px;margin:8px 0}
+  .flow div{color:var(--ink);padding:12px 18px;border-radius:8px;font-weight:600;font-size:14px}
+  .flow .f1{background:var(--orange);color:#fff;margin-right:0}
+  .flow .f2{background:var(--orange-soft);margin-left:26px}
+  .flow .f3{background:var(--yellow);margin-left:52px}
+  .flow .f4{background:var(--sage-soft);margin-left:78px}
+  .flow .f5{background:var(--ink);color:#fff;margin-left:104px}
+  .flow small{display:block;font-weight:400;font-size:12px;opacity:.9}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:720px){.grid2{grid-template-columns:1fr}.topichero h2{font-size:22px}}
+  .typebox{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:13px 15px}
+  .typebox h4{font-size:14.5px;color:var(--orange);margin-bottom:3px}
+  .typebox .ex{font-size:12.8px;color:var(--muted);font-style:italic;margin-top:6px}
+  .note{background:#fff7e8;border:1px solid var(--yellow);border-radius:10px;padding:12px 15px;font-size:13px;margin-bottom:16px}
+  .qanalyze{background:#ecf3e9;border:1px solid var(--sage-soft);border-radius:10px;padding:12px 16px;margin:6px 0 16px;font-size:13.4px}
+  .qanalyze .row{display:flex;flex-wrap:wrap;gap:6px;padding:5px 0;border-bottom:1px dashed #cdd8c5}
+  .qanalyze .row:last-child{border-bottom:0}
+  .qanalyze .lbl{font-weight:700;color:#4f6446;min-width:150px;flex-shrink:0}
+  .qanalyze mark{background:#f6ddc9;padding:0 3px;border-radius:3px}
+  .qanalyze mark.t{background:#e3d4ea}
+  .foot{text-align:center;color:var(--muted);font-size:12px;margin-top:30px}
+  .resetbtn{border:1px solid var(--line);background:var(--paper);border-radius:8px;padding:6px 12px;
+    font:inherit;font-size:12.5px;cursor:pointer;color:var(--muted);margin-bottom:10px}
+  .linkbtn{border:0;background:var(--sage);color:#fff;font:inherit;font-weight:700;font-size:12.5px;
+    padding:3px 10px;border-radius:7px;cursor:pointer}
+  .linkbtn:hover{background:#87997f}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="paradigm">HUONG STELLA PARADIGM</div>
+  <div class="brand">TOPAZ · IELTS WRITING</div>
+  <h1>Writing Task 2 — Practice Hub</h1>
+  <p>Luyện viết theo 8 chủ đề: mỗi chủ đề gồm <b>Vocabulary</b>, <b>Idea Development</b> (chuỗi lập luận từ bài đọc), <b>Practice Bank</b> (đề phổ biến + đề thi thật) và <b>Checklist theo 4 tiêu chí band 4–9</b>. Bắt đầu với tab Tổng quan để nắm cấu trúc, các dạng bài và bài mẫu.</p>
+</header>
+
+<nav class="tabs" id="tabs"></nav>
+<main id="main"></main>
+
+<script>
+/* ============================ DATA ============================ */
+const OVERVIEW_ID = "overview";
+
+const bandDescriptors = [
+  {b:"9", tr:"<b>Fully addresses</b> all parts; <b>fully developed</b> position; relevant, <b>extended</b> and <b>well-supported</b> ideas.",
+   cc:"Cohesion used so <b>skilfully</b> it <b>attracts no attention</b>; paragraphing <b>fully appropriate</b>.",
+   lr:"<b>Wide range</b> used <b>naturally</b> and precisely; <b>very rare</b>, minor slips only.",
+   gra:"<b>Wide range</b> with <b>full flexibility and accuracy</b>; <b>rare</b> minor errors."},
+  {b:"8", tr:"<b>Sufficiently addresses</b> all parts; <b>well-developed</b> response with relevant, <b>well-supported</b> ideas.",
+   cc:"Sequences ideas <b>logically</b>; manages <b>all cohesion well</b>; paragraphing used <b>sufficiently</b>.",
+   lr:"<b>Wide range fluently and flexibly</b>; skilful use of <b>uncommon</b> words; only <b>occasional</b> slips.",
+   gra:"<b>Wide range</b>; <b>majority of sentences error-free</b>; only <b>occasional</b> errors."},
+  {b:"7", tr:"<b>Addresses all parts</b> (some more developed); <b>clear position throughout</b>; extends &amp; supports ideas but <b>may over-generalise</b>.",
+   cc:"<b>Clear progression</b> throughout; a <b>range of cohesive devices</b> (some over/under-use); <b>clear central topic</b> per paragraph.",
+   lr:"<b>Sufficient range</b> with some <b>flexibility &amp; precision</b>; some <b>less common</b> vocabulary; <b>occasional</b> errors.",
+   gra:"<b>Variety of complex structures</b>; <b>frequent error-free</b> sentences; <b>good control</b>, few errors."},
+  {b:"6", tr:"<b>Addresses all parts</b> (some more than others); relevant position but conclusions may be <b>unclear or repetitive</b>; ideas <b>not well developed</b>.",
+   cc:"Arranges information <b>coherently</b>; <b>overall progression clear</b>; cohesive devices sometimes <b>faulty or mechanical</b>.",
+   lr:"<b>Adequate range</b> for the task; less common words used with <b>inaccuracy</b>; some errors that <b>do not impede</b> communication.",
+   gra:"<b>Mix of simple &amp; complex</b> forms; <b>some errors</b> that <b>rarely reduce</b> communication."},
+  {b:"5", tr:"Addresses the task only <b>partially</b>; <b>format may be inappropriate</b>; <b>development not always clear</b>; ideas <b>limited / repetitive</b>.",
+   cc:"<b>Some organisation</b> but <b>no overall progression</b>; cohesive devices <b>inadequate or over-used</b>; <b>repetitive</b> referencing.",
+   lr:"<b>Limited range</b>, minimally adequate; <b>noticeable errors</b> that <b>cause difficulty for the reader</b>.",
+   gra:"<b>Limited range</b>; complex sentences <b>less accurate</b> than simple ones; <b>frequent errors</b> causing some difficulty."},
+  {b:"4", tr:"Responds <b>only minimally</b> or <b>tangentially</b>; <b>position unclear</b>; <b>few ideas</b>, possibly irrelevant/repetitive.",
+   cc:"Ideas <b>not arranged coherently</b>; <b>no clear progression</b>; basic devices used <b>inaccurately</b>; <b>may not use paragraphs</b>.",
+   lr:"<b>Very limited range</b>; <b>minimal control</b> of word formation/spelling; errors <b>cause strain for the reader</b>.",
+   gra:"<b>Very limited range</b>; <b>errors predominate</b>; <b>punctuation often faulty</b>."}
+];
+
+const checklist = {
+  TR:{name:"Task Response", items:[
+    "Đã trả lời ĐẦY ĐỦ mọi phần của câu hỏi (mọi ý trong đề)?",
+    "Nêu rõ QUAN ĐIỂM ngay ở phần mở bài và giữ nhất quán xuyên suốt?",
+    "Mỗi luận điểm được PHÁT TRIỂN (giải thích + ví dụ/bằng chứng), không chỉ liệt kê?",
+    "Viết đủ 250 từ và không lạc đề / lặp ý?"]},
+  CC:{name:"Coherence & Cohesion", items:[
+    "Bố cục rõ ràng: mở bài – các đoạn thân bài – kết bài, mỗi đoạn một ý chính?",
+    "Mỗi đoạn có TOPIC SENTENCE và mạch phát triển hợp lý?",
+    "Dùng linking words đa dạng, đúng chỗ (however, therefore, in contrast…), không lạm dụng?",
+    "Dùng đại từ / từ tham chiếu (this, these, such) để tránh lặp và nối ý mượt?"]},
+  LR:{name:"Lexical Resource", items:[
+    "Dùng từ vựng theo chủ đề & collocation chính xác (xem tab Vocabulary)?",
+    "Có một số từ less-common / paraphrase thay vì lặp từ trong đề?",
+    "Chính tả và word formation (danh/động/tính từ) đúng?",
+    "Register học thuật: tránh slang, phrasal verб thừa, 'I/me' không cần thiết?"]},
+  GRA:{name:"Grammatical Range & Accuracy", items:[
+    "Kết hợp câu đơn và câu phức (relative clause, conditional, concession)?",
+    "Đa số câu KHÔNG có lỗi ngữ pháp?",
+    "Dùng đúng articles (a/an/the) và giới từ?",
+    "Dấu câu chính xác (phẩy, chấm), không câu chạy dài khó đọc?"]}
+};
+
+/* ---- Overview content ---- */
+const essayTypes = [
+  {t:"Opinion (Agree / Disagree)", d:"Đưa ra MỘT quan điểm và bảo vệ nó xuyên suốt (one-sided).",
+   ex:"Should fast-food companies be allowed to aim their marketing at children?"},
+  {t:"Discussion (Discuss both views + opinion)", d:"Trình bày HAI phía rồi nêu quan điểm riêng (two-sided).",
+   ex:"Outline the arguments given by supporters and critics of GM food. Give your opinion."},
+  {t:"Problem / Solution", d:"Nêu vấn đề và đề xuất cách giải quyết (how can this be dealt with).",
+   ex:"Childhood obesity is a growing problem. How can this be most effectively dealt with?"},
+  {t:"Direct question (Causes / Two-part)", d:"Trả lời trực tiếp câu hỏi nguyên nhân / hệ quả.",
+   ex:"There has been a sharp rise in convenience food consumed. Why do you think this is?"}
+];
+
+/* ---- School Uniform sample essay (from attached Argument Essay file) ---- */
+/* rendered with annotations */
+
+/* ---- 8 topics ---- */
+const topics = [
+{
+  id:"t1", n:"T1", title:"Education", sub:"Academic vs vocational · distance vs face-to-face learning",
+  vocab:[
+   {h:"Elements & delivery of a course", type:"chips",
+    items:["academic course","vocational course","module","lecture","seminar","tutorial","face-to-face learning","distance learning","virtual university","online conversations"]},
+   {h:"Paying & assessment", type:"chips",
+    items:["tuition fees","scholarship","bursary","apprenticeship","assignment","examination","dissertation","plagiarism","term","semester","lecturer","tutor"]},
+   {h:"Useful collocations (from readings)", type:"table",
+    rows:[["modern phenomenon","a recent trend"],["technological advances","scientific developments"],
+    ["credible alternative","a reliable substitute"],["core principles","key values"],
+    ["personal relationship","individual connection"],["significant difference","an important distinction"]]},
+   {h:"Academic words", type:"chips",
+    items:["alternative","establishment","significant","core","principle","component","interaction","motivation","aspects","specific"]}
+  ],
+  ideas:[
+   {theme:"Vocational vs academic study"},
+   {side:"for", claim:"Vocational training deserves more encouragement.",
+    chain:["Society faces a shortage of qualified skilled workers such as electricians and plumbers.",
+    "This shortage raises costs and delays essential services for everyone.",
+    "Vocational courses focus on subjects linked to a particular job, producing job-ready graduates.",
+    "Apprenticeship opportunities with local businesses give hands-on, real-world experience."]},
+   {side:"against", claim:"Academic study still has unique value.",
+    chain:["Academic courses promote the discussion of ideas and deep theoretical knowledge.",
+    "This trains critical analysis rather than a single practical skill.",
+    "Subjects like Law and Medicine lead to high-flying professional careers.",
+    "However, they may prepare students less directly for the immediate job market."]},
+   {theme:"Distance vs face-to-face learning"},
+   {side:"for", claim:"Distance learning is now a credible alternative.",
+    chain:["Technological advances of the past 20 years let it rival classroom teaching.",
+    "Learners can study at their own pace and timetable, not restricted by geography.",
+    "It therefore suits self-disciplined, highly motivated students.",
+    "1996 saw the world's first 'virtual university' in the US — proof of how far it has come."]},
+   {side:"against", claim:"Face-to-face learning builds stronger relationships.",
+    chain:["Lectures, seminars and tutorials develop a personal student–teacher relationship.",
+    "Teachers can better understand each learner's specific needs.",
+    "Peers meet regularly, and real interaction differs from virtual message-boards.",
+    "Yet both systems cater for different audiences and can produce positive results."]}
+  ],
+  practice:[
+   {tag:"file",type:"Opinion",text:"While many people go to university for academic study, more people should be encouraged to do vocational training because there is a lack of qualified workers such as electricians and plumbers. Do you agree or disagree?"},
+   {tag:"common",type:"Discussion",text:"Some people think universities should provide graduates with the knowledge and skills needed in the workplace. Others think the true function of a university is to give access to knowledge for its own sake. Discuss both views and give your opinion."},
+   {tag:"new",type:"Opinion",date:"2026",text:"The government should pay the course fees for everyone who wants to study at university. To what extent do you agree or disagree?"},
+   {tag:"new",type:"Two-part",date:"2026",text:"Despite better access to education, many adults today still cannot read or write. In what ways are they disadvantaged? What can governments do to help them?"},
+   {tag:"new",type:"Opinion",date:"2026",text:"Some people believe that not all students have a natural ability for learning other languages, so schools should not force them to learn new languages. To what extent do you agree or disagree?"}
+  ]
+},
+{
+  id:"t2", n:"T2", title:"Healthcare", sub:"Funding models · preventable illness · responsibility",
+  vocab:[
+   {h:"Funding & access", type:"chips",
+    items:["premium","burden","deducted","consultation","safety net","labour costs","regardless","treatment","health insurance","contribution"]},
+   {h:"Medical vocabulary", type:"chips",
+    items:["disease epidemic","sedentary lifestyle","patent","underfunding","preventable illness","cosmetic surgery","drug dependency","life expectancy"]},
+   {h:"Adjective forms (academic nouns)", type:"table",
+    rows:[["adverse","harmful effect (adversity)"],["professional","trained & skilled (profession)"],
+    ["adequate","enough / satisfactory (adequacy)"],["conventional","traditional (convention)"],
+    ["precise","exact & accurate (precision)"],["complex","many parts (complexity)"]]},
+   {h:"Language of concession", type:"chips",
+    items:["however","nevertheless","despite","in spite of","even though","although","whereas"]}
+  ],
+  ideas:[
+   {theme:"Three models of healthcare (from 'Should healthcare be free?')"},
+   {side:"for", claim:"Free / public healthcare.",
+    chain:["Funded by taxes on income (workers + employers) or by national resources.",
+    "Provides free basic consultations, treatment and medicines to all citizens.",
+    "Main advantage: care regardless of income; disease can be controlled cheaply.",
+    "Drawback: very expensive as life expectancy rises → unsustainable financial burden or lower quality."]},
+   {side:"against", claim:"Private healthcare.",
+    chain:["Care is only available to patients who pay, delivered by commercial companies.",
+    "Advantage: higher quality can be maintained than by struggling government services.",
+    "Drawback: not everyone can afford insurance; without a safety net, many go untreated.",
+    "Less preventative medicine means infectious disease can spread more easily."]},
+   {side:"for", claim:"A mixed system.",
+    chain:["Compulsory insurance is deducted from salaries, with an employer contribution.",
+    "Citizens choose public or private providers → more flexibility.",
+    "Ensures access to healthcare for all.",
+    "Criticised for driving up labour costs, which can lead to unemployment."]},
+   {theme:"Is preventing illness the individual's or the government's job?"},
+   {side:"for", claim:"Individuals should take responsibility.",
+    chain:["Healthcare is extremely expensive for governments.",
+    "Medical evidence shows lifestyle is a major indicator of health.",
+    "People should be free to choose their own lifestyle.",
+    "If people take no responsibility, they lose the ability to make good choices."]},
+   {side:"against", claim:"Governments must help.",
+    chain:["Advertising for junk food tempts even people who want to eat healthily.",
+    "Some people cannot afford gyms or sports facilities.",
+    "Health advice changes so often that people get confused.",
+    "Health education (not only in schools) is therefore needed."]}
+  ],
+  practice:[
+   {tag:"file",type:"Opinion",text:"'Avoiding preventable illnesses is the responsibility of individuals and their families, not governments.' Do you agree?"},
+   {tag:"common",type:"Problem/Solution",text:"In some countries the average weight of people is increasing and their levels of health and fitness are decreasing. What do you think are the causes of these problems and what measures could be taken to solve them?"},
+   {tag:"common",type:"Discussion",text:"Some people think the government should be responsible for healthcare, while others believe individuals should take responsibility for their own health. Discuss both views and give your opinion."},
+   {tag:"common",type:"Opinion",text:"In many countries, people are now living longer than ever before. Some people say an ageing population creates problems for governments. Other people think there are benefits if society has more elderly people. To what extent do the advantages outweigh the disadvantages?"}
+  ]
+},
+{
+  id:"t3", n:"T3", title:"Risk", sub:"Government control vs personal freedom · risk & reward",
+  vocab:[
+   {h:"Risk & the body", type:"chips",
+    items:["risk-taker","risk-averse","adrenalin","endorphins","alert","withstand pain","live on the edge","play it safe","cutting it fine"]},
+   {h:"Language of freedom", type:"table",
+    rows:[["Promoting freedom","allow · permit · legalize · grant · authorize"],
+    ["Restricting freedom","ban · curb · limit · criminalize · restrict"]]},
+   {h:"Noun forms (from verbs)", type:"chips",
+    items:["regulations","legislation","prevention","objection","reduction","confusion","dissatisfaction"]},
+   {h:"Cause–effect & conditional linkers", type:"chips",
+    items:["results in","leads to","means","as a result of","because of","consequently","provided that","as long as","on condition that"]}
+  ],
+  ideas:[
+   {theme:"Should governments protect citizens from risk?"},
+   {side:"for", claim:"Government protection brings real benefits.",
+    chain:["Legislation protects personal health — compulsory seatbelts and helmets.",
+    "It manages disease by taxing/prohibiting unhealthy foods and funding vaccination.",
+    "Health-and-safety rules make employers liable → 800 fewer workplace deaths per year in the UK.",
+    "Financial protection gives those in poverty access to healthcare, food and shelter, and fights fraud."]},
+   {side:"against", claim:"Over-protection infringes freedom.",
+    chain:["Citizens object to hefty penalties even when they personally accept the risk.",
+    "Smokers argue they pose less risk than skiers or horse riders — so why ban food, not sport?",
+    "Businesses complain health-and-safety costs harm them and the national economy.",
+    "Government saving advice looks hypocritical when state borrowing is rising."]},
+   {theme:"Risk & reward / exposing children to risk"},
+   {side:"for", claim:"Taking risks can bring larger rewards.",
+    chain:["Greater personal, professional and financial risk can maximise profit and reward.",
+    "Children who face some risk learn to cope and build resilience.",
+    "Trial and error teaches lessons that safety alone cannot.",
+    "But dangerous risks make negative consequences more likely."]},
+   {side:"against", claim:"Some risks should be controlled.",
+    chain:["Excessive risk-taking (e.g. in banking) can cause chaos and collapse.",
+    "Tight controls provide a pleasant, safe environment for everyone.",
+    "Legislation must be monitored so it stays appropriate and up-to-date.",
+    "It should not be so restrictive that people stop taking responsibility for themselves."]}
+  ],
+  practice:[
+   {tag:"file",type:"Discussion",text:"'Taking greater risks leads to larger personal, professional and financial rewards.' Discuss the arguments for and against this statement and give your opinion."},
+   {tag:"file",type:"Opinion",text:"'If children are never exposed to risk, they will never be able to cope with risk.' Give reasons for and against this statement and give your opinion."},
+   {tag:"new",type:"Discussion",date:"2026",text:"Some people think that dangerous sports should be banned. Others believe that people should be free to choose the sporting activities they like. Discuss both these views and give your own opinion."},
+   {tag:"new",type:"Opinion",date:"2026",text:"Some people think that the best way to increase road safety is to increase the minimum legal age for driving cars or riding motorbikes. To what extent do you agree or disagree?"},
+   {tag:"new",type:"Opinion",date:"2026",text:"Some people believe that sports competitions are a source of emotional stress for young people; therefore youth should be banned from participating in sports competitions. Do you agree or disagree?"}
+  ]
+},
+{
+  id:"t4", n:"T4", title:"Environment", sub:"Climate change · deforestation · disaster & drought",
+  vocab:[
+   {h:"Natural disasters", type:"chips",
+    items:["dam","levee","flood barrier","sandbagging","tsunami","hurricane","flood","drought","erosion"]},
+   {h:"Climate & ecology", type:"chips",
+    items:["global warming","greenhouse gases","fossil fuels","renewable energy","deforestation","biodiversity","logging","grazing","livestock","subsistence farming","ecosystem","habitat","extinction"]},
+   {h:"Disaster collocations", type:"table",
+    rows:[["natural / major disaster","(≠ terrible)"],["severe / devastating flood","(≠ controlled)"],
+    ["large-scale / long-term project","(≠ ambitious)"],["prolonged / extreme drought","(≠ seasonal)"]]},
+   {h:"Academic noun phrases", type:"chips",
+    items:["risk analysis","risk reduction","water management","flood protection","disaster mitigation","community project"]}
+  ],
+  ideas:[
+   {theme:"Causes & effects of deforestation / climate change"},
+   {side:"for", claim:"Human activity drives deforestation.",
+    chain:["Forests are cleared for commercial agriculture (soya, palm oil) and subsistence farming.",
+    "Trees are also cut for fuel, construction and cattle pasture.",
+    "Main effects: aridity, habitat loss, erosion and reduced biodiversity.",
+    "A feedback loop forms — dry forests → fires → more CO₂ → more warming."]},
+   {side:"against", claim:"Loss of biodiversity threatens everyone.",
+    chain:["Growing populations destroy habitats where plants and animals live.",
+    "This reduces biodiversity and drives many species to extinction.",
+    "A decrease in biodiversity threatens entire ecosystems.",
+    "It also destroys future sources of food and medicine."]},
+   {theme:"Managing disasters & drought (mitigation report)"},
+   {side:"for", claim:"Risk can be reduced with the right strategies.",
+    chain:["Risk reduction: earth-wall levees block rising water; early-warning systems save lives.",
+    "Risk analysis: flood mapping identifies high-risk areas; dams add hydro-power and irrigation.",
+    "Short-term drought responses: water recycling (cheap), trucking in drinking water (costly), food aid.",
+    "Long-term: wells (medium cost), irrigation and dams, desalination and rainwater harvesting."]},
+   {side:"against", claim:"But solutions have limits.",
+    chain:["Many long-term strategies are expensive — affordable mainly for richer countries.",
+    "Poorer countries must rely on international support and charity in the short term.",
+    "Even the best levees cannot stop a tsunami.",
+    "Expensive early-warning systems are wasted if people take no notice of them."]}
+  ],
+  practice:[
+   {tag:"file",type:"Two-part",text:"Outline the human causes of climate change. What effects will these have on the planet?"},
+   {tag:"new",type:"Opinion",date:"2026",text:"Some people think that one of the best ways to solve environmental problems is to increase the cost of fuels for cars and other vehicles. To what extent do you agree or disagree?"},
+   {tag:"new",type:"Opinion",date:"2026",text:"Some people believe that individuals can do nothing to improve the environment; only governments and large companies can make a real difference. To what extent do you agree or disagree?"},
+   {tag:"new",type:"Opinion",date:"2026",text:"The international community must take immediate action to ensure that all nations reduce their consumption of fossil fuels, such as gas and oil. To what extent do you agree or disagree?"},
+   {tag:"new",type:"Two-part",date:"2026",text:"In many countries, more and more people choose to buy imported food rather than food produced locally. Why do people buy imported food? What could be done to encourage people to buy local food?"}
+  ]
+},
+{
+  id:"t5", n:"T5", title:"Architecture", sub:"Green buildings · beauty vs function · planning",
+  vocab:[
+   {h:"Buildings & materials", type:"chips",
+    items:["architect","palace","mosque","tower","tomb","marble","tile","install","solar panels","insulation","straw","mud","durable","affordable","compromise"]},
+   {h:"Urban planning", type:"chips",
+    items:["structural engineer","conservation","skyscrapers","outskirts","green belt","urban sprawl","amenities"]},
+   {h:"Word families", type:"table",
+    rows:[["function","functional · functionally · functionalism"],
+    ["environment","environmental · environmentally"],
+    ["responsibility","responsible · responsibly"],
+    ["efficiency","efficient · efficiently"],
+    ["architecture","architect · architectural"]]}
+  ],
+  ideas:[
+   {theme:"Are green buildings worth the cost?"},
+   {side:"for", claim:"The case for green buildings is strong.",
+    chain:["Construction accounts for 30–40% of global energy use (50–60% in the Gulf States).",
+    "Eco-features cut this energy use for the good of the planet.",
+    "Examples: Howe Dell school (wind turbine, rainwater) and the Welsh 'Hobbit House' (straw walls, mud roof, solar panels).",
+    "Green features double as teaching aids in schools and marketing tools for businesses."]},
+   {side:"against", claim:"But there are practical objections.",
+    chain:["Installing solar panels and recycling systems raises construction costs.",
+    "This makes eco-buildings too costly for large-volume construction.",
+    "Long-term efficiency is uncertain — little solar energy in the UK; not every site has water.",
+    "Compromises (smaller, less durable) are easier for schools/businesses than for home owners."]},
+   {theme:"Beauty vs function in design"},
+   {side:"for", claim:"Function comes first.",
+    chain:["Louis Sullivan: 'form follows function'.",
+    "An airport terminal must move passengers and park planes efficiently → circular shape.",
+    "Homes, galleries and factories each need a different form for a different purpose.",
+    "Purely functional buildings, though, may be cold, ugly and uninspiring."]},
+   {side:"against", claim:"Beauty also matters.",
+    chain:["Ugly workplaces are depressing; attractive buildings raise mood and motivation.",
+    "Fine buildings are a symbol of a civilized society and reflect on the owner.",
+    "Yet 'beautiful' icons can fail: the Guggenheim ramp is impractical; Farnsworth House leaks.",
+    "Blending beauty and function is therefore necessary for perfect architecture."]}
+  ],
+  practice:[
+   {tag:"file",type:"Opinion",text:"Which is more important when building or buying a new home: its location or its size?"},
+   {tag:"common",type:"Discussion",text:"Some people think that new houses should be built in the same style as older houses in the local area. Others disagree. Discuss both views and give your own opinion."},
+   {tag:"new",type:"Opinion",date:"2026",text:"The government should spend money on putting more works of art (like paintings and statues) in towns and cities to make them more attractive. To what extent do you agree or disagree?"},
+   {tag:"new",type:"Opinion",date:"2026",text:"Traffic and housing problems could be solved by moving large companies, factories and their employees to the countryside. Do you agree or disagree?"},
+   {tag:"new",type:"Discussion",date:"2026",text:"Some people think the government should establish free libraries in each town. Others believe it is a waste of money since people can access the Internet to obtain information. Discuss both views and give your own opinion."}
+  ]
+},
+{
+  id:"t6", n:"T6", title:"Energy", sub:"Renewable sources · reduce, reuse, recycle",
+  vocab:[
+   {h:"Fuels & sources", type:"chips",
+    items:["petrol","diesel","hydroelectricity","solar power","wind turbine","biofuel","fossil fuels","renewable energy","biomass","geothermal"]},
+   {h:"Energy collocations", type:"table",
+    rows:[["… fuel","fossil / diesel / alternative / renewable / clean"],
+    ["… energy","nuclear / solar / geothermal / green"],
+    ["… pollution","environmental / air / radioactive"],
+    ["… source","energy / power / water"]]},
+   {h:"Formal academic verbs", type:"table",
+    rows:[["consult","(get / look at)"],["contest","(disagree with)"],["diminish","(decrease)"],
+    ["instigate","(start)"],["omit","(skip)"],["secure","(get)"],["utilize","(use)"]]}
+  ],
+  ideas:[
+   {theme:"'Reduce, reuse, recycle' as a strategy"},
+   {side:"for", claim:"Reduce — use less at source.",
+    chain:["Individuals cut day-to-day use: fewer standby items, less water, less motorised transport.",
+    "Energy-saving bulbs and water meters help in the household.",
+    "It is hard to persuade people to consume less.",
+    "The most effective lever is making essential commodities more expensive."]},
+   {side:"for", claim:"Reuse & recycle extend resources.",
+    chain:["Reuse restores old items (e.g. glass bottles) and uses far less energy than recycling.",
+    "But reuse needs costly organisation and raises hygiene/safety concerns.",
+    "Recycling turns paper and plastic into new products with lower emissions than raw materials.",
+    "However, sorting waste is dirty and stripping electronics for rare metals is dangerous."]},
+   {theme:"Choosing renewable sources (advantages vs disadvantages)"},
+   {side:"for", claim:"Each source has clear advantages.",
+    chain:["Hydropower: inexhaustible and storable for peak demand.",
+    "Wind: relatively cheap, zero pollution, works on any scale.",
+    "Solar: inexhaustible, zero pollution, adaptable to many buildings.",
+    "Geothermal & biomass: simple/low-running-cost, and biomass reduces landfill."]},
+   {side:"against", claim:"…and matching disadvantages.",
+    chain:["Hydropower harms aquatic life and may flood areas; high initial cost.",
+    "Wind is intermittent, considered ugly/noisy and can threaten birds.",
+    "Solar needs large land areas and only works in sunny places, during the day.",
+    "Biomass emits greenhouse gases; geothermal has high installation costs and limited locations."]}
+  ],
+  practice:[
+   {tag:"file",type:"Direct question",text:"The world is unable to meet its energy needs. What three sources of renewable energy would be most effective in solving this problem in your country? Which is your preferred option?"},
+   {tag:"file",type:"Problem/Solution",text:"The world is running out of many vital natural resources. Discuss the most effective ways to address this problem."},
+   {tag:"new",type:"Opinion",date:"2026",text:"The international community must take immediate action to ensure that all nations reduce their consumption of fossil fuels, such as gas and oil. To what extent do you agree or disagree?"},
+   {tag:"new",type:"Opinion",date:"2026",text:"Some people think that one of the best ways to solve environmental problems is to increase the cost of fuels for cars and other vehicles. To what extent do you agree or disagree?"},
+   {tag:"new",type:"Opinion",date:"2026",text:"Government funding for space exploration is often viewed as a waste of resources; it would be more beneficial to allocate this budget to addressing urgent issues on Earth. To what extent do you agree or disagree?"}
+  ]
+},
+{
+  id:"t7", n:"T7", title:"Art & Design", sub:"What is art? · photography as fine art",
+  vocab:[
+   {h:"Art forms", type:"chips",
+    items:["calligraphy","pottery","sculpture","poetry","weaving","music","furniture making","photography","fine art","applied art"]},
+   {h:"Discussing art (adjectives)", type:"chips",
+    items:["aesthetic","mechanical","analogous","creative","objective","banal","cynical","conceptual"]},
+   {h:"Describing artworks", type:"table",
+    rows:[["abstract","relating to ideas, not real things"],["figurative","similar to real life"],
+    ["expressive","shows what someone feels"],["avant-garde","very original & modern"],
+    ["monumental","very big"],["moving","causes strong feeling"]]}
+  ],
+  ideas:[
+   {theme:"What counts as art? (fine vs applied)"},
+   {side:"for", claim:"Art has a broad, evolving definition.",
+    chain:["Fine art (painting, sculpture, music, poetry) has an aesthetic or conceptual function.",
+    "Aristotle: art represents 'not the outward appearance of things but their inward significance'.",
+    "Applied arts (pottery, weaving, furniture) must be functional as well as beautiful.",
+    "20th-century artists pushed limits — Duchamp's toilet (1917), Hirst's 'the idea is the work'."]},
+   {side:"against", claim:"But boundaries stay contested.",
+    chain:["Many complain conceptual art lacks skill.",
+    "Some artists use assistants to make the work.",
+    "Fine art still tends to be a preserve of the wealthy.",
+    "The 'art' label is now attached to fashion, cooking, games and even sport — is that valid?"]},
+   {theme:"Is photography a fine art?"},
+   {side:"for", claim:"Yes — it is a creative medium.",
+    chain:["A photograph is a deliberately created image with its own artistic features.",
+    "Ansel Adams: 'You don't take a photograph, you make it.'",
+    "Decisions on what, when and how are analogous to any other artist's.",
+    "High prices (Gursky sold for ~$4.5m) show it competes in fine-art markets."]},
+   {side:"against", claim:"No — it is mechanical & functional.",
+    chain:["Some say a photo is only an objective record of a place and time.",
+    "Any beauty belongs to the scene, not the photographer.",
+    "Expensive equipment may matter more than skill — Cartier-Bresson: 'it's all luck'.",
+    "It is widely used for police work, advertising and news, not aesthetics alone."]}
+  ],
+  practice:[
+   {tag:"file",type:"Discussion",text:"Fashion, cooking, video games and sport have all been likened to fine art. Choose one of these and discuss whether it should be considered fine art, comparable to painting or sculpture."},
+   {tag:"file",type:"Opinion",text:"Which is more important when designing a building: beauty or function?"},
+   {tag:"new",type:"Opinion",date:"2026",text:"The government should spend money on putting more works of art (like paintings and statues) in towns and cities to make them more attractive. To what extent do you agree or disagree?"},
+   {tag:"new",type:"Discussion",date:"2026",text:"Some people believe that countries should import and show foreign movies and TV programmes, while others argue that countries should produce their own. Discuss both views and give your own opinion."},
+   {tag:"new",type:"Discussion",date:"2026",text:"Some people think that museums should be enjoyable places to entertain people, while others believe that the purpose of museums is to educate. Discuss both views and give your own opinion."}
+  ]
+},
+{
+  id:"t8", n:"T8", title:"Ageing", sub:"Ageing population · young population · demographics",
+  vocab:[
+   {h:"Retirement & pensions", type:"chips",
+    items:["retirement age","draw a pension","state / private pension","pension scheme","compulsory retirement","early retirement","active retirement","age-related discrimination","memory loss","life expectancy"]},
+   {h:"Demographics", type:"chips",
+    items:["ageing population","youth bulge","population pyramid","median age","bottom heavy","demographic profile","GDP","supply and demand"]},
+   {h:"Language of prediction", type:"chips",
+    items:["is likely to","may well","is set to","is projected to","is expected to","is predicted to","unlikely to"]},
+   {h:"Academic collocations + prepositions", type:"table",
+    rows:[["brief on","rely on"],["a range of","focus on"],["theory of","identify with"],["sum up","in contrast to"]]}
+  ],
+  ideas:[
+   {theme:"Impact of an ageing population"},
+   {side:"against", claim:"Ageing creates real problems.",
+    chain:["More older people live alone and need care they cannot manage themselves.",
+    "Fewer workers pay tax, so governments have less money for health and education.",
+    "Healthcare and pension costs rise sharply.",
+    "Services adapt — home delivery, private nursing care, 'meals on wheels'."]},
+   {side:"for", claim:"But older populations bring benefits.",
+    chain:["Where there are fewer children, education costs fall.",
+    "Older people often have more savings and free time.",
+    "They may travel, study again, or spend online — supporting the economy.",
+    "Their experience adds value, especially through voluntary work."]},
+   {theme:"Effects of a YOUNG population (Saudi Arabia case)"},
+   {side:"against", claim:"A 'youth bulge' strains services.",
+    chain:["Over 21% under 10 and ~36% aged 10–29 → a very bottom-heavy pyramid.",
+    "Education costs are huge — Saudi Arabia spends ~9.6% of GDP, the world's highest.",
+    "Employment pressure means more may be spent on unemployment benefits.",
+    "Housing demand outstrips supply in cities like Jeddah, pushing prices up."]},
+   {side:"for", claim:"…yet a young country has advantages.",
+    chain:["It avoids the demands of an ageing population.",
+    "Healthcare and pension costs are lower.",
+    "More funds can be allocated to improving young people's lives.",
+    "A large future workforce can drive long-term growth."]}
+  ],
+  practice:[
+   {tag:"file",type:"Direct question",text:"Describe the potential global impact of an ageing population."},
+   {tag:"common",type:"Problem/Solution",text:"The rising number of elderly people is putting pressure on public services. What problems does an ageing population cause, and what solutions can you suggest?"},
+   {tag:"new",type:"Opinion",date:"2026",text:"People living in the 21st century have a better quality of life than people living in previous centuries. To what extent do you agree or disagree?"},
+   {tag:"new",type:"Two-part",date:"2026",text:"In some parts of the world it is increasingly popular to research the history of one's own family. Why do people want to do this? Is it a positive or negative development?"}
+  ]
+}
+];
+
+/* ==================== RICH VOCABULARY / GLOSSARY ====================
+   Each entry: w=word, pos=word form, ipa=pronunciation,
+   en=English meaning, vi=Vietnamese meaning, ex=B2–C1 example. */
+const VOCAB = {
+ t1:{title:"Education", groups:[
+  {sub:"Types of course & study", words:[
+   {w:"academic",pos:"adj",ipa:"/ˌækəˈdemɪk/",en:"relating to education, study and ideas rather than practical skills",vi:"thuộc học thuật, hàn lâm",ex:"She chose an <b>academic</b> course rather than vocational training."},
+   {w:"vocational",pos:"adj",ipa:"/vəʊˈkeɪʃənl/",en:"providing skills needed for a particular job",vi:"hướng nghiệp, dạy nghề",ex:"<b>Vocational</b> courses prepare students directly for a trade."},
+   {w:"module",pos:"n",ipa:"/ˈmɒdjuːl/",en:"a unit that forms one part of a course",vi:"học phần",ex:"Students must pass twelve <b>modules</b> to graduate."},
+   {w:"qualified",pos:"adj",ipa:"/ˈkwɒlɪfaɪd/",en:"having the training or skills that are needed",vi:"có trình độ, đủ tiêu chuẩn",ex:"There is a shortage of <b>qualified</b> electricians and plumbers."}]},
+  {sub:"Ways to deliver & pay", words:[
+   {w:"lecture",pos:"n",ipa:"/ˈlektʃə/",en:"a formal talk given to a large group of students",vi:"bài giảng",ex:"The professor gave a <b>lecture</b> on climate policy."},
+   {w:"seminar",pos:"n",ipa:"/ˈsemɪnɑː/",en:"a small class for discussion with a teacher",vi:"buổi hội thảo / thảo luận",ex:"In the <b>seminar</b>, students debated the assigned reading."},
+   {w:"tutorial",pos:"n",ipa:"/tjuːˈtɔːriəl/",en:"a small-group or one-to-one teaching session",vi:"buổi phụ đạo, dạy kèm",ex:"She booked a <b>tutorial</b> to discuss her essay plan."},
+   {w:"distance learning",pos:"n phr",ipa:"/ˈdɪstəns ˌlɜːnɪŋ/",en:"study that is done remotely, away from a college",vi:"học từ xa",ex:"<b>Distance learning</b> allows people to study from home."},
+   {w:"face-to-face",pos:"adj",ipa:"/ˌfeɪs tə ˈfeɪs/",en:"happening in person, with people physically present",vi:"trực tiếp, mặt đối mặt",ex:"Many students prefer <b>face-to-face</b> lessons to online ones."},
+   {w:"tuition fees",pos:"n phr",ipa:"/tjuˈɪʃn fiːz/",en:"money paid for being taught",vi:"học phí",ex:"University <b>tuition fees</b> have risen sharply in recent years."},
+   {w:"scholarship",pos:"n",ipa:"/ˈskɒləʃɪp/",en:"an award of money to help pay for study",vi:"học bổng",ex:"He won a <b>scholarship</b> to a top university."},
+   {w:"bursary",pos:"n",ipa:"/ˈbɜːsəri/",en:"a grant given to a student who needs financial help",vi:"trợ cấp học tập",ex:"The <b>bursary</b> covers most of her living costs."},
+   {w:"apprenticeship",pos:"n",ipa:"/əˈprentɪʃɪp/",en:"a period of training on the job under a skilled worker",vi:"quá trình học việc",ex:"She did an <b>apprenticeship</b> with a local carpenter."}]},
+  {sub:"Assessment & academic life", words:[
+   {w:"assignment",pos:"n",ipa:"/əˈsaɪnmənt/",en:"a task or piece of work given to a student",vi:"bài tập được giao",ex:"The <b>assignment</b> must be submitted by Friday."},
+   {w:"examination",pos:"n",ipa:"/ɪɡˌzæmɪˈneɪʃn/",en:"a formal test of knowledge under timed conditions",vi:"kỳ thi",ex:"The final <b>examination</b> lasts three hours."},
+   {w:"dissertation",pos:"n",ipa:"/ˌdɪsəˈteɪʃn/",en:"a long piece of writing on a subject for a degree",vi:"luận văn",ex:"His <b>dissertation</b> was over ten thousand words."},
+   {w:"plagiarism",pos:"n",ipa:"/ˈpleɪdʒərɪzəm/",en:"copying someone's work and presenting it as your own",vi:"đạo văn",ex:"<b>Plagiarism</b> can lead to a student being expelled."},
+   {w:"term",pos:"n",ipa:"/tɜːm/",en:"one of the three periods a school year is divided into",vi:"học kỳ (trong 3 kỳ)",ex:"The autumn <b>term</b> ends just before Christmas."},
+   {w:"semester",pos:"n",ipa:"/sɪˈmestə/",en:"one of the two periods a school year is divided into",vi:"học kỳ (trong 2 kỳ)",ex:"The course runs across two <b>semesters</b>."},
+   {w:"journal",pos:"n",ipa:"/ˈdʒɜːnl/",en:"an academic magazine publishing research papers",vi:"tạp chí học thuật",ex:"Her study appeared in a peer-reviewed <b>journal</b>."},
+   {w:"lecturer",pos:"n",ipa:"/ˈlektʃərə/",en:"a person who teaches at a university",vi:"giảng viên",ex:"The <b>lecturer</b> is also an active researcher."},
+   {w:"tutor",pos:"n",ipa:"/ˈtjuːtə/",en:"a teacher responsible for a student's academic welfare",vi:"cố vấn học tập, gia sư",ex:"His <b>tutor</b> helped him choose his modules."}]},
+  {sub:"Reading collocations & academic words", words:[
+   {w:"virtual university",pos:"n phr",ipa:"/ˈvɜːtʃuəl/",en:"a university that operates entirely online",vi:"đại học ảo (trực tuyến)",ex:"The world's first <b>virtual university</b> opened in 1996."},
+   {w:"credible alternative",pos:"n phr",ipa:"/ˈkredəbl/",en:"a believable and reliable other option",vi:"lựa chọn thay thế đáng tin cậy",ex:"Distance learning is now a <b>credible alternative</b> to campus study."},
+   {w:"motivation",pos:"n",ipa:"/ˌməʊtɪˈveɪʃn/",en:"the willingness and drive to do something",vi:"động lực",ex:"Distance learning demands a high level of <b>motivation</b>."},
+   {w:"interaction",pos:"n",ipa:"/ˌɪntərˈækʃn/",en:"communication or contact between people",vi:"sự tương tác",ex:"Face-to-face <b>interaction</b> helps learners feel supported."}]}
+ ]},
+
+ t2:{title:"Healthcare", groups:[
+  {sub:"Funding & access", words:[
+   {w:"premium",pos:"n",ipa:"/ˈpriːmiəm/",en:"a regular payment made for an insurance policy",vi:"phí bảo hiểm",ex:"You have to pay an insurance <b>premium</b> every month."},
+   {w:"burden",pos:"n",ipa:"/ˈbɜːdn/",en:"a heavy or difficult responsibility",vi:"gánh nặng",ex:"An ageing population creates a huge financial <b>burden</b>."},
+   {w:"deduct",pos:"v",ipa:"/dɪˈdʌkt/",en:"to take away an amount from a total",vi:"khấu trừ",ex:"Insurance is <b>deducted</b> directly from workers' salaries."},
+   {w:"consultation",pos:"n",ipa:"/ˌkɒnslˈteɪʃn/",en:"a meeting with a doctor to get advice or treatment",vi:"buổi khám / tư vấn",ex:"The first <b>consultation</b> is free of charge."},
+   {w:"safety net",pos:"n phr",ipa:"/ˈseɪfti net/",en:"a system that protects people in difficulty",vi:"mạng lưới an sinh",ex:"Savings act as a <b>safety net</b> if you lose your job."},
+   {w:"labour costs",pos:"n phr",ipa:"/ˈleɪbə kɒsts/",en:"the money spent on employing people",vi:"chi phí nhân công",ex:"The scheme has been criticised for driving up <b>labour costs</b>."},
+   {w:"regardless",pos:"adv",ipa:"/rɪˈɡɑːdləs/",en:"despite something; without being affected by it",vi:"bất kể",ex:"Basic care is provided <b>regardless</b> of a person's income."}]},
+  {sub:"Medical vocabulary", words:[
+   {w:"treatment",pos:"n",ipa:"/ˈtriːtmənt/",en:"medical care given to a patient for an illness",vi:"sự điều trị",ex:"After months of <b>treatment</b>, she could walk again."},
+   {w:"disease epidemic",pos:"n phr",ipa:"/ˌepɪˈdemɪk/",en:"an illness that spreads to many people at the same time",vi:"dịch bệnh",ex:"Clean water helps prevent a <b>disease epidemic</b>."},
+   {w:"sedentary lifestyle",pos:"n phr",ipa:"/ˈsedntri/",en:"a way of living that involves little physical activity",vi:"lối sống ít vận động",ex:"A <b>sedentary lifestyle</b> is a major cause of obesity."},
+   {w:"patent",pos:"n",ipa:"/ˈpeɪtnt/",en:"the legal right to be the only maker of an invention",vi:"bằng sáng chế",ex:"Drug companies take out <b>patents</b> on new medicines."},
+   {w:"underfunding",pos:"n",ipa:"/ˌʌndəˈfʌndɪŋ/",en:"a lack of the money that is needed for something",vi:"tình trạng thiếu kinh phí",ex:"Many hospitals suffer from serious <b>underfunding</b>."},
+   {w:"preventable illness",pos:"n phr",ipa:"/prɪˈventəbl/",en:"a disease that could be avoided, often through lifestyle",vi:"bệnh có thể phòng ngừa",ex:"Diet is linked to many <b>preventable illnesses</b>."},
+   {w:"cosmetic surgery",pos:"n phr",ipa:"/kɒzˈmetɪk/",en:"a medical operation to improve someone's appearance",vi:"phẫu thuật thẩm mỹ",ex:"Some people travel abroad for cheaper <b>cosmetic surgery</b>."},
+   {w:"drug dependency",pos:"n phr",ipa:"/dɪˈpendənsi/",en:"the state of being unable to function without a drug",vi:"sự lệ thuộc thuốc",ex:"Long prescriptions can lead to <b>drug dependency</b>."},
+   {w:"life expectancy",pos:"n phr",ipa:"/ɪkˈspektənsi/",en:"the number of years a person is expected to live",vi:"tuổi thọ trung bình",ex:"<b>Life expectancy</b> has risen to 67 worldwide."}]},
+  {sub:"Academic adjectives", words:[
+   {w:"adverse",pos:"adj",ipa:"/ˈædvɜːs/",en:"having a harmful or unfavourable effect",vi:"bất lợi, có hại",ex:"Underfunding creates <b>adverse</b> conditions in hospitals."},
+   {w:"adequate",pos:"adj",ipa:"/ˈædɪkwət/",en:"enough or good enough for a purpose",vi:"đầy đủ, thoả đáng",ex:"Patients have the right to an <b>adequate</b> level of care."},
+   {w:"conventional",pos:"adj",ipa:"/kənˈvenʃənl/",en:"traditional and ordinary; widely accepted",vi:"thông thường, truyền thống",ex:"<b>Conventional</b> medicine relies on the use of drugs."},
+   {w:"precise",pos:"adj",ipa:"/prɪˈsaɪs/",en:"exact, accurate and clearly stated",vi:"chính xác",ex:"The dose of a drug must be <b>precise</b>."},
+   {w:"professional",pos:"adj",ipa:"/prəˈfeʃənl/",en:"having the qualities of trained, skilled people",vi:"chuyên nghiệp",ex:"Doctors and nurses are <b>professional</b> practitioners."}]},
+  {sub:"Language of concession", words:[
+   {w:"however",pos:"adv",ipa:"/haʊˈevə/",en:"used to introduce a contrasting idea",vi:"tuy nhiên",ex:"Homeopathy seems ineffective; <b>however</b>, many still use it."},
+   {w:"nevertheless",pos:"adv",ipa:"/ˌnevəðəˈles/",en:"in spite of what has just been said",vi:"tuy vậy, dù thế",ex:"The evidence is weak; <b>nevertheless</b>, demand remains strong."},
+   {w:"despite",pos:"prep",ipa:"/dɪˈspaɪt/",en:"without being affected by something",vi:"mặc dù",ex:"<b>Despite</b> the high cost, the treatment continued."}]}
+ ]},
+
+ t3:{title:"Risk", groups:[
+  {sub:"Risk & the body", words:[
+   {w:"risk-taker",pos:"n",ipa:"/ˈrɪsk ˌteɪkə/",en:"a person who is willing to take chances",vi:"người ưa mạo hiểm",ex:"A <b>risk-taker</b> enjoys living on the edge of danger."},
+   {w:"risk-averse",pos:"adj",ipa:"/ˈrɪsk əˌvɜːs/",en:"disliking risk and preferring safety",vi:"e ngại rủi ro",ex:"<b>Risk-averse</b> investors keep their money in the bank."},
+   {w:"adrenalin",pos:"n",ipa:"/əˈdrenəlɪn/",en:"a hormone released when you are excited or afraid",vi:"a-đrê-na-lin (hoóc-môn)",ex:"Extreme situations make the body produce <b>adrenalin</b>."},
+   {w:"endorphins",pos:"n",ipa:"/enˈdɔːfɪnz/",en:"natural chemicals that make you feel good",vi:"endorphin (chất tạo hưng phấn)",ex:"Exercise releases <b>endorphins</b> and reduces pain."},
+   {w:"alert",pos:"adj",ipa:"/əˈlɜːt/",en:"quick to notice and react to things",vi:"tỉnh táo, cảnh giác",ex:"Adrenalin makes the body more <b>alert</b> to danger."}]},
+  {sub:"Language of freedom", words:[
+   {w:"ban",pos:"v",ipa:"/bæn/",en:"to forbid something officially",vi:"cấm",ex:"Certain countries completely <b>ban</b> the sale of guns."},
+   {w:"curb",pos:"v",ipa:"/kɜːb/",en:"to control or limit something",vi:"kiềm chế, hạn chế",ex:"New laws are designed to <b>curb</b> reckless driving."},
+   {w:"restrict",pos:"v",ipa:"/rɪˈstrɪkt/",en:"to limit the size, amount or freedom of something",vi:"hạn chế",ex:"Regulations <b>restrict</b> the most dangerous activities."},
+   {w:"legalize",pos:"v",ipa:"/ˈliːɡəlaɪz/",en:"to make something legal",vi:"hợp pháp hoá",ex:"Some states have chosen to <b>legalize</b> certain drugs."},
+   {w:"authorize",pos:"v",ipa:"/ˈɔːθəraɪz/",en:"to give official permission for something",vi:"cho phép, uỷ quyền",ex:"The president will <b>authorize</b> the building of new colleges."},
+   {w:"grant",pos:"v",ipa:"/ɡrɑːnt/",en:"to agree to give or allow something formally",vi:"cấp, ban cho",ex:"If states <b>grant</b> people the vote, they should use it wisely."}]},
+  {sub:"Noun forms", words:[
+   {w:"legislation",pos:"n",ipa:"/ˌledʒɪsˈleɪʃn/",en:"a law or set of laws",vi:"pháp luật, đạo luật",ex:"The government introduced new <b>legislation</b> on safety."},
+   {w:"regulations",pos:"n",ipa:"/ˌreɡjuˈleɪʃnz/",en:"official rules that control how something is done",vi:"quy định",ex:"Health-and-safety <b>regulations</b> protect employees."},
+   {w:"prevention",pos:"n",ipa:"/prɪˈvenʃn/",en:"the act of stopping something from happening",vi:"sự phòng ngừa",ex:"<b>Prevention</b> is often cheaper than a cure."},
+   {w:"objection",pos:"n",ipa:"/əbˈdʒekʃn/",en:"a reason for disagreeing with something",vi:"sự phản đối",ex:"Companies raised a strong <b>objection</b> to the new policy."}]},
+  {sub:"Cause–effect & conditional linkers", words:[
+   {w:"consequently",pos:"adv",ipa:"/ˈkɒnsɪkwəntli/",en:"as a result of something",vi:"do đó, vì vậy",ex:"He ignored the risks and <b>consequently</b> lost everything."},
+   {w:"provided that",pos:"conj phr",ipa:"/prəˈvaɪdɪd/",en:"only if a particular condition is met",vi:"miễn là, với điều kiện",ex:"Risk is acceptable <b>provided that</b> it is carefully managed."},
+   {w:"as long as",pos:"conj phr",ipa:"/əz ˈlɒŋ əz/",en:"on condition that",vi:"chừng nào, miễn là",ex:"People may take risks <b>as long as</b> they harm no one else."}]}
+ ]},
+
+ t4:{title:"Environment", groups:[
+  {sub:"Natural disasters", words:[
+   {w:"dam",pos:"n",ipa:"/dæm/",en:"a barrier built to hold back water",vi:"đập (nước)",ex:"The <b>dam</b> provides both flood control and electricity."},
+   {w:"levee",pos:"n",ipa:"/ˈlevi/",en:"an earth wall built to prevent a river flooding",vi:"đê",ex:"<b>Levees</b> block the progress of rising water."},
+   {w:"flood barrier",pos:"n phr",ipa:"/flʌd ˈbæriə/",en:"a structure built to stop flooding",vi:"rào/đập chắn lũ",ex:"The Thames Barrier is an enormous <b>flood barrier</b>."},
+   {w:"sandbagging",pos:"n",ipa:"/ˈsæn(d)bæɡɪŋ/",en:"the use of bags of sand to hold back water",vi:"chắn nước bằng bao cát",ex:"<b>Sandbagging</b> can stop flood water very cheaply."},
+   {w:"tsunami",pos:"n",ipa:"/tsuːˈnɑːmi/",en:"a very large, destructive sea wave",vi:"sóng thần",ex:"Even the best levees cannot stop a <b>tsunami</b>."},
+   {w:"drought",pos:"n",ipa:"/draʊt/",en:"a long period with little or no rain",vi:"hạn hán",ex:"A prolonged <b>drought</b> can kill crops and livestock."},
+   {w:"erosion",pos:"n",ipa:"/ɪˈrəʊʒn/",en:"the gradual wearing away of soil or rock",vi:"sự xói mòn",ex:"Cutting down trees leads to heavy soil <b>erosion</b>."}]},
+  {sub:"Climate & ecology", words:[
+   {w:"global warming",pos:"n phr",ipa:"/ˌɡləʊbl ˈwɔːmɪŋ/",en:"the gradual rise in the earth's temperature",vi:"sự nóng lên toàn cầu",ex:"Greenhouse gases are the main cause of <b>global warming</b>."},
+   {w:"greenhouse gases",pos:"n phr",ipa:"/ˈɡriːnhaʊs ˌɡæsɪz/",en:"gases that trap heat in the atmosphere",vi:"khí nhà kính",ex:"Burning fossil fuels releases <b>greenhouse gases</b>."},
+   {w:"fossil fuels",pos:"n phr",ipa:"/ˈfɒsl ˌfjuːəlz/",en:"fuels such as coal, oil and gas from ancient remains",vi:"nhiên liệu hoá thạch",ex:"We must reduce our dependence on <b>fossil fuels</b>."},
+   {w:"renewable energy",pos:"n phr",ipa:"/rɪˈnjuːəbl/",en:"energy from sources that do not run out",vi:"năng lượng tái tạo",ex:"Solar and wind are forms of <b>renewable energy</b>."},
+   {w:"deforestation",pos:"n",ipa:"/ˌdiːˌfɒrɪˈsteɪʃn/",en:"the cutting down of forests over a large area",vi:"nạn phá rừng",ex:"<b>Deforestation</b> is destroying animal habitats."},
+   {w:"biodiversity",pos:"n",ipa:"/ˌbaɪəʊdaɪˈvɜːsəti/",en:"the variety of plant and animal life in an area",vi:"đa dạng sinh học",ex:"Rainforests contain enormous <b>biodiversity</b>."},
+   {w:"logging",pos:"n",ipa:"/ˈlɒɡɪŋ/",en:"the activity of cutting down trees for wood",vi:"khai thác gỗ",ex:"Illegal <b>logging</b> threatens the Amazon rainforest."},
+   {w:"subsistence farming",pos:"n phr",ipa:"/səbˈsɪstəns/",en:"farming that produces only enough for the farmer's family",vi:"canh tác tự cung tự cấp",ex:"<b>Subsistence farming</b> clears small areas of forest."},
+   {w:"livestock",pos:"n",ipa:"/ˈlaɪvstɒk/",en:"animals kept on a farm",vi:"gia súc, vật nuôi",ex:"Cleared land is often used as pasture for <b>livestock</b>."},
+   {w:"habitat",pos:"n",ipa:"/ˈhæbɪtæt/",en:"the natural home of an animal or plant",vi:"môi trường sống",ex:"Deforestation destroys the <b>habitat</b> of many species."},
+   {w:"ecosystem",pos:"n",ipa:"/ˈiːkəʊsɪstəm/",en:"all the living things in an area and their environment",vi:"hệ sinh thái",ex:"A loss of biodiversity threatens entire <b>ecosystems</b>."}]},
+  {sub:"Disaster & mitigation phrases", words:[
+   {w:"mitigation",pos:"n",ipa:"/ˌmɪtɪˈɡeɪʃn/",en:"the act of making something less severe",vi:"sự giảm nhẹ (thiệt hại)",ex:"Disaster <b>mitigation</b> reduces the impact of floods."},
+   {w:"desalination",pos:"n",ipa:"/ˌdiːˌsælɪˈneɪʃn/",en:"the process of removing salt from sea water",vi:"quá trình khử mặn",ex:"<b>Desalination</b> plants turn sea water into drinking water."},
+   {w:"prolonged",pos:"adj",ipa:"/prəˈlɒŋd/",en:"continuing for a long time",vi:"kéo dài",ex:"A <b>prolonged</b> drought put millions at risk of hunger."}]}
+ ]},
+
+ t5:{title:"Architecture", groups:[
+  {sub:"Buildings & materials", words:[
+   {w:"architect",pos:"n",ipa:"/ˈɑːkɪtekt/",en:"a person who designs buildings",vi:"kiến trúc sư",ex:"The <b>architect</b> designed a striking glass tower."},
+   {w:"marble",pos:"n",ipa:"/ˈmɑːbl/",en:"a hard, smooth stone used in fine building",vi:"đá cẩm thạch",ex:"The palace floors were made of white <b>marble</b>."},
+   {w:"tile",pos:"n",ipa:"/taɪl/",en:"a flat piece of baked clay used to cover surfaces",vi:"gạch / ngói ốp",ex:"The roof is covered with red clay <b>tiles</b>."},
+   {w:"insulation",pos:"n",ipa:"/ˌɪnsjuˈleɪʃn/",en:"material used to keep heat inside a building",vi:"vật liệu cách nhiệt",ex:"Straw walls provide excellent <b>insulation</b>."},
+   {w:"solar panels",pos:"n phr",ipa:"/ˈsəʊlə ˌpænlz/",en:"devices that turn sunlight into electricity",vi:"tấm pin mặt trời",ex:"<b>Solar panels</b> supply the house with electricity."},
+   {w:"durable",pos:"adj",ipa:"/ˈdjʊərəbl/",en:"tough and able to last a long time",vi:"bền, lâu hỏng",ex:"Buildings made from <b>durable</b> materials last for decades."},
+   {w:"affordable",pos:"adj",ipa:"/əˈfɔːdəbl/",en:"cheap enough for people to be able to buy",vi:"vừa túi tiền",ex:"Eco-homes must be <b>affordable</b> to become common."},
+   {w:"compromise",pos:"n",ipa:"/ˈkɒmprəmaɪz/",en:"an agreement reached by each side giving up something",vi:"sự thoả hiệp",ex:"Green design often requires a <b>compromise</b> on size."}]},
+  {sub:"Urban planning", words:[
+   {w:"structural engineer",pos:"n phr",ipa:"/ˈstrʌktʃərəl/",en:"a person whose job is to help build an architect's design",vi:"kỹ sư kết cấu",ex:"A <b>structural engineer</b> makes sure the building is safe."},
+   {w:"conservation",pos:"n",ipa:"/ˌkɒnsəˈveɪʃn/",en:"the protection of old buildings or the natural world",vi:"sự bảo tồn",ex:"The <b>conservation</b> of ancient buildings matters to many."},
+   {w:"skyscraper",pos:"n",ipa:"/ˈskaɪskreɪpə/",en:"a very tall modern building",vi:"toà nhà chọc trời",ex:"<b>Skyscrapers</b> dominate the city's skyline."},
+   {w:"outskirts",pos:"n",ipa:"/ˈaʊtskɜːts/",en:"the outer areas of a town or city",vi:"vùng ngoại ô",ex:"The suburbs are found on the <b>outskirts</b> of the city."},
+   {w:"green belt",pos:"n phr",ipa:"/ˈɡriːn belt/",en:"an area of protected countryside around a city",vi:"vành đai xanh",ex:"The <b>green belt</b> may not be built on."},
+   {w:"urban sprawl",pos:"n phr",ipa:"/ˈɜːbən sprɔːl/",en:"the uncontrolled spread of a city into the countryside",vi:"sự bành trướng đô thị",ex:"<b>Urban sprawl</b> is swallowing valuable farmland."},
+   {w:"amenities",pos:"n",ipa:"/əˈmiːnətiz/",en:"useful features or public facilities in a place",vi:"tiện ích công cộng",ex:"Cities need <b>amenities</b> such as libraries and parks."}]},
+  {sub:"Design & word families", words:[
+   {w:"functional",pos:"adj",ipa:"/ˈfʌŋkʃənl/",en:"designed to be practical and useful",vi:"mang tính công năng",ex:"The airport terminal is extremely <b>functional</b>."},
+   {w:"aesthetic",pos:"adj",ipa:"/iːsˈθetɪk/",en:"concerned with beauty and appearance",vi:"thuộc về thẩm mỹ",ex:"The museum has enormous <b>aesthetic</b> appeal."},
+   {w:"efficient",pos:"adj",ipa:"/ɪˈfɪʃnt/",en:"working well without wasting energy or resources",vi:"hiệu quả",ex:"Green buildings are designed to be energy-<b>efficient</b>."}]}
+ ]},
+
+ t6:{title:"Energy", groups:[
+  {sub:"Fuels & sources", words:[
+   {w:"petrol",pos:"n",ipa:"/ˈpetrəl/",en:"a liquid fuel made from petroleum, used in cars",vi:"xăng",ex:"<b>Petrol</b> prices have climbed again this month."},
+   {w:"diesel",pos:"n",ipa:"/ˈdiːzl/",en:"a type of heavy oil used as fuel",vi:"dầu diesel",ex:"Most lorries in the country run on <b>diesel</b>."},
+   {w:"hydroelectricity",pos:"n",ipa:"/ˌhaɪdrəʊɪlekˈtrɪsəti/",en:"electricity produced from the power of moving water",vi:"thuỷ điện",ex:"<b>Hydroelectricity</b> uses rivers, waterfalls and the sea."},
+   {w:"solar power",pos:"n phr",ipa:"/ˈsəʊlə paʊə/",en:"energy obtained from the sun",vi:"điện / năng lượng mặt trời",ex:"<b>Solar power</b> is inexhaustible but works only by day."},
+   {w:"wind turbine",pos:"n phr",ipa:"/ˈwɪnd ˌtɜːbaɪn/",en:"a tall machine that generates electricity from wind",vi:"tua-bin gió",ex:"Large <b>wind turbines</b> are often placed offshore."},
+   {w:"biofuel",pos:"n",ipa:"/ˈbaɪəʊfjuːəl/",en:"fuel made from plants or animal waste",vi:"nhiên liệu sinh học",ex:"Ethanol is a <b>biofuel</b> made from certain crops."},
+   {w:"biomass",pos:"n",ipa:"/ˈbaɪəʊmæs/",en:"organic material burned to produce energy",vi:"sinh khối",ex:"<b>Biomass</b> reduces landfill but emits greenhouse gases."},
+   {w:"geothermal",pos:"adj",ipa:"/ˌdʒiːəʊˈθɜːml/",en:"relating to heat from inside the earth",vi:"địa nhiệt",ex:"<b>Geothermal</b> energy has very low running costs."},
+   {w:"inexhaustible",pos:"adj",ipa:"/ˌɪnɪɡˈzɔːstəbl/",en:"existing in such large amounts that it never runs out",vi:"vô tận, không cạn kiệt",ex:"Wind power is clean and virtually <b>inexhaustible</b>."}]},
+  {sub:"Formal academic verbs", words:[
+   {w:"generate",pos:"v",ipa:"/ˈdʒenəreɪt/",en:"to produce energy, power or results",vi:"tạo ra, sản sinh",ex:"Turbines <b>generate</b> electricity as the blades turn."},
+   {w:"consult",pos:"v",ipa:"/kənˈsʌlt/",en:"to look at something to get information",vi:"tra cứu, tham khảo",ex:"Readers can <b>consult</b> the documents on our website."},
+   {w:"contest",pos:"v",ipa:"/kənˈtest/",en:"to formally oppose or disagree with something",vi:"phản đối, tranh cãi",ex:"Local residents <b>contested</b> the wind-farm application."},
+   {w:"diminish",pos:"v",ipa:"/dɪˈmɪnɪʃ/",en:"to become or make smaller or weaker",vi:"suy giảm",ex:"Our natural resources are beginning to <b>diminish</b>."},
+   {w:"utilize",pos:"v",ipa:"/ˈjuːtəlaɪz/",en:"to make practical use of something",vi:"sử dụng, tận dụng",ex:"This car <b>utilizes</b> fuel more effectively than older models."},
+   {w:"omit",pos:"v",ipa:"/əˈmɪt/",en:"to leave something out",vi:"bỏ sót, lược bỏ",ex:"Advocates often <b>omit</b> key details about land use."},
+   {w:"secure",pos:"v",ipa:"/sɪˈkjʊə/",en:"to succeed in getting something, often with effort",vi:"giành được, bảo đảm",ex:"The country must <b>secure</b> new renewable sources soon."}]}
+ ]},
+
+ t7:{title:"Art & Design", groups:[
+  {sub:"Art forms", words:[
+   {w:"calligraphy",pos:"n",ipa:"/kəˈlɪɡrəfi/",en:"the art of beautiful, decorative handwriting",vi:"thư pháp",ex:"<b>Calligraphy</b> is created with a pen and ink."},
+   {w:"pottery",pos:"n",ipa:"/ˈpɒtəri/",en:"objects made from baked clay",vi:"đồ gốm",ex:"<b>Pottery</b> is shaped from clay and finished with glaze."},
+   {w:"sculpture",pos:"n",ipa:"/ˈskʌlptʃə/",en:"art made by shaping solid materials",vi:"điêu khắc",ex:"The <b>sculpture</b> was carved from stone and bronze."},
+   {w:"weaving",pos:"n",ipa:"/ˈwiːvɪŋ/",en:"the craft of making cloth by crossing threads",vi:"nghề dệt",ex:"<b>Weaving</b> turns wool and thread into cloth."},
+   {w:"fine art",pos:"n phr",ipa:"/ˌfaɪn ˈɑːt/",en:"art created mainly for its beauty or ideas",vi:"mỹ thuật",ex:"Painting and sculpture are traditional <b>fine arts</b>."},
+   {w:"applied art",pos:"n phr",ipa:"/əˌplaɪd ˈɑːt/",en:"art that is functional as well as beautiful",vi:"nghệ thuật ứng dụng",ex:"Pottery and furniture-making are forms of <b>applied art</b>."}]},
+  {sub:"Discussing art (adjectives)", words:[
+   {w:"aesthetic",pos:"adj",ipa:"/iːsˈθetɪk/",en:"relating to beauty and the appreciation of it",vi:"thuộc về thẩm mỹ",ex:"Fine art is said to have an <b>aesthetic</b> function."},
+   {w:"mechanical",pos:"adj",ipa:"/məˈkænɪkl/",en:"produced by a machine rather than by hand",vi:"mang tính máy móc",ex:"Some argue photos are made by a <b>mechanical</b> device."},
+   {w:"analogous",pos:"adj",ipa:"/əˈnæləɡəs/",en:"similar in some way; comparable",vi:"tương tự, giống nhau",ex:"A photographer's choices are <b>analogous</b> to a painter's."},
+   {w:"objective",pos:"adj",ipa:"/əbˈdʒektɪv/",en:"based on facts, not on feelings or opinions",vi:"khách quan",ex:"A photograph can be just an <b>objective</b> record of a place."},
+   {w:"banal",pos:"adj",ipa:"/bəˈnɑːl/",en:"boring and ordinary; lacking originality",vi:"tầm thường, nhàm chán",ex:"A good photo is not just a <b>banal</b> record of the world."},
+   {w:"cynical",pos:"adj",ipa:"/ˈsɪnɪkl/",en:"believing people act only for selfish reasons",vi:"hoài nghi, mỉa mai",ex:"<b>Cynical</b> observers doubt the artists' motives."}]},
+  {sub:"Describing artworks", words:[
+   {w:"abstract",pos:"adj",ipa:"/ˈæbstrækt/",en:"based on ideas and shapes, not real objects",vi:"trừu tượng",ex:"<b>Abstract</b> art contains no figurative images."},
+   {w:"figurative",pos:"adj",ipa:"/ˈfɪɡərətɪv/",en:"showing people or things in a realistic way",vi:"tả thực, hình tượng",ex:"He was interested in <b>figurative</b> art and lifelike portraits."},
+   {w:"expressive",pos:"adj",ipa:"/ɪkˈspresɪv/",en:"clearly showing thoughts or feelings",vi:"giàu cảm xúc, biểu cảm",ex:"The paint was applied in an <b>expressive</b>, emotional way."},
+   {w:"avant-garde",pos:"adj",ipa:"/ˌævɒ̃ˈɡɑːd/",en:"very new, modern and experimental",vi:"tiên phong, cách tân",ex:"Her <b>avant-garde</b> ideas were not popular in her lifetime."},
+   {w:"monumental",pos:"adj",ipa:"/ˌmɒnjuˈmentl/",en:"extremely large or impressive",vi:"hoành tráng, đồ sộ",ex:"The <b>monumental</b> bronze sculpture weighs seven tonnes."},
+   {w:"moving",pos:"adj",ipa:"/ˈmuːvɪŋ/",en:"causing strong feelings of sadness or sympathy",vi:"cảm động, xúc động",ex:"It was a <b>moving</b> performance that left people in tears."}]}
+ ]},
+
+ t8:{title:"Ageing", groups:[
+  {sub:"Retirement & pensions", words:[
+   {w:"retirement age",pos:"n phr",ipa:"/rɪˈtaɪəmənt eɪdʒ/",en:"the age at which people usually stop working",vi:"tuổi nghỉ hưu",ex:"The government may raise the <b>retirement age</b> to 67."},
+   {w:"pension",pos:"n",ipa:"/ˈpenʃn/",en:"money paid regularly to a person after they retire",vi:"lương hưu",ex:"He now draws a state <b>pension</b> every month."},
+   {w:"pension scheme",pos:"n phr",ipa:"/ˈpenʃn skiːm/",en:"an official plan for saving money for retirement",vi:"quỹ / chương trình hưu trí",ex:"Many companies pay into a <b>pension scheme</b> for staff."},
+   {w:"compulsory",pos:"adj",ipa:"/kəmˈpʌlsəri/",en:"required by law or a rule",vi:"bắt buộc",ex:"Some professions still have a <b>compulsory</b> retirement age."},
+   {w:"age-related discrimination",pos:"n phr",ipa:"/dɪˌskrɪmɪˈneɪʃn/",en:"unfair treatment of people because of their age",vi:"phân biệt đối xử theo tuổi",ex:"<b>Age-related discrimination</b> in hiring is illegal."},
+   {w:"life expectancy",pos:"n phr",ipa:"/ˌlaɪf ɪkˈspektənsi/",en:"the number of years a person is likely to live",vi:"tuổi thọ",ex:"<b>Life expectancy</b> rose from 48 to 67 in fifty years."}]},
+  {sub:"Demographics", words:[
+   {w:"ageing population",pos:"n phr",ipa:"/ˈeɪdʒɪŋ/",en:"a population in which the average age is rising",vi:"dân số già hoá",ex:"Japan is coping with a rapidly <b>ageing population</b>."},
+   {w:"youth bulge",pos:"n phr",ipa:"/ˈjuːθ bʌldʒ/",en:"a large share of young people in a population",vi:"sự bùng nổ dân số trẻ",ex:"A <b>youth bulge</b> puts pressure on schools and jobs."},
+   {w:"population pyramid",pos:"n phr",ipa:"/ˈpɪrəmɪd/",en:"a diagram showing the age structure of a population",vi:"tháp dân số",ex:"The <b>population pyramid</b> is very bottom-heavy."},
+   {w:"median age",pos:"n phr",ipa:"/ˈmiːdiən eɪdʒ/",en:"the age at which half a population is older, half younger",vi:"tuổi trung vị",ex:"In Saudi Arabia the <b>median age</b> is just 22."},
+   {w:"demographic",pos:"adj",ipa:"/ˌdeməˈɡræfɪk/",en:"relating to the statistics of human populations",vi:"thuộc nhân khẩu học",ex:"The country has a very young <b>demographic</b> profile."},
+   {w:"GDP",pos:"n (abbr)",ipa:"/ˌdʒiː diː ˈpiː/",en:"the total value of goods and services a country produces",vi:"tổng sản phẩm quốc nội",ex:"It spends 9.6% of <b>GDP</b> on education."}]},
+  {sub:"Language of prediction", words:[
+   {w:"is likely to",pos:"phr",ipa:"/ˈlaɪkli/",en:"will probably happen",vi:"có khả năng, có thể",ex:"Competition for care homes <b>is likely to</b> increase."},
+   {w:"is projected to",pos:"phr",ipa:"/prəˈdʒektɪd/",en:"is forecast or estimated to happen",vi:"được dự báo là",ex:"The population <b>is projected to</b> increase in coming years."},
+   {w:"is set to",pos:"phr",ipa:"/set/",en:"is ready or certain to happen soon",vi:"chuẩn bị, sắp",ex:"Food prices <b>are set to</b> rise sharply next year."},
+   {w:"allocate",pos:"v",ipa:"/ˈæləkeɪt/",en:"to give resources to a particular purpose",vi:"phân bổ",ex:"More funds can be <b>allocated to</b> young people's welfare."}]}
+ ]}
+};
+
+/* Common collocations, keyed by headword (shown in each vocab box). */
+const COLLOC = {
+ // T1 Education
+ "academic":"academic study · academic achievement · academic year · academic staff",
+ "vocational":"vocational training · vocational course · vocational qualification",
+ "module":"a core / optional module · complete a module",
+ "qualified":"highly qualified · a qualified worker · fully qualified",
+ "lecture":"give / attend a lecture · a lecture on (sth) · lecture hall",
+ "seminar":"attend / hold a seminar · seminar group",
+ "tutorial":"book a tutorial · a one-to-one / online tutorial",
+ "distance learning":"study by distance learning · a distance-learning course",
+ "face-to-face":"face-to-face learning · face-to-face contact / interaction",
+ "tuition fees":"pay tuition fees · rising tuition fees · waive tuition fees",
+ "scholarship":"win / be awarded a scholarship · a full scholarship · apply for a scholarship",
+ "bursary":"receive / be granted a bursary · a maintenance bursary",
+ "apprenticeship":"do / serve an apprenticeship · an apprenticeship scheme",
+ "assignment":"hand in / submit an assignment · a written assignment",
+ "examination":"sit / take an examination · pass / fail an examination",
+ "dissertation":"write / submit a dissertation · a dissertation on (sth)",
+ "plagiarism":"commit / detect plagiarism · avoid plagiarism",
+ "term":"the autumn / spring / summer term · start / end of term",
+ "semester":"the first / second semester · the spring semester",
+ "journal":"an academic / peer-reviewed journal · publish in a journal · a journal article",
+ "lecturer":"a university / senior lecturer · a guest lecturer · a lecturer in (a subject)",
+ "tutor":"a personal / private tutor · a tutor in (a subject) · meet your tutor",
+ "virtual university":"attend / establish a virtual university",
+ "credible alternative":"a credible alternative to (sth) · offer a credible alternative",
+ "motivation":"high / low motivation · lack motivation · a source of motivation",
+ "interaction":"social / face-to-face interaction · interaction between / with",
+ // T2 Healthcare
+ "premium":"pay a premium · an insurance / monthly premium · a premium on (sth)",
+ "burden":"a financial / tax burden · carry / bear a burden · ease the burden",
+ "deduct":"deduct (sth) from · automatically deducted · deducted at source",
+ "consultation":"book / have a consultation · a consultation with a doctor · a free consultation",
+ "safety net":"provide / act as a safety net · a social safety net",
+ "labour costs":"high / rising labour costs · cut / reduce labour costs",
+ "regardless":"regardless of income / cost / age · regardless of the consequences",
+ "treatment":"receive / undergo treatment · medical / urgent treatment · a course of treatment",
+ "disease epidemic":"an epidemic breaks out · prevent / contain an epidemic",
+ "sedentary lifestyle":"lead / have a sedentary lifestyle · an increasingly sedentary lifestyle",
+ "patent":"take out / hold a patent · a patent expires · apply for a patent",
+ "underfunding":"chronic / serious underfunding · suffer from underfunding",
+ "preventable illness":"a preventable illness / disease · prevent avoidable illness",
+ "cosmetic surgery":"undergo / have cosmetic surgery · a cosmetic surgery procedure",
+ "drug dependency":"develop / lead to drug dependency · treat drug dependency",
+ "life expectancy":"rising / average life expectancy · life expectancy increases · low life expectancy",
+ "adverse":"an adverse effect / impact · adverse conditions · adverse weather",
+ "adequate":"adequate provision / supply · perfectly / barely adequate",
+ "conventional":"conventional medicine / methods · conventional wisdom",
+ "precise":"a precise measurement / amount · to be precise · precise details",
+ "professional":"professional advice / help · seek professional help · professional standards",
+ "however":"however, … (linking a contrast at the start of a sentence)",
+ "nevertheless":"nevertheless, … (concedes then continues)",
+ "despite":"despite the fact that … · despite this · despite (doing) sth",
+ // T3 Risk
+ "risk-taker":"a natural / reckless risk-taker",
+ "risk-averse":"highly / deeply risk-averse · a risk-averse investor",
+ "adrenalin":"an adrenalin rush · produce / release adrenalin · adrenalin-fuelled",
+ "endorphins":"release / produce endorphins · a rush of endorphins",
+ "alert":"stay / remain alert · fully alert · alert to (a danger)",
+ "ban":"ban (sth) · impose / lift a ban · a total ban on",
+ "curb":"curb spending / migration · a bid to curb (sth)",
+ "restrict":"restrict access / freedom · severely restrict · restrict sb from (doing)",
+ "legalize":"legalize drugs / gambling · calls to legalize (sth)",
+ "authorize":"authorize the use of · authorize sb to do sth",
+ "grant":"grant permission / access · grant sb the right to · grant a request",
+ "legislation":"introduce / pass legislation · tough legislation · legislation on (sth)",
+ "regulations":"comply with / breach regulations · safety / health regulations · strict regulations",
+ "prevention":"crime / disease prevention · prevention is better than cure · prevention measures",
+ "objection":"raise / voice an objection · a strong objection · object to (sth)",
+ "consequently":"consequently, … (signals a result)",
+ "provided that":"provided (that) + condition",
+ "as long as":"as long as + condition",
+ // T4 Environment
+ "dam":"build / construct a dam · a hydroelectric dam · the dam bursts",
+ "levee":"build / reinforce a levee · a levee breaks",
+ "flood barrier":"erect / build a flood barrier · a tidal flood barrier",
+ "sandbagging":"sandbagging the doors · emergency sandbagging",
+ "tsunami":"a tsunami hits / strikes · a tsunami warning · a devastating tsunami",
+ "drought":"a severe / prolonged drought · drought hits · combat drought",
+ "erosion":"soil / coastal erosion · prevent / cause erosion · the erosion of (sth)",
+ "global warming":"combat / tackle global warming · contribute to global warming · the effects of global warming",
+ "greenhouse gases":"emit / reduce greenhouse gases · greenhouse gas emissions",
+ "fossil fuels":"burn / rely on fossil fuels · reduce fossil-fuel consumption",
+ "renewable energy":"invest in renewable energy · renewable energy sources · switch to renewable energy",
+ "deforestation":"cause / prevent deforestation · large-scale deforestation · rates of deforestation",
+ "biodiversity":"protect / lose biodiversity · rich in biodiversity · a loss of biodiversity",
+ "logging":"illegal / commercial logging · a logging ban",
+ "subsistence farming":"practise / rely on subsistence farming",
+ "livestock":"raise / graze livestock · livestock farming",
+ "habitat":"destroy / protect a habitat · a natural habitat · habitat loss",
+ "ecosystem":"a fragile / marine ecosystem · disrupt / damage an ecosystem",
+ "mitigation":"disaster / risk mitigation · mitigation measures / strategy",
+ "desalination":"a desalination plant / process",
+ "prolonged":"a prolonged period / drought / absence",
+ // T5 Architecture
+ "architect":"a leading / renowned architect · the architect designs / plans (sth)",
+ "marble":"made of / carved from marble · a marble floor / statue",
+ "tile":"a roof / floor / ceramic tile · lay / replace tiles",
+ "insulation":"provide / improve insulation · thermal / loft insulation · good insulation",
+ "solar panels":"install / fit solar panels · roof-mounted solar panels",
+ "durable":"strong and durable · durable material / goods · hard-wearing and durable",
+ "affordable":"affordable housing / prices · make sth affordable · genuinely affordable",
+ "compromise":"reach / make a compromise · a compromise between · a reasonable compromise",
+ "structural engineer":"consult a structural engineer · a qualified structural engineer",
+ "conservation":"wildlife / heritage conservation · the conservation of (sth) · conservation efforts",
+ "skyscraper":"a towering / gleaming skyscraper · build a skyscraper",
+ "outskirts":"on the outskirts of (a city) · the northern outskirts",
+ "green belt":"protect / build on the green belt · green-belt land",
+ "urban sprawl":"uncontrolled / unchecked urban sprawl · curb urban sprawl",
+ "amenities":"local / public / leisure amenities · provide amenities · basic amenities",
+ "functional":"highly functional · functional design · both functional and beautiful",
+ "aesthetic":"aesthetic appeal / value / quality · for aesthetic reasons",
+ "efficient":"energy-efficient · highly / fuel efficient · efficient use of (sth)",
+ // T6 Energy
+ "petrol":"petrol prices · fill up with petrol · a petrol station / engine",
+ "diesel":"run on diesel · a diesel engine · diesel fumes",
+ "hydroelectricity":"generate hydroelectricity · a source of hydroelectricity",
+ "solar power":"harness / generate solar power · solar-powered · run on solar power",
+ "wind turbine":"erect / install a wind turbine · an offshore wind turbine · a turbine blade",
+ "biofuel":"produce / use biofuel · biofuel crops · second-generation biofuel",
+ "biomass":"biomass energy / boiler · burn biomass · a biomass power plant",
+ "geothermal":"geothermal energy / power / heat · a geothermal plant",
+ "inexhaustible":"an inexhaustible supply / source · virtually inexhaustible",
+ "generate":"generate electricity / power / energy · generate income / interest",
+ "consult":"consult a document / an expert · consult widely · consult sb about sth",
+ "contest":"contest a decision / claim · hotly contested",
+ "diminish":"diminish rapidly · gradually diminish · diminish in size / value",
+ "utilize":"utilize resources / technology · fully utilize · utilize sth effectively",
+ "omit":"omit a detail / word · deliberately / accidentally omit · omit to mention",
+ "secure":"secure funding / a deal / a supply · secure sth for (sb)",
+ // T7 Art & Design
+ "calligraphy":"practise / master calligraphy · Chinese / Arabic calligraphy · a piece of calligraphy",
+ "pottery":"make / throw pottery · a pottery class / wheel · a piece of pottery",
+ "sculpture":"carve / create a sculpture · a bronze / marble sculpture · a work of sculpture",
+ "weaving":"traditional weaving · a weaving technique / loom",
+ "fine art":"a fine-art degree · a work of fine art · the fine arts",
+ "applied art":"the applied arts · an applied-art object",
+ "mechanical":"a mechanical device / process · purely mechanical",
+ "analogous":"analogous to (sth) · in an analogous way · a close analogy",
+ "objective":"an objective record / view · remain objective · objective truth",
+ "banal":"banal and predictable · a banal remark / record",
+ "cynical":"a cynical view / attitude · deeply cynical · cynical about (sth)",
+ "abstract":"abstract art / painting · an abstract concept / idea · in the abstract",
+ "figurative":"figurative art / painting · in a figurative sense",
+ "expressive":"highly expressive · an expressive style / gesture",
+ "avant-garde":"avant-garde art / design · the avant-garde movement",
+ "monumental":"a monumental sculpture / task / achievement · on a monumental scale",
+ "moving":"a deeply / profoundly moving (sth) · a moving tribute / performance",
+ // T8 Ageing
+ "retirement age":"reach / raise the retirement age · the official retirement age",
+ "pension":"draw / receive a pension · a state / private / company pension · pay into a pension",
+ "pension scheme":"join / contribute to a pension scheme · a workplace pension scheme",
+ "compulsory":"compulsory education / retirement · make sth compulsory · compulsory for (sb)",
+ "age-related discrimination":"face / tackle age-related discrimination · ban age discrimination",
+ "ageing population":"a rapidly ageing population · cope with an ageing population · the ageing of the population",
+ "youth bulge":"a demographic youth bulge · manage a youth bulge",
+ "population pyramid":"a bottom-heavy / top-heavy population pyramid · the shape of the pyramid",
+ "median age":"the median age of (a country) · a low / high median age",
+ "demographic":"a demographic profile / shift / change · demographic data / trends",
+ "GDP":"a percentage of GDP · GDP growth · GDP per capita",
+ "is likely to":"is (highly / quite) likely to happen",
+ "is projected to":"is projected to rise / increase / reach (sth)",
+ "is set to":"is set to rise / change / increase",
+ "allocate":"allocate funds / resources / time · allocate sth to (sth) · allocate a budget"
+};
+
+/* ============================ RENDER ============================ */
+const tabsEl = document.getElementById('tabs');
+const mainEl = document.getElementById('main');
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* --- tabs --- */
+const allTabs = [{id:OVERVIEW_ID,label:"Tổng quan",no:""}]
+  .concat(topics.map(t=>({id:t.id,label:t.title,no:t.n})))
+  .concat([{id:"glossary",label:"📖 Glossary",no:""},{id:"checklist",label:"✅ Checklist",no:""}]);
+allTabs.forEach((t,i)=>{
+  const b=document.createElement('button');
+  b.innerHTML = (t.no?`<span class="tno">${t.no}</span>`:'')+t.label;
+  b.onclick=()=>show(t.id);
+  b.id='tab-'+t.id;
+  tabsEl.appendChild(b);
+});
+
+function show(id){
+  document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+id).classList.add('active');
+  document.querySelectorAll('section.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('view-'+id).classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* --- band table + checklist (shared) --- */
+function bandTableHTML(){
+  let rows = bandDescriptors.map(d=>`<tr data-b="${d.b}"><td class="bn">${d.b}</td>
+    <td class="c-tr">${d.tr}</td><td class="c-cc">${d.cc}</td><td class="c-lr">${d.lr}</td><td class="c-gra">${d.gra}</td></tr>`).join('');
+  return `<div class="bandwrap"><table class="band"><thead><tr>
+    <th>Band</th><th class="c-tr">Task Response</th><th class="c-cc">Coherence &amp; Cohesion</th>
+    <th class="c-lr">Lexical Resource</th><th class="c-gra">Grammatical Range &amp; Accuracy</th></tr></thead>
+    <tbody>${rows}</tbody></table>
+    <div class="bandsrc">Adapted from <b>IELTS Writing Task 2 Band Descriptors</b> (British Council / IDP / Cambridge Assessment English). Từ khóa được in đậm để làm nổi bật khác biệt giữa các band.</div></div>`;
+}
+function checklistHTML(topicId){
+  let out = `<button class="resetbtn" onclick="resetChecks('${topicId}')">↻ Xoá tích chọn</button>`;
+  for(const k in checklist){
+    const c=checklist[k];
+    out += `<div class="crit"><h4><span class="k">${k}</span> ${c.name}</h4>`;
+    c.items.forEach((it,idx)=>{
+      const id=`chk-${topicId}-${k}-${idx}`;
+      out+=`<div class="check"><input type="checkbox" id="${id}"><label for="${id}">${it}</label></div>`;
+    });
+    out+=`</div>`;
+  }
+  out += `<div class="themetag" style="margin-top:18px">Bảng khác biệt band 4 → 9 (rút gọn theo British Council descriptors)</div>`;
+  out += bandTableHTML();
+  return out;
+}
+function resetChecks(topicId){
+  document.querySelectorAll(`[id^="chk-${topicId}-"]`).forEach(c=>c.checked=false);
+}
+
+/* --- overview view --- */
+function buildOverview(){
+  const sec=document.createElement('section');
+  sec.className='view'; sec.id='view-'+OVERVIEW_ID;
+
+  const types = essayTypes.map(t=>`<div class="typebox"><h4>${t.t}</h4><div>${t.d}</div>
+    <div class="ex">“${esc(t.ex)}”</div></div>`).join('');
+
+  sec.innerHTML = `
+  <div class="card">
+    <h3>Cách dùng Practice Hub</h3>
+    <div class="lead">Chọn một chủ đề ở thanh tab phía trên. Mỗi chủ đề có 4 phần.</div>
+    <div class="grid2">
+      <div class="typebox"><h4>1 · Vocabulary</h4><div>Từ & cụm từ theo topic, lấy trực tiếp từ tài liệu TOPAZ (vocabulary in context).</div></div>
+      <div class="typebox"><h4>2 · Idea Development</h4><div>Các luận điểm tổng hợp từ bài đọc, mỗi luận điểm là một <b>chuỗi</b>: nêu ý → giải thích → chứng minh → bảo vệ.</div></div>
+      <div class="typebox"><h4>3 · Practice Bank</h4><div>Đề luyện tập: đề trong tài liệu, đề phổ biến, và <b>đề thi thật</b> (talkfirst.vn).</div></div>
+      <div class="typebox"><h4>4 · Checklist (tab riêng)</h4><div>Sau khi viết, mở tab <b>✅ Checklist</b> để tự chấm 4 tiêu chí + bảng band 4–9.</div></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>Các dạng bài Task 2</h3>
+    <div class="lead">Xác định đúng dạng đề để chọn cấu trúc phù hợp (ví dụ lấy từ phần Essay Types của tài liệu).</div>
+    <div class="grid2">${types}</div>
+  </div>
+
+  <div class="card">
+    <h3>Cấu trúc bài luận (Argument Essay)</h3>
+    <div class="lead">Bố cục 5 phần theo tài liệu “Draft an essay”. Đây là khung cho dạng argument/opinion có phản biện.</div>
+    <div class="flow">
+      <div class="f1">Introduction <small>Hook (câu dẫn) + Background/context + Thesis statement (quan điểm + bản đồ bài)</small></div>
+      <div class="f2">Body 1 — First argument <small>Topic sentence → Explanation → Illustration / example</small></div>
+      <div class="f3">Body 2 — Second argument <small>Topic sentence → Explanation → Evidence (số liệu, ví dụ)</small></div>
+      <div class="f4">Body 3 — Counterargument + Refutation <small>Nêu ý phản đối (dùng modal yếu: may/might) → bác bỏ (However, …)</small></div>
+      <div class="f5">Conclusion <small>Restate thesis (diễn đạt lại) + nêu lại quan điểm</small></div>
+    </div>
+    <div class="note"><b>Lưu ý khi viết mở bài (Writing Skills):</b> viết bằng từ của mình (không chép đề), mang tính khái quát, đề cập mọi phần của câu hỏi, và tập trung đúng trọng tâm. Mỗi đoạn thân bài nên bắt đầu bằng một <b>topic sentence</b> nêu ý chính, rồi giải thích và minh hoạ.</div>
+    <div class="note"><b>Counterargument &amp; Refutation:</b> mọi ý phản đối bạn đưa ra đều cần một câu bác bỏ. Điều bắt đầu như một ý phản đối thường kết thúc thành một lý do ủng hộ quan điểm của bạn. Dùng modal yếu (<i>may, might, could</i>) để làm ý đối phương yếu đi, rồi phản bác bằng <i>However / Then again</i>.</div>
+  </div>
+
+  <div class="card">
+    <h3>Bài mẫu — Opinion (Agree/Disagree)</h3>
+    <div class="lead">Bước 1: đọc đề &amp; phân tích đề. Bước 2: đọc bài mẫu (màu sắc đánh dấu từng thành phần).</div>
+
+    <div class="prompt" style="border-left:4px solid var(--orange)">
+      <div class="meta">
+        <span class="pill type">Opinion · Agree/Disagree</span>
+        <span class="pill common">Đề mẫu — IELTS Writing Task 2 style</span>
+      </div>
+      <p><b>Some people believe that all school students should be required to wear a uniform. To what extent do you agree or disagree?</b></p>
+    </div>
+
+    <div class="themetag">◆ Phân tích đề (Analyzing the question)</div>
+    <div class="qanalyze">
+      <div class="row"><span class="lbl">🔑 Key words (chủ đề)</span><span><mark>school students</mark> · <mark>required to wear</mark> · <mark>a uniform</mark> — bài viết phải xoay quanh việc <b>bắt buộc đồng phục</b> ở trường.</span></div>
+      <div class="row"><span class="lbl">🎯 Task words (yêu cầu)</span><span><mark class="t">To what extent do you agree or disagree</mark> — nêu <b>rõ mức độ</b> đồng ý/không đồng ý và <b>bảo vệ quan điểm</b> đó xuyên suốt.</span></div>
+      <div class="row"><span class="lbl">🧭 Dạng bài</span><span><b>Opinion (một phía)</b> — chọn một lập trường và củng cố bằng lý do, kèm một ý phản đối + phản bác.</span></div>
+      <div class="row"><span class="lbl">✅ Lập trường của bài mẫu</span><span><b>Đồng ý hoàn toàn</b>: “School uniforms are the better choice.” → 3 lý do (đơn giản hoá cuộc sống · hành xử có trách nhiệm · tạo sự bình đẳng) + phản biện về “cá tính”.</span></div>
+    </div>
+
+    <div class="legend">
+      <span><i style="background:#f6ddc9"></i>Hook</span>
+      <span><i style="background:#d9e6d3"></i>Thesis / Restated thesis</span>
+      <span><i style="background:#eee2c2"></i>Topic sentence (lý do)</span>
+      <span><i style="background:#e3d4ea"></i>Counterargument</span>
+      <span><i style="background:#cfe3e8"></i>Refutation</span>
+    </div>
+    <div class="essay">
+      <h3>The School Uniform Question</h3>
+      <p><span class="num">1</span><mark class="hook">Individualism is a fundamental part of society in many countries. Most people believe in the right to express their own opinion without fear of punishment.</mark> This value, however, is coming under fire in an unlikely place—the public school classroom. The issue is school uniforms. Should public school students be allowed to make individual decisions about clothing, or should all students be required to wear a uniform? <mark class="thesis">School uniforms are the better choice for three reasons.</mark></p>
+      <p><span class="num">2</span><mark class="topic">First, wearing school uniforms would help make students' lives simpler.</mark> They would no longer have to decide what to wear every morning, sometimes trying on outfit after outfit in an effort to choose. Uniforms would not only save time but also would eliminate the stress often associated with this chore.</p>
+      <p><span class="num">3</span><mark class="topic">Second, school uniforms influence students to act responsibly in groups and as individuals.</mark> Uniforms give students the message that school is a special place for learning. In addition, uniforms create a feeling of unity among students. For example, when students do something as a group, the fact that they all wear the same uniform gives them a sense of community. Even more important, statistics show the positive effects on violence and truancy. According to a recent survey in a large school district in Florida, incidents of school violence dropped by 50 percent, attendance and test scores improved, and suspensions declined approximately 30 percent after uniforms were introduced.</p>
+      <p><span class="num">4</span><mark class="topic">Finally, school uniforms would help make all the students feel equal.</mark> Students' standards of living differ greatly from family to family, and some people are well-off while others are not. People sometimes forget that school is a place to get an education, not to promote a "fashion show." Implementing mandatory uniforms would make all students look the same regardless of their financial status, promoting pride and raising the self-esteem of students who cannot afford expensive clothing.</p>
+      <p><span class="num">5</span><mark class="counter">Opponents of mandatory uniforms say that students who wear school uniforms cannot express their individuality. This point has some merit on the surface.</mark> <mark class="refute">However, as stated previously, school is a place to learn, not to flaunt wealth and fashion.</mark> Society must decide if individual expression through clothing is more valuable than improved educational performance. It is important to remember that school uniforms would be worn only during school hours. Students can express their individuality in the way they dress outside of the classroom.</p>
+      <p><span class="num">6</span>In conclusion, there are many well-documented benefits of implementing mandatory school uniforms for students. <mark class="restate">Studies show that students learn better and act more responsibly when they wear uniforms. Public schools should require uniforms in order to benefit both the students and society as a whole.</mark></p>
+    </div>
+  </div>
+
+  <div class="card refcard">
+    <h3>Nguồn &amp; tài liệu tham khảo</h3>
+    <div class="lead">Nội dung được biên soạn (<i>adapted</i>) và tổng hợp từ các nguồn sau.</div>
+    <ol>
+      <li><span class="tag2">VOCABULARY &amp; SKILLS</span> Ben Goldstein &amp; Ceri Jones (series editors Jack C. Richards &amp; Chuck Sandy), <b>Evolve Level 4 Student's Book</b> (CEFR B1+). Cambridge University Press &amp; Assessment.</li>
+      <li><span class="tag2">ESSAY STRUCTURE &amp; MODEL</span> Keith S. Folse, April Muchmore-Vokoun &amp; Elena Vestri Solomon, <b>Great Writing 4: Great Essays</b> (5th Edition). National Geographic Learning / Cengage.</li>
+      <li><span class="tag2">PRACTICE BANK</span> Đề thi thật IELTS Writing — talkfirst.vn (<i>de-thi-ielts-writing-2026</i>).</li>
+      <li><span class="tag2">BAND DESCRIPTORS</span> IELTS Writing Task 2 Band Descriptors — British Council / IDP / Cambridge Assessment English.</li>
+    </ol>
+  </div>`;
+  mainEl.appendChild(sec);
+}
+
+/* --- rich vocabulary entry --- */
+function entryHTML(e){
+  const wsafe = e.w.replace(/'/g,"\\'");
+  const col = COLLOC[e.w];
+  return `<div class="ventry">
+    <div class="vhead"><span class="vw">${esc(e.w)}</span>
+      <span class="pos">${esc(e.pos)}</span>
+      <span class="ipa">${esc(e.ipa)}</span>
+      <button class="vspeak" title="Nghe phát âm" onclick="speak('${wsafe}')">🔊</button></div>
+    <div class="vdef"><b>EN</b>${esc(e.en)}</div>
+    <div class="vdef vi"><b>VN</b>${esc(e.vi)}</div>
+    <div class="vex">e.g. ${e.ex}</div>
+    ${col?`<div class="vcol"><b>COLLOCATIONS</b>${esc(col)}</div>`:''}</div>`;
+}
+function richVocabHTML(id){
+  const t=VOCAB[id]; if(!t) return '';
+  return t.groups.map(g=>`<div class="vsub">${esc(g.sub)}</div>`+
+    `<div class="vgrid">`+g.words.map(entryHTML).join('')+`</div>`).join('');
+}
+let _gbVoice=null;
+function pickGBVoice(){
+  const vs=(window.speechSynthesis&&speechSynthesis.getVoices())||[];
+  // prefer named British voices, then any en-GB voice
+  const pref=["Google UK English Female","Google UK English Male","Daniel","Kate","Serena","Arthur","Sonia","Libby","George"];
+  for(const name of pref){const v=vs.find(x=>x.name===name);if(v)return v;}
+  return vs.find(v=>/en[-_]GB/i.test(v.lang)) || vs.find(v=>/English \(United Kingdom\)/i.test(v.name)) || null;
+}
+if('speechSynthesis' in window){
+  _gbVoice=pickGBVoice();
+  speechSynthesis.onvoiceschanged=()=>{_gbVoice=pickGBVoice();};
+}
+function speak(w){
+  try{ if(!('speechSynthesis' in window))return;
+    const u=new SpeechSynthesisUtterance(w);
+    u.lang='en-GB'; u.rate=.9;
+    if(!_gbVoice)_gbVoice=pickGBVoice();
+    if(_gbVoice)u.voice=_gbVoice;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+  }catch(e){}
+}
+
+/* --- idea block --- */
+function ideaHTML(node){
+  if(node.theme){return `<div class="themetag">◆ ${esc(node.theme)}</div>`;}
+  const cls = node.side==='against'?'arg against':'arg';
+  const tag = node.side==='against'?'PHẢN ĐỀ / MẶT KHÁC':'LUẬN ĐIỂM';
+  return `<div class="${cls}"><div class="claim"><span class="tag">${tag}</span><span>${esc(node.claim)}</span></div>
+    <ul class="chain">${node.chain.map(c=>`<li>${esc(c)}</li>`).join('')}</ul></div>`;
+}
+
+/* --- practice block --- */
+function practiceHTML(p){
+  const pillClass = p.tag==='new'?'new':(p.tag==='file'?'file':'common');
+  const pillTxt = p.tag==='new'?'ĐỀ THI THẬT':(p.tag==='file'?'ĐỀ TRONG TÀI LIỆU':'ĐỀ PHỔ BIẾN');
+  return `<div class="prompt"><div class="meta">
+    <span class="pill ${pillClass}">${pillTxt}</span>
+    <span class="pill type">${esc(p.type)}</span>
+    ${p.tag==='new'?`<span class="date">nguồn: talkfirst.vn</span>`:(p.date?`<span class="date">${esc(p.date)}</span>`:'')}
+    </div><p>${esc(p.text)}</p></div>`;
+}
+
+/* --- topic view --- */
+function buildTopic(t){
+  const sec=document.createElement('section');
+  sec.className='view'; sec.id='view-'+t.id;
+
+  const vocab = richVocabHTML(t.id);
+  const ideas = t.ideas.map(ideaHTML).join('');
+  const prac = t.practice.map(practiceHTML).join('');
+
+  sec.innerHTML = `
+    <div class="topichero">
+      <div class="badge">${t.n}</div>
+      <div><h2>${t.title}</h2><p>${t.sub}</p></div>
+    </div>
+    <div class="subnav" id="sub-${t.id}">
+      <button class="on" data-p="voc">📘 Vocabulary</button>
+      <button data-p="idea">💡 Idea Development</button>
+      <button data-p="prac">✍️ Practice Bank</button>
+    </div>
+    <div class="panel on" id="p-${t.id}-voc"><div class="card">
+      <h3>Topic vocabulary</h3>${vocab}</div></div>
+    <div class="panel" id="p-${t.id}-idea"><div class="card">
+      <h3>Idea development</h3><div class="lead">Mỗi luận điểm là một chuỗi lập luận: nêu ý → giải thích → chứng minh → bảo vệ. Ý màu cam = luận điểm ủng hộ; màu xanh = phản đề / mặt khác.</div>${ideas}</div></div>
+    <div class="panel" id="p-${t.id}-prac"><div class="card">
+      <h3>Practice bank</h3><div class="lead">Chọn một đề → phân tích đề → lập dàn ý theo cấu trúc ở tab Tổng quan → viết bài.</div>${prac}
+      <div class="note" style="margin:14px 0 0">✅ Viết xong? Mở <button class="linkbtn" onclick="show('checklist')">tab Checklist &amp; Bands</button> để tự chấm theo 4 tiêu chí và đối chiếu band 4–9.</div></div></div>
+  `;
+  mainEl.appendChild(sec);
+
+  // sub-nav behaviour
+  const nav=sec.querySelector('#sub-'+t.id);
+  nav.querySelectorAll('button').forEach(btn=>{
+    btn.onclick=()=>{
+      nav.querySelectorAll('button').forEach(b=>b.classList.remove('on'));
+      btn.classList.add('on');
+      sec.querySelectorAll('.panel').forEach(p=>p.classList.remove('on'));
+      sec.querySelector('#p-'+t.id+'-'+btn.dataset.p).classList.add('on');
+    };
+  });
+}
+
+/* --- glossary view --- */
+function buildGlossary(){
+  const sec=document.createElement('section');
+  sec.className='view'; sec.id='view-glossary';
+  let total=0;
+  topics.forEach(t=>{const v=VOCAB[t.id]; if(v) v.groups.forEach(g=>total+=g.words.length);});
+  const jump = topics.map(t=>`<a href="#g-${t.id}">${t.n} · ${t.title}</a>`).join('');
+  const body = topics.map(t=>{
+    const v=VOCAB[t.id]; if(!v) return '';
+    const cnt=v.groups.reduce((s,g)=>s+g.words.length,0);
+    const groups=v.groups.map(g=>
+      `<div class="ggroup"><div class="vsub">${esc(g.sub)}</div><div class="vgrid">${g.words.map(entryHTML).join('')}</div></div>`).join('');
+    return `<div class="gtopic" id="g-${t.id}"><h3>${t.n} · ${t.title}</h3>
+      <div class="gcount">${cnt} từ</div>${groups}</div>`;
+  }).join('');
+  sec.innerHTML = `<div class="card">
+    <h3>Glossary — toàn bộ từ vựng theo chủ đề</h3>
+    <div class="lead">Tất cả từ trong tài liệu, sắp xếp theo <b>chủ đề</b> và <b>sub-topic</b> (tổng ${total} mục). Gõ để lọc theo từ hoặc nghĩa (EN/VN).</div>
+    <input class="gsearch" id="gsearch" placeholder="🔎 Tìm từ hoặc nghĩa…" oninput="filterGlossary(this.value)">
+    <div class="gjump">${jump}</div>
+    <div id="gbody">${body}</div></div>`;
+  mainEl.appendChild(sec);
+}
+function filterGlossary(q){
+  q=(q||'').toLowerCase().trim();
+  document.querySelectorAll('#gbody .ventry').forEach(el=>{
+    el.style.display = (!q || el.textContent.toLowerCase().includes(q)) ? '' : 'none';
+  });
+  document.querySelectorAll('#gbody .ggroup').forEach(gr=>{
+    const any=[...gr.querySelectorAll('.ventry')].some(e=>e.style.display!=='none');
+    gr.style.display=any?'':'none';
+  });
+  document.querySelectorAll('#gbody .gtopic').forEach(tp=>{
+    const any=[...tp.querySelectorAll('.ventry')].some(e=>e.style.display!=='none');
+    tp.style.display=any?'':'none';
+  });
+}
+
+/* --- checklist view (dedicated tab) --- */
+function buildChecklist(){
+  const sec=document.createElement('section');
+  sec.className='view'; sec.id='view-checklist';
+  sec.innerHTML=`<div class="card">
+    <h3>Pre-submission checklist &amp; band descriptors</h3>
+    <div class="lead">Dùng chung cho mọi chủ đề. Sau khi viết xong, tích từng mục theo 4 tiêu chí IELTS, rồi đối chiếu bảng band 4–9 (mỗi band một tông màu; từ khoá in đậm cho thấy khác biệt giữa các band).</div>
+    ${checklistHTML('main')}
+  </div>`;
+  mainEl.appendChild(sec);
+}
+
+/* build all */
+buildOverview();
+topics.forEach(buildTopic);
+buildGlossary();
+buildChecklist();
+show(OVERVIEW_ID);
+</script>
+<div class="foot">TOPAZ · Writing Task 2 Practice Hub — adapted from <b>Evolve Level 4</b> (Cambridge University Press) &amp; <b>Great Writing 4: Great Essays</b>, 5th ed. (National Geographic Learning / Cengage); đề thi thật từ talkfirst.vn; band descriptors theo British Council / IDP / Cambridge Assessment English.</div>
+</body>
+</html>
