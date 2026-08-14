@@ -4,35 +4,52 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TOPAZ · IELTS Writing Task 2 Practice Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --orange:#d97642; --orange-soft:#e7a173; --sage:#9caf96; --sage-soft:#c3d0bd;
-    --cream:#f4f2ea; --paper:#fbfaf5; --ink:#2b2b2b; --muted:#6b6b63;
-    --line:#e2ded0; --yellow:#e9d9a6; --shadow:0 2px 10px rgba(0,0,0,.06);
+    --orange:#d76b34; --orange-soft:#e7a173; --sage:#7f9a76; --sage-soft:#c3d0bd;
+    --cream:#f1efe7; --paper:#ffffff; --ink:#232321; --muted:#6f6e66;
+    --line:#e7e3d7; --yellow:#e9d9a6;
+    --shadow:0 1px 2px rgba(30,28,22,.04),0 6px 20px rgba(30,28,22,.06);
+    --shadow-lg:0 4px 30px rgba(30,28,22,.10);
+    --font-head:'Fraunces',Georgia,'Times New Roman',serif;
+    --font-body:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+    --rad:16px;
   }
   *{box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{margin:0;font-family:'Segoe UI',system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
-    background:var(--cream);color:var(--ink);line-height:1.6;font-size:15px}
-  h1,h2,h3,h4{font-family:Georgia,'Times New Roman',serif;line-height:1.25;margin:0}
+  body{margin:0;font-family:var(--font-body);background:var(--cream);color:var(--ink);
+    line-height:1.62;font-size:15px;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  h1,h2,h3,h4{font-family:var(--font-head);line-height:1.2;margin:0;letter-spacing:-.01em;font-weight:600}
   a{color:var(--orange)}
   /* Header */
-  header.top{background:linear-gradient(120deg,#2b2b2b 0%,#3a3a37 100%);color:#fff;padding:16px 26px 18px}
-  header.top .paradigm{font-family:Georgia,serif;font-size:15px;letter-spacing:7px;font-weight:700;
-    color:#fff;border-bottom:1px solid rgba(255,255,255,.18);padding-bottom:10px;margin-bottom:12px;text-transform:uppercase}
-  header.top .brand{font-size:13px;letter-spacing:4px;color:var(--orange-soft);font-weight:700}
-  header.top h1{font-size:30px;margin:2px 0 4px;color:#fff}
-  header.top p{margin:0;color:#cfccc2;font-size:13.5px;max-width:820px}
+  header.top{background:radial-gradient(120% 140% at 0% 0%,#33322d 0%,#1f1e1b 55%,#191814 100%);
+    color:#fff;padding:20px 30px 22px;position:relative;overflow:hidden}
+  header.top::after{content:"";position:absolute;right:-60px;top:-60px;width:260px;height:260px;
+    background:radial-gradient(circle,rgba(215,107,52,.28),transparent 70%);pointer-events:none}
+  header.top .paradigm{font-family:var(--font-head);font-size:15px;letter-spacing:6px;font-weight:600;
+    color:#fff;border-bottom:1px solid rgba(255,255,255,.16);padding-bottom:11px;margin-bottom:13px;text-transform:uppercase}
+  header.top .brand{font-size:12px;letter-spacing:4px;color:var(--orange-soft);font-weight:700}
+  header.top h1{font-size:33px;margin:3px 0 6px;color:#fff;font-weight:600;letter-spacing:-.02em}
+  header.top p{margin:0;color:#d3d0c6;font-size:13.5px;max-width:860px;line-height:1.55}
+  header.top .langswitch{position:absolute;top:20px;right:26px;display:flex;gap:0;border:1px solid rgba(255,255,255,.25);
+    border-radius:20px;overflow:hidden;z-index:2}
+  header.top .langswitch button{border:0;background:transparent;color:#d3d0c6;font:inherit;font-weight:700;
+    font-size:12px;letter-spacing:.5px;padding:6px 13px;cursor:pointer;transition:.15s}
+  header.top .langswitch button.on{background:var(--orange);color:#fff}
   /* Tabs */
-  nav.tabs{position:sticky;top:0;z-index:30;background:var(--paper);border-bottom:1px solid var(--line);
-    display:flex;flex-wrap:wrap;gap:2px;padding:8px 14px;box-shadow:var(--shadow)}
+  nav.tabs{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);display:flex;flex-wrap:wrap;gap:3px;padding:9px 16px;
+    box-shadow:0 2px 14px rgba(30,28,22,.05)}
   nav.tabs button{border:0;background:transparent;font:inherit;font-weight:600;color:var(--muted);
-    padding:9px 15px;border-radius:8px;cursor:pointer;font-size:14px;transition:.15s;white-space:nowrap}
+    padding:8px 15px;border-radius:10px;cursor:pointer;font-size:13.5px;transition:.15s;white-space:nowrap}
   nav.tabs button:hover{background:var(--cream);color:var(--ink)}
-  nav.tabs button.active{background:var(--orange);color:#fff}
-  nav.tabs button .tno{font-size:11px;opacity:.7;margin-right:5px}
+  nav.tabs button.active{background:var(--ink);color:#fff}
+  nav.tabs button .tno{font-size:10.5px;opacity:.65;margin-right:5px;font-weight:800}
   /* Layout */
-  main{max-width:1080px;margin:0 auto;padding:26px 22px 80px}
+  main{max-width:1090px;margin:0 auto;padding:28px 22px 90px}
   section.view{display:none;animation:fade .25s ease}
   section.view.active{display:block}
   @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -45,15 +62,16 @@
   .panel{display:none}
   .panel.on{display:block}
   /* Cards */
-  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:20px 22px;
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:var(--rad);padding:22px 24px;
     margin-bottom:18px;box-shadow:var(--shadow)}
-  .card h3{font-size:20px;margin-bottom:4px}
-  .card .lead{color:var(--muted);font-size:13.5px;margin-bottom:14px}
-  .topichero{display:flex;align-items:center;gap:16px;margin-bottom:18px}
-  .topichero .badge{width:58px;height:58px;border-radius:14px;background:var(--orange);color:#fff;
-    display:flex;align-items:center;justify-content:center;font-family:Georgia,serif;font-size:24px;font-weight:700;flex-shrink:0}
-  .topichero h2{font-size:26px}
-  .topichero p{margin:2px 0 0;color:var(--muted);font-size:13.5px}
+  .card h3{font-size:21px;margin-bottom:5px;color:var(--ink)}
+  .card .lead{color:var(--muted);font-size:13.5px;margin-bottom:16px;max-width:820px}
+  .topichero{display:flex;align-items:center;gap:16px;margin-bottom:20px;padding:4px 2px}
+  .topichero .badge{width:60px;height:60px;border-radius:16px;
+    background:linear-gradient(150deg,var(--orange),#c05a26);color:#fff;box-shadow:0 6px 16px rgba(199,90,40,.28);
+    display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:23px;font-weight:600;flex-shrink:0}
+  .topichero h2{font-size:28px}
+  .topichero p{margin:3px 0 0;color:var(--muted);font-size:13.5px}
   /* Vocab */
   .vgroup{margin-bottom:18px}
   .vgroup h4{font-size:15px;color:var(--orange);border-bottom:2px solid var(--sage-soft);
@@ -65,13 +83,17 @@
   .wtable td{border:1px solid var(--line);padding:7px 10px;vertical-align:top}
   .wtable td:first-child{font-weight:600;width:38%;background:var(--cream)}
   /* Rich vocabulary entries */
-  .vsub{font-size:13px;font-weight:700;color:#8a6a3a;background:var(--yellow);display:inline-block;
-    padding:4px 12px;border-radius:6px;margin:16px 0 12px}
-  .ventry{border:1px solid var(--line);border-radius:11px;padding:12px 15px;margin-bottom:10px;background:var(--paper)}
-  .ventry .vhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px;margin-bottom:6px}
-  .ventry .vw{font-weight:800;font-size:16px;color:var(--ink)}
-  .ventry .pos{font-size:11px;font-weight:700;color:#fff;background:var(--sage);padding:2px 8px;border-radius:12px;font-style:normal}
-  .ventry .ipa{font-family:'Segoe UI',sans-serif;color:var(--orange);font-size:14px}
+  .vsub{font-family:var(--font-head);font-size:13.5px;font-weight:600;color:#8a5a2c;display:flex;align-items:center;gap:9px;
+    margin:20px 0 12px;letter-spacing:.01em}
+  .vsub::before{content:"";width:22px;height:3px;background:var(--orange);border-radius:2px;display:inline-block}
+  .ventry{border:1px solid var(--line);border-radius:13px;padding:14px 16px;margin-bottom:10px;background:var(--paper);
+    box-shadow:var(--shadow);transition:transform .12s ease,box-shadow .12s ease}
+  .ventry:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+  .ventry .vhead{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px;margin-bottom:8px;
+    padding-bottom:8px;border-bottom:1px solid var(--line)}
+  .ventry .vw{font-family:var(--font-head);font-weight:700;font-size:18px;color:var(--ink);letter-spacing:-.01em}
+  .ventry .pos{font-size:10.5px;font-weight:700;color:#fff;background:var(--sage);padding:2px 9px;border-radius:12px;font-style:normal;letter-spacing:.3px}
+  .ventry .ipa{font-family:var(--font-body);color:var(--orange);font-size:14px;font-weight:500}
   .ventry .vspeak{margin-left:auto;border:1px solid var(--line);background:var(--cream);border-radius:8px;
     cursor:pointer;font-size:13px;padding:3px 9px;color:var(--muted)}
   .ventry .vspeak:hover{border-color:var(--orange);color:var(--orange)}
@@ -134,6 +156,12 @@
   /* Band table */
   .bandwrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
   .bandsrc{font-size:11.6px;color:var(--muted);padding:9px 12px;border-top:1px solid var(--line);background:var(--paper)}
+  .bandgroup{margin-bottom:20px}
+  .bghead{font-family:Georgia,serif;font-weight:700;font-size:15px;padding:9px 15px;border-radius:10px 10px 0 0;color:#fff}
+  .bandgroup.bg-hi .bghead{background:#4f7a41}
+  .bandgroup.bg-mid .bghead{background:#a5842f}
+  .bandgroup.bg-lo .bghead{background:#b25a2e}
+  .bandgroup .bandwrap{border-radius:0 0 12px 12px}
   .refcard ol{margin:8px 0 0;padding-left:20px}
   .refcard li{font-size:13.4px;margin-bottom:8px}
   .refcard .tag2{display:inline-block;font-size:10.5px;font-weight:700;color:#fff;background:var(--sage);
@@ -201,10 +229,14 @@
 </head>
 <body>
 <header class="top">
+  <div class="langswitch">
+    <button id="lang-vi" class="on" onclick="setLang('vi')">VI</button>
+    <button id="lang-en" onclick="setLang('en')">EN</button>
+  </div>
   <div class="paradigm">HUONG STELLA PARADIGM</div>
   <div class="brand">TOPAZ · IELTS WRITING</div>
   <h1>Writing Task 2 — Practice Hub</h1>
-  <p>Luyện viết theo 8 chủ đề: mỗi chủ đề gồm <b>Vocabulary</b>, <b>Idea Development</b> (chuỗi lập luận từ bài đọc), <b>Practice Bank</b> (đề phổ biến + đề thi thật) và <b>Checklist theo 4 tiêu chí band 4–9</b>. Bắt đầu với tab Tổng quan để nắm cấu trúc, các dạng bài và bài mẫu.</p>
+  <p id="headIntro"></p>
 </header>
 
 <nav class="tabs" id="tabs"></nav>
@@ -243,25 +275,25 @@ const bandDescriptors = [
 
 const checklist = {
   TR:{name:"Task Response", items:[
-    "Đã trả lời ĐẦY ĐỦ mọi phần của câu hỏi (mọi ý trong đề)?",
-    "Nêu rõ QUAN ĐIỂM ngay ở phần mở bài và giữ nhất quán xuyên suốt?",
-    "Mỗi luận điểm được PHÁT TRIỂN (giải thích + ví dụ/bằng chứng), không chỉ liệt kê?",
-    "Viết đủ 250 từ và không lạc đề / lặp ý?"]},
+    {vi:"Đã trả lời ĐẦY ĐỦ mọi phần của câu hỏi (mọi ý trong đề)?", en:"Have you FULLY addressed every part of the question (every idea in the prompt)?"},
+    {vi:"Nêu rõ QUAN ĐIỂM ngay ở phần mở bài và giữ nhất quán xuyên suốt?", en:"Is your POSITION stated in the introduction and kept consistent throughout?"},
+    {vi:"Mỗi luận điểm được PHÁT TRIỂN (giải thích + ví dụ/bằng chứng), không chỉ liệt kê?", en:"Is each argument DEVELOPED (explanation + example/evidence), not just listed?"},
+    {vi:"Viết đủ 250 từ và không lạc đề / lặp ý?", en:"Have you written at least 250 words without going off-topic or repeating ideas?"}]},
   CC:{name:"Coherence & Cohesion", items:[
-    "Bố cục rõ ràng: mở bài – các đoạn thân bài – kết bài, mỗi đoạn một ý chính?",
-    "Mỗi đoạn có TOPIC SENTENCE và mạch phát triển hợp lý?",
-    "Dùng linking words đa dạng, đúng chỗ (however, therefore, in contrast…), không lạm dụng?",
-    "Dùng đại từ / từ tham chiếu (this, these, such) để tránh lặp và nối ý mượt?"]},
+    {vi:"Bố cục rõ ràng: mở bài – các đoạn thân bài – kết bài, mỗi đoạn một ý chính?", en:"Clear structure: introduction – body paragraphs – conclusion, one main idea per paragraph?"},
+    {vi:"Mỗi đoạn có TOPIC SENTENCE và mạch phát triển hợp lý?", en:"Does each paragraph have a TOPIC SENTENCE and logical development?"},
+    {vi:"Dùng linking words đa dạng, đúng chỗ (however, therefore, in contrast…), không lạm dụng?", en:"Varied, well-placed linking words (however, therefore, in contrast…) without overuse?"},
+    {vi:"Dùng đại từ / từ tham chiếu (this, these, such) để tránh lặp và nối ý mượt?", en:"Pronouns / referencing words (this, these, such) used to avoid repetition and link ideas?"}]},
   LR:{name:"Lexical Resource", items:[
-    "Dùng từ vựng theo chủ đề & collocation chính xác (xem tab Vocabulary)?",
-    "Có một số từ less-common / paraphrase thay vì lặp từ trong đề?",
-    "Chính tả và word formation (danh/động/tính từ) đúng?",
-    "Register học thuật: tránh slang, phrasal verб thừa, 'I/me' không cần thiết?"]},
+    {vi:"Dùng từ vựng theo chủ đề & collocation chính xác (xem tab Vocabulary)?", en:"Accurate topic vocabulary &amp; collocations used (see the Vocabulary tab)?"},
+    {vi:"Có một số từ less-common / paraphrase thay vì lặp từ trong đề?", en:"Some less-common words / paraphrasing instead of repeating the prompt's words?"},
+    {vi:"Chính tả và word formation (danh/động/tính từ) đúng?", en:"Correct spelling and word formation (noun/verb/adjective forms)?"},
+    {vi:"Register học thuật: tránh slang, phrasal verb thừa, 'I/me' không cần thiết?", en:"Academic register: avoid slang, unnecessary phrasal verbs and needless 'I/me'?"}]},
   GRA:{name:"Grammatical Range & Accuracy", items:[
-    "Kết hợp câu đơn và câu phức (relative clause, conditional, concession)?",
-    "Đa số câu KHÔNG có lỗi ngữ pháp?",
-    "Dùng đúng articles (a/an/the) và giới từ?",
-    "Dấu câu chính xác (phẩy, chấm), không câu chạy dài khó đọc?"]}
+    {vi:"Kết hợp câu đơn và câu phức (relative clause, conditional, concession)?", en:"A mix of simple and complex sentences (relative clauses, conditionals, concession)?"},
+    {vi:"Đa số câu KHÔNG có lỗi ngữ pháp?", en:"Are the MAJORITY of your sentences free of grammatical errors?"},
+    {vi:"Dùng đúng articles (a/an/the) và giới từ?", en:"Correct use of articles (a/an/the) and prepositions?"},
+    {vi:"Dấu câu chính xác (phẩy, chấm), không câu chạy dài khó đọc?", en:"Accurate punctuation (commas, full stops), with no hard-to-read run-on sentences?"}]}
 };
 
 /* ---- Overview content ---- */
@@ -1027,54 +1059,309 @@ const COLLOC = {
  "allocate":"allocate funds / resources / time · allocate sth to (sth) · allocate a budget"
 };
 
+/* Band-7+ example sentences (complex / compound, multi-clause) keyed by headword. */
+const EX7 = {
+ // T1
+ "academic":"Although she had always enjoyed <b>academic</b> study, she eventually realised that a purely theoretical degree, which offered little practical experience, might not guarantee the career she wanted.",
+ "vocational":"Because there is a growing shortage of skilled tradespeople, many educators now argue that <b>vocational</b> courses, which train students for specific jobs, deserve as much funding as traditional degrees.",
+ "module":"Students who choose the research <b>module</b> in their final year tend to perform better in interviews, since the independent work it demands develops exactly the skills employers value.",
+ "qualified":"Unless governments invest in apprenticeships, the shortage of <b>qualified</b> electricians and plumbers, which is already pushing up costs, is likely to become even more severe.",
+ "lecture":"While a <b>lecture</b> delivered to hundreds of students can efficiently convey information, it rarely allows for the kind of discussion that helps learners think critically.",
+ "seminar":"In a <b>seminar</b>, where students are expected to defend their views, even those who dislike speaking in public gradually build the confidence that later benefits them at work.",
+ "tutorial":"Had she attended the weekly <b>tutorial</b>, in which the tutor reviews each essay individually, she would probably have avoided the mistakes that lowered her grade.",
+ "lecturer":"The <b>lecturer</b>, who also conducts research in the field, is able to bring recent findings into class, which makes the lessons far more engaging than a textbook alone.",
+ "tutor":"Whenever students feel overwhelmed, they can turn to their <b>tutor</b>, whose role is to look after both their academic progress and their personal welfare.",
+ "distance learning":"<b>Distance learning</b> appeals to those with full-time jobs because, provided that learners are disciplined, it allows them to study whenever and wherever it is convenient.",
+ "face-to-face":"Although online courses are convenient, many students still prefer <b>face-to-face</b> teaching, since the personal contact it offers makes it easier to ask questions and stay motivated.",
+ "tuition fees":"If universities continue to raise <b>tuition fees</b>, students from lower-income families, who already struggle financially, may be discouraged from applying altogether.",
+ "scholarship":"The <b>scholarship</b> she was awarded, which covered both her fees and her accommodation, meant that she could focus on her studies rather than working part-time.",
+ "bursary":"Because the <b>bursary</b> is granted to students who genuinely need financial support, it ensures that talented applicants are not excluded simply because they cannot afford to study.",
+ "apprenticeship":"An <b>apprenticeship</b>, during which trainees earn a wage while learning from experienced workers, can be more valuable than a degree for those who prefer practical careers.",
+ "assignment":"Students who submit every <b>assignment</b> on time not only avoid penalties but also receive the feedback that, over a whole semester, gradually improves their writing.",
+ "examination":"Although the final <b>examination</b> accounts for most of the grade, teachers argue that continuous assessment, which reduces stress, gives a fairer picture of a student's ability.",
+ "dissertation":"Writing a <b>dissertation</b>, which requires students to plan, research and argue independently, is demanding, yet it develops the very skills that employers say they value most.",
+ "plagiarism":"Whenever <b>plagiarism</b> is detected, the consequences can be severe, because universities regard copying another person's work as one of the most serious academic offences.",
+ "term":"By the end of the autumn <b>term</b>, when workloads tend to peak, many first-year students have finally learned how to manage their time effectively.",
+ "semester":"Since the course is divided into two semesters, students who fall behind in the first <b>semester</b> still have a chance to recover before the final assessment.",
+ "journal":"Research that appears in a peer-reviewed <b>journal</b> is generally trusted, because before publication it is examined by experts who check that the findings are sound.",
+ "virtual university":"When the world's first <b>virtual university</b> opened in 1996, few predicted that online study would one day rival the traditional campus experience it was designed to replace.",
+ "credible alternative":"Now that technology has improved so dramatically, distance learning has become a <b>credible alternative</b> to campus study, even though some employers remain sceptical about online qualifications.",
+ "motivation":"Distance learning suits independent people, but unless students have strong <b>motivation</b>, the freedom that makes it attractive can easily lead them to fall behind.",
+ "interaction":"Face-to-face courses are valued for the <b>interaction</b> they provide, since discussing ideas with peers, rather than reading alone, often deepens a student's understanding.",
+ // T2
+ "premium":"Although private insurance offers faster treatment, the monthly <b>premium</b> that patients must pay is so high that many families simply cannot afford the cover they need.",
+ "burden":"As life expectancy rises, the financial <b>burden</b> of caring for an ageing population, which falls largely on the state, threatens to become unsustainable.",
+ "deduct":"In many systems the contribution is automatically <b>deducted</b> from workers' salaries, which means that employees are insured without ever having to arrange the payment themselves.",
+ "consultation":"Whenever a patient books a <b>consultation</b>, the doctor not only diagnoses the immediate problem but also, ideally, advises on the lifestyle changes that could prevent it recurring.",
+ "safety net":"Because a <b>safety net</b> protects those who fall into difficulty, countries that provide free emergency care ensure that no citizen is denied treatment simply because they cannot pay.",
+ "labour costs":"Although the mixed model guarantees access for all, critics point out that it drives up <b>labour costs</b>, which can, in turn, lead to higher unemployment.",
+ "regardless":"The greatest strength of a public system is that it offers care <b>regardless</b> of income, so that even the poorest citizens receive the treatment they need.",
+ "treatment":"After months of <b>treatment</b>, which had required both patience and expensive medication, the patient finally recovered, although the cost had placed his family under great strain.",
+ "disease epidemic":"Unless clean water is restored quickly after a disaster, a <b>disease epidemic</b> can spread rapidly, putting entire communities at risk within a matter of days.",
+ "sedentary lifestyle":"Because so many people now work at screens, the <b>sedentary lifestyle</b> that modern jobs encourage has become a major cause of obesity and heart disease.",
+ "patent":"While a <b>patent</b> allows a company to profit from a new drug for a limited period, once it expires, cheaper versions that widen access can finally be produced.",
+ "underfunding":"Hospitals that suffer from chronic <b>underfunding</b> struggle to retain staff, and as conditions deteriorate, the quality of care patients receive inevitably declines.",
+ "preventable illness":"Many doctors argue that governments should invest in education, since a large proportion of <b>preventable illnesses</b> are caused by choices that people could, in principle, avoid.",
+ "cosmetic surgery":"Although <b>cosmetic surgery</b> is often dismissed as vanity, some patients undergo it to correct injuries, which suggests that the practice is more complex than critics assume.",
+ "drug dependency":"When a medicine is prescribed for too long, patients may develop a <b>drug dependency</b> that is difficult to treat, even though the original condition has disappeared.",
+ "life expectancy":"As <b>life expectancy</b> continues to rise, governments face a dilemma, because the same medical progress that keeps people alive also increases the cost of caring for them.",
+ "adverse":"The <b>adverse</b> effects of underfunding, which range from overcrowding to staff shortages, are felt most keenly by the patients who can least afford private care.",
+ "adequate":"Every citizen, regardless of wealth, has the right to expect an <b>adequate</b> standard of care, yet in underfunded systems even this basic guarantee is often broken.",
+ "conventional":"Although <b>conventional</b> medicine, which relies on tested drugs and surgery, remains dominant, a growing number of patients now combine it with alternative therapies.",
+ "precise":"Because dosages must be <b>precise</b>, a small error in calculation, which might seem trivial, can have consequences that are extremely dangerous for the patient.",
+ "professional":"Patients tend to trust <b>professional</b> practitioners whose training has taken years, which is why the unqualified advice found online can be so harmful.",
+ "however":"Homeopathy appears to have little scientific basis; <b>however</b>, because so many people believe that it works, governments are reluctant to withdraw funding entirely.",
+ "nevertheless":"The evidence supporting the treatment is weak; <b>nevertheless</b>, demand for it remains high, which shows how strongly personal experience can shape public opinion.",
+ "despite":"<b>Despite</b> the fact that the drug had unpleasant side effects, patients continued to take it, because the relief it offered outweighed the discomfort they endured.",
+ // T3
+ "risk-taker":"A natural <b>risk-taker</b>, who thrives on uncertainty, may achieve remarkable success, yet the same boldness that brings great rewards can equally lead to spectacular failure.",
+ "risk-averse":"Because <b>risk-averse</b> investors prefer security to profit, they tend to keep their money in savings accounts, even though bolder choices might earn them far more.",
+ "adrenalin":"When the body senses danger, it releases <b>adrenalin</b>, which sharpens the senses and prepares a person to react far more quickly than they normally could.",
+ "endorphins":"Exercise is often recommended for stress because, as the body works harder, it produces <b>endorphins</b>, chemicals that both reduce pain and lift the mood.",
+ "alert":"The adrenalin released in a crisis keeps a person <b>alert</b>, which explains why people who are frightened can sometimes notice details they would otherwise overlook.",
+ "ban":"Although some governments <b>ban</b> the sale of firearms entirely, others argue that such restrictions, however well-intentioned, simply push the trade underground.",
+ "curb":"In an effort to <b>curb</b> reckless driving, the authorities introduced tougher penalties, which, according to recent figures, have reduced accidents significantly.",
+ "restrict":"Laws that <b>restrict</b> dangerous activities may protect citizens, but critics insist that once a government begins limiting personal freedom, it becomes difficult to know where to stop.",
+ "legalize":"Those who wish to <b>legalize</b> certain drugs argue that regulation, rather than prohibition, would reduce crime, although opponents fear it would only increase consumption.",
+ "authorize":"Before construction can begin, the government must <b>authorize</b> the project, a process that, because it involves so many safety checks, often takes several years.",
+ "grant":"When a state chooses to <b>grant</b> its citizens the right to vote, it also, in effect, places a responsibility on them to use that right wisely.",
+ "legislation":"The new <b>legislation</b>, which was introduced to protect workers, has undoubtedly saved lives, yet businesses complain that the costs of compliance are excessive.",
+ "regulations":"Companies that fail to comply with safety <b>regulations</b> not only endanger their employees but also risk the heavy fines that such breaches usually attract.",
+ "prevention":"Most experts agree that <b>prevention</b> is more effective than cure, because tackling a problem before it arises is almost always cheaper than dealing with its consequences.",
+ "objection":"Although residents raised a strong <b>objection</b> to the proposed factory, arguing that it would ruin the area, the council approved the plan on economic grounds.",
+ "consequently":"Many people avoid paying tax in order to save money; <b>consequently</b>, governments collect less revenue, which reduces the funds available for public services.",
+ "provided that":"Individuals should be free to pursue dangerous hobbies, <b>provided that</b> they accept the risks and do not expect others to rescue them when things go wrong.",
+ "as long as":"Risk in the workplace is acceptable <b>as long as</b> employers take reasonable precautions, since no job can ever be made completely free of danger.",
+ // T4
+ "dam":"Although a <b>dam</b> can generate clean electricity and control flooding, the vast areas that must be flooded to build it often force whole communities to relocate.",
+ "levee":"Because <b>levees</b> are designed to hold back rising rivers, communities that maintain them carefully are far less likely to suffer the devastation that flooding causes.",
+ "flood barrier":"The Thames Barrier, which is one of the largest <b>flood barriers</b> ever built, protects London from tides that would otherwise cause catastrophic damage.",
+ "sandbagging":"When a flood is imminent and there is little time to act, <b>sandbagging</b>, though basic, can be surprisingly effective at keeping water out of people's homes.",
+ "tsunami":"Even the strongest sea defences may fail against a <b>tsunami</b>, which is why early-warning systems, rather than physical barriers, offer coastal populations the best protection.",
+ "drought":"As a prolonged <b>drought</b> takes hold, the crops on which rural families depend begin to fail, and unless aid arrives quickly, starvation soon follows.",
+ "erosion":"Once the trees that hold the soil together are removed, heavy rain causes severe <b>erosion</b>, which can render farmland useless within just a few seasons.",
+ "global warming":"Although individuals can reduce their carbon footprint, many scientists argue that <b>global warming</b> will only be tackled effectively if governments and corporations act together.",
+ "greenhouse gases":"Because burning fossil fuels releases <b>greenhouse gases</b>, which trap heat in the atmosphere, any serious attempt to slow warming must begin with how we produce energy.",
+ "fossil fuels":"Unless the world reduces its dependence on <b>fossil fuels</b>, the emissions they produce will continue to rise, whatever progress is made in renewable technology.",
+ "renewable energy":"Countries that invest heavily in <b>renewable energy</b> may face high costs at first, but in the long term they gain both cleaner air and greater energy security.",
+ "deforestation":"<b>Deforestation</b>, which is driven largely by commercial farming, not only destroys habitats but also releases the carbon that living forests would otherwise absorb.",
+ "biodiversity":"As <b>biodiversity</b> declines, entire ecosystems become unstable, and the plants and animals that might one day provide new medicines are lost before they are even studied.",
+ "logging":"Illegal <b>logging</b>, which continues despite international agreements, threatens the rainforests that play a crucial role in regulating the planet's climate.",
+ "subsistence farming":"Although <b>subsistence farming</b> allows poor families to survive, the land they clear rarely recovers, so the practice gradually eats away at the surrounding forest.",
+ "livestock":"Because so much forest is cleared to provide pasture for <b>livestock</b>, reducing meat consumption is one of the most effective ways in which individuals can help the environment.",
+ "habitat":"When a <b>habitat</b> is destroyed faster than species can adapt, extinction becomes almost inevitable, and the damage, once done, can never truly be reversed.",
+ "ecosystem":"A healthy <b>ecosystem</b> depends on a delicate balance, so that the loss of even a single species can trigger changes that affect countless others.",
+ "mitigation":"Effective disaster <b>mitigation</b> requires planning long before a crisis strikes, because communities that prepare in advance suffer far fewer casualties than those that do not.",
+ "desalination":"Although <b>desalination</b> can turn sea water into drinking water, the process is so expensive that only wealthier nations can realistically afford it.",
+ "prolonged":"A <b>prolonged</b> drought, which may last for several years, does far more damage than a brief dry spell, because the land has no time to recover between rains.",
+ // T5
+ "architect":"A skilful <b>architect</b>, who must balance beauty, cost and function, faces the difficult task of designing buildings that please the public without exceeding the client's budget.",
+ "marble":"Although <b>marble</b> gives a building a sense of grandeur, its weight and expense mean that architects today reserve it for the features they most want to stand out.",
+ "tile":"Because the roof was covered with traditional clay <b>tiles</b>, the house blended naturally into a neighbourhood where modern materials would have looked out of place.",
+ "insulation":"Buildings fitted with proper <b>insulation</b>, which keeps heat in during winter, consume far less energy, so that the initial cost is soon recovered through lower bills.",
+ "solar panels":"Once <b>solar panels</b> have been installed, they generate electricity at almost no cost; however, in countries with little sunshine, the savings may be disappointing.",
+ "durable":"Materials that are genuinely <b>durable</b> may cost more at first, but because they rarely need replacing, they usually prove cheaper over the lifetime of the building.",
+ "affordable":"Unless eco-friendly homes become more <b>affordable</b>, green construction, however admirable, will remain a luxury that only the wealthy can realistically choose.",
+ "compromise":"Since no design can be perfect in every respect, architects must accept a <b>compromise</b>, sacrificing some ideals in order to keep the building both practical and affordable.",
+ "structural engineer":"Before a design is approved, a <b>structural engineer</b>, whose job is to ensure the building will not collapse, must confirm that it can bear the loads it will face.",
+ "conservation":"Although the <b>conservation</b> of historic buildings is expensive, many argue that a city which destroys its heritage loses something that no modern development can replace.",
+ "skyscraper":"In cities where land is scarce and expensive, the <b>skyscraper</b>, which allows thousands to live and work on a small footprint, has become almost unavoidable.",
+ "outskirts":"Families who cannot afford the city centre often settle on the <b>outskirts</b>, where housing is cheaper, even though the daily commute costs them both time and money.",
+ "green belt":"Because the <b>green belt</b> protects countryside from development, campaigners insist it must be preserved, while others argue that building on it is the only way to solve the housing shortage.",
+ "urban sprawl":"As cities expand without proper planning, <b>urban sprawl</b> swallows farmland and lengthens commutes, which is why many governments now try to build upwards rather than outwards.",
+ "amenities":"A well-designed neighbourhood provides <b>amenities</b> such as parks and libraries within walking distance, so that residents can meet their daily needs without relying on a car.",
+ "functional":"Although the terminal is highly <b>functional</b>, moving passengers efficiently from entrance to gate, critics complain that in achieving this it sacrificed any sense of beauty.",
+ "aesthetic":"While the building's <b>aesthetic</b> appeal attracts thousands of visitors, some of them soon discover that its striking design makes it surprisingly impractical to use.",
+ "efficient":"Buildings that are energy-<b>efficient</b> not only reduce bills but also help the environment, which is why governments increasingly require new homes to meet strict standards.",
+ // T6
+ "petrol":"As <b>petrol</b> prices climb, more drivers consider switching to electric cars, although the high cost of the vehicles themselves still deters many buyers.",
+ "diesel":"Although lorries that run on <b>diesel</b> are powerful and economical, the fumes they produce have made them a target for governments trying to improve air quality.",
+ "hydroelectricity":"<b>Hydroelectricity</b>, which is generated by the pressure of moving water, provides clean and reliable power, yet the dams required to produce it can devastate local ecosystems.",
+ "solar power":"Because <b>solar power</b> can only be generated during daylight, countries that rely on it must also invest in ways of storing the energy for use after dark.",
+ "wind turbine":"Although a <b>wind turbine</b> produces no pollution once it is built, people who live nearby often object that the structures are both noisy and unsightly.",
+ "biofuel":"Supporters claim that <b>biofuel</b> is greener than petrol; critics reply that the land used to grow the crops could otherwise feed the millions who go hungry.",
+ "biomass":"While <b>biomass</b> usefully reduces the waste sent to landfill, the fact that burning it still releases carbon means it is far from a perfect solution.",
+ "geothermal":"<b>Geothermal</b> energy, which draws heat from beneath the earth, is remarkably cheap to run, although the high cost of installation limits it to certain regions.",
+ "inexhaustible":"The great advantage of wind power is that it is virtually <b>inexhaustible</b>, so that, unlike coal or oil, it can never be used up however heavily we rely on it.",
+ "generate":"The turbines <b>generate</b> electricity as long as the wind blows, which means that on calm days the country must fall back on other, less sustainable sources.",
+ "consult":"Anyone who wishes to understand how the fuel is produced can <b>consult</b> the documents on the website, which explain the entire process in considerable detail.",
+ "contest":"When residents <b>contest</b> a proposed wind farm, arguing that it will spoil the landscape, developers often struggle to win the local support that such projects need.",
+ "diminish":"As natural resources <b>diminish</b> year after year, the pressure to develop renewable alternatives, which was once ignored, has finally become impossible to overlook.",
+ "utilize":"Newer engines <b>utilize</b> fuel far more efficiently than older models, so that drivers who upgrade can cover the same distance while burning noticeably less petrol.",
+ "omit":"Advocates of biofuels tend to <b>omit</b> one inconvenient detail, namely the enormous amount of land that growing the crops actually requires.",
+ "secure":"Unless the country can <b>secure</b> new sources of renewable energy soon, it will remain dependent on imported fuel, which leaves it vulnerable to sudden price rises.",
+ // T7
+ "calligraphy":"Although <b>calligraphy</b> may look effortless, mastering it takes years of practice, because every stroke must be controlled so precisely that no mistake can be hidden.",
+ "pottery":"<b>Pottery</b>, which is shaped from clay and hardened by fire, is often dismissed as a mere craft, yet the finest pieces are admired as genuine works of art.",
+ "sculpture":"A <b>sculpture</b> carved from a single block of marble demonstrates extraordinary skill, since the artist, unlike a painter, cannot correct a mistake once the stone is cut.",
+ "weaving":"Traditional <b>weaving</b>, which passes techniques down through generations, produces textiles so intricate that machines, however advanced, cannot fully reproduce them.",
+ "fine art":"Whereas <b>fine art</b> is valued purely for its beauty or ideas, applied art must also be useful, a distinction that has divided critics for centuries.",
+ "applied art":"Because <b>applied art</b> must be functional as well as beautiful, its creators face a challenge that painters, who need only please the eye, rarely encounter.",
+ "aesthetic":"Fine art is said to serve an <b>aesthetic</b> purpose, which means that, unlike a tool or a chair, it exists to be contemplated rather than used.",
+ "mechanical":"Critics who deny that photography is art argue that, because the image is captured by a <b>mechanical</b> device, the beauty belongs to the scene rather than the photographer.",
+ "analogous":"The decisions a photographer makes are <b>analogous</b> to those of a painter, since choosing what to include and what to leave out shapes the final work in both cases.",
+ "objective":"Although a photograph may seem an <b>objective</b> record of reality, the photographer's choice of angle and moment reveals that no image is ever entirely neutral.",
+ "banal":"A great photograph is never merely a <b>banal</b> record of the world; rather, it is a deliberately created image that reflects how the artist chooses to see.",
+ "cynical":"<b>Cynical</b> observers suggest that photographers call themselves artists only because, once the label is accepted, their work can be sold at far higher prices.",
+ "abstract":"Because <b>abstract</b> art contains no recognisable images, viewers who expect a picture to resemble something often dismiss it, even though its appeal lies precisely in that freedom.",
+ "figurative":"Whereas abstract painters reject realism, artists who work in a <b>figurative</b> style aim to depict people and objects so faithfully that the image almost seems alive.",
+ "expressive":"The brushwork is so <b>expressive</b> that the painting seems to convey the artist's emotions directly, which is exactly what she hoped viewers would feel.",
+ "avant-garde":"Her <b>avant-garde</b> ideas, which challenged everything her contemporaries believed, were ridiculed during her lifetime and only celebrated long after her death.",
+ "monumental":"The <b>monumental</b> bronze, which weighs several tonnes and towers over the square, was designed to impress precisely because of its overwhelming scale.",
+ "moving":"It was such a <b>moving</b> performance that, by the time the final scene ended, much of the audience, who had arrived expecting mere entertainment, was in tears.",
+ // T8
+ "retirement age":"As populations grow older, many governments are tempted to raise the <b>retirement age</b>, even though asking people to work longer is rarely a popular decision.",
+ "pension":"Because he had paid into a private <b>pension</b> throughout his career, he was able to retire comfortably, unlike colleagues who had relied on the state alone.",
+ "pension scheme":"Employees who join a workplace <b>pension scheme</b> early benefit enormously, since the contributions they make in their twenties have decades in which to grow.",
+ "compulsory":"In some professions retirement is <b>compulsory</b> at a fixed age, a rule that critics attack as unfair, given that many older workers remain perfectly capable.",
+ "age-related discrimination":"Although <b>age-related discrimination</b> is illegal in most countries, older applicants still report being overlooked, which suggests that changing attitudes is harder than changing laws.",
+ "ageing population":"An <b>ageing population</b> places a heavy strain on public services, because as the number of pensioners grows, fewer workers remain to fund the healthcare they require.",
+ "youth bulge":"A <b>youth bulge</b> can be an economic blessing, yet unless a country creates enough jobs, the same young population may instead fuel unemployment and unrest.",
+ "population pyramid":"Because Saudi Arabia's <b>population pyramid</b> is so heavily weighted towards the young, the government has been forced to expand its schools and universities rapidly.",
+ "median age":"In a country where the <b>median age</b> is only twenty-two, the demand for education and housing far exceeds anything an older society would experience.",
+ "demographic":"Understanding a country's <b>demographic</b> profile is essential for planners, since a society dominated by young people faces very different challenges from one that is ageing.",
+ "GDP":"Because Saudi Arabia devotes almost ten per cent of its <b>GDP</b> to education, it spends a larger share on schools and universities than any other nation.",
+ "is likely to":"As more people live into their nineties, competition for places in care homes <b>is likely to</b> intensify, which will push the cost of such care even higher.",
+ "is projected to":"The population <b>is projected to</b> rise steadily over the coming decades, and unless housing is built to match, prices in the major cities will keep climbing.",
+ "is set to":"With demand already outstripping supply, food prices <b>are set to</b> rise sharply, a trend that will hit the poorest households hardest of all.",
+ "allocate":"If governments <b>allocate</b> more funds to preventive healthcare, they may reduce the enormous sums that, later on, must be spent treating illnesses that could have been avoided."
+};
+
 /* ============================ RENDER ============================ */
 const tabsEl = document.getElementById('tabs');
 const mainEl = document.getElementById('main');
 
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
+/* --- i18n --- */
+let LANG='vi';
+let currentView=OVERVIEW_ID;
+const TR={
+ "head.intro":{vi:"Luyện viết theo 8 chủ đề: mỗi chủ đề gồm <b>Vocabulary</b>, <b>Idea Development</b> (chuỗi lập luận từ bài đọc), <b>Practice Bank</b> (đề phổ biến + đề thi thật) và <b>Checklist theo 4 tiêu chí band 4–9</b>. Bắt đầu với tab Tổng quan.",
+   en:"Practise writing across 8 topics: each one has <b>Vocabulary</b>, <b>Idea Development</b> (argument chains from the readings), a <b>Practice Bank</b> (common + real exam prompts) and a <b>4-criteria Band 4–9 Checklist</b>. Start with the Overview tab."},
+ "tab.overview":{vi:"Tổng quan",en:"Overview"},
+ "speak.title":{vi:"Nghe phát âm",en:"Play pronunciation"},
+ "use.title":{vi:"Cách dùng Practice Hub",en:"How to use the Practice Hub"},
+ "use.lead":{vi:"Chọn một chủ đề ở thanh tab phía trên. Mỗi chủ đề có 3 phần chính.",en:"Pick a topic from the tab bar above. Each topic has three main sections."},
+ "use.v.d":{vi:"Từ &amp; cụm từ theo topic, lấy trực tiếp từ tài liệu TOPAZ.",en:"Topic words &amp; phrases, taken straight from the TOPAZ material."},
+ "use.i.d":{vi:"Các luận điểm tổng hợp từ bài đọc, mỗi luận điểm là một <b>chuỗi</b>: nêu ý → giải thích → chứng minh → bảo vệ.",en:"Arguments synthesised from the readings; each is a <b>chain</b>: claim → explain → prove → defend."},
+ "use.p.d":{vi:"Đề luyện tập: đề trong tài liệu, đề phổ biến và <b>đề thi thật</b> (talkfirst.vn).",en:"Practice prompts: from the material, common questions and <b>real exam prompts</b> (talkfirst.vn)."},
+ "use.c.t":{vi:"4 · Checklist (tab riêng)",en:"4 · Checklist (separate tab)"},
+ "use.c.d":{vi:"Sau khi viết, mở tab <b>✅ Checklist</b> để tự chấm 4 tiêu chí + bảng band 4–9.",en:"After writing, open the <b>✅ Checklist</b> tab to self-assess against the 4 criteria + the Band 4–9 table."},
+ "types.title":{vi:"Các dạng bài Task 2",en:"Task 2 question types"},
+ "types.lead":{vi:"Xác định đúng dạng đề để chọn cấu trúc phù hợp (ví dụ lấy từ phần Essay Types của tài liệu).",en:"Identify the question type to choose the right structure (examples from the material's Essay Types section)."},
+ "et.d1":{vi:"Đưa ra MỘT quan điểm và bảo vệ nó xuyên suốt (one-sided).",en:"Take ONE position and defend it throughout (one-sided)."},
+ "et.d2":{vi:"Trình bày HAI phía rồi nêu quan điểm riêng (two-sided).",en:"Present BOTH sides, then give your own opinion (two-sided)."},
+ "et.d3":{vi:"Nêu vấn đề và đề xuất cách giải quyết (how can this be dealt with).",en:"Outline a problem and propose solutions (how can this be dealt with)."},
+ "et.d4":{vi:"Trả lời trực tiếp câu hỏi nguyên nhân / hệ quả.",en:"Directly answer the cause / effect question(s)."},
+ "struct.title":{vi:"Cấu trúc bài luận (Argument Essay)",en:"Essay structure (Argument Essay)"},
+ "struct.lead":{vi:"Bố cục 5 phần theo tài liệu “Draft an essay”. Đây là khung cho dạng argument/opinion có phản biện.",en:"A five-part structure from the material's “Draft an essay”. This is the frame for argument/opinion essays with a refutation."},
+ "flow.f1":{vi:"Introduction <small>Hook (câu dẫn) + Background/context + Thesis statement (quan điểm + bản đồ bài)</small>",en:"Introduction <small>Hook + Background / context + Thesis statement (position + essay map)</small>"},
+ "flow.f2":{vi:"Body 1 — First argument <small>Topic sentence → Explanation → Illustration / example</small>",en:"Body 1 — First argument <small>Topic sentence → Explanation → Illustration / example</small>"},
+ "flow.f3":{vi:"Body 2 — Second argument <small>Topic sentence → Explanation → Evidence (số liệu, ví dụ)</small>",en:"Body 2 — Second argument <small>Topic sentence → Explanation → Evidence (data, examples)</small>"},
+ "flow.f4":{vi:"Body 3 — Counterargument + Refutation <small>Nêu ý phản đối (dùng modal yếu: may/might) → bác bỏ (However, …)</small>",en:"Body 3 — Counterargument + Refutation <small>Concede an opposing point (weak modals: may/might) → refute it (However, …)</small>"},
+ "flow.f5":{vi:"Conclusion <small>Restate thesis (diễn đạt lại) + nêu lại quan điểm</small>",en:"Conclusion <small>Restate the thesis (paraphrased) + reaffirm your position</small>"},
+ "note.intro":{vi:"<b>Lưu ý khi viết mở bài (Writing Skills):</b> viết bằng từ của mình (không chép đề), mang tính khái quát, đề cập mọi phần của câu hỏi, và tập trung đúng trọng tâm. Mỗi đoạn thân bài nên bắt đầu bằng một <b>topic sentence</b> nêu ý chính, rồi giải thích và minh hoạ.",en:"<b>Notes on writing the introduction (Writing Skills):</b> use your own words (don't copy the prompt), stay general, address every part of the question and keep it focused. Each body paragraph should open with a <b>topic sentence</b> that states the main idea, then explain and illustrate it."},
+ "note.counter":{vi:"<b>Counterargument &amp; Refutation:</b> mọi ý phản đối bạn đưa ra đều cần một câu bác bỏ. Điều bắt đầu như một ý phản đối thường kết thúc thành một lý do ủng hộ quan điểm của bạn. Dùng modal yếu (<i>may, might, could</i>) để làm ý đối phương yếu đi, rồi phản bác bằng <i>However / Then again</i>.",en:"<b>Counterargument &amp; Refutation:</b> every opposing point you raise needs a rebuttal. What begins as a counterargument often ends up as another reason supporting your view. Use weak modals (<i>may, might, could</i>) to make the opposing point sound weaker, then refute it with <i>However / Then again</i>."},
+ "sample.title":{vi:"Bài mẫu — Opinion (Agree/Disagree)",en:"Model essay — Opinion (Agree/Disagree)"},
+ "sample.lead":{vi:"Bước 1: đọc đề &amp; phân tích đề. Bước 2: đọc bài mẫu (màu sắc đánh dấu từng thành phần).",en:"Step 1: read the prompt &amp; analyse it. Step 2: read the model (colours mark each component)."},
+ "sample.tag":{vi:"Đề mẫu — IELTS Writing Task 2 style",en:"Sample prompt — IELTS Writing Task 2 style"},
+ "analyze.title":{vi:"◆ Phân tích đề (Analyzing the question)",en:"◆ Analysing the question"},
+ "an.key.l":{vi:"🔑 Key words (chủ đề)",en:"🔑 Key words (topic)"},
+ "an.key.v":{vi:"<mark>school students</mark> · <mark>required to wear</mark> · <mark>a uniform</mark> — bài viết phải xoay quanh việc <b>bắt buộc đồng phục</b> ở trường.",en:"<mark>school students</mark> · <mark>required to wear</mark> · <mark>a uniform</mark> — the essay must centre on <b>compulsory school uniforms</b>."},
+ "an.task.l":{vi:"🎯 Task words (yêu cầu)",en:"🎯 Task words (instruction)"},
+ "an.task.v":{vi:"<mark class=\"t\">To what extent do you agree or disagree</mark> — nêu <b>rõ mức độ</b> đồng ý/không đồng ý và <b>bảo vệ quan điểm</b> đó xuyên suốt.",en:"<mark class=\"t\">To what extent do you agree or disagree</mark> — state <b>how far</b> you agree/disagree and <b>defend that position</b> throughout."},
+ "an.type.l":{vi:"🧭 Dạng bài",en:"🧭 Question type"},
+ "an.type.v":{vi:"<b>Opinion (một phía)</b> — chọn một lập trường và củng cố bằng lý do, kèm một ý phản đối + phản bác.",en:"<b>Opinion (one-sided)</b> — take one position and support it with reasons, plus one counterpoint + rebuttal."},
+ "an.stance.l":{vi:"✅ Lập trường của bài mẫu",en:"✅ The model's position"},
+ "an.stance.v":{vi:"<b>Đồng ý hoàn toàn</b>: “School uniforms are the better choice.” → 3 lý do (đơn giản hoá cuộc sống · hành xử có trách nhiệm · tạo sự bình đẳng) + phản biện về “cá tính”.",en:"<b>Fully agree</b>: “School uniforms are the better choice.” → 3 reasons (simpler lives · responsible behaviour · equality) + a rebuttal about “individuality”."},
+ "legend.topic":{vi:"Topic sentence (lý do)",en:"Topic sentence (reason)"},
+ "refs.title":{vi:"Nguồn &amp; tài liệu tham khảo",en:"Sources &amp; references"},
+ "refs.lead":{vi:"Nội dung được biên soạn (<i>adapted</i>) và tổng hợp từ các nguồn sau.",en:"Content adapted and compiled from the following sources."},
+ "refs.li3":{vi:"Đề thi thật IELTS Writing — talkfirst.vn (<i>de-thi-ielts-writing-2026</i>).",en:"Real IELTS Writing exam prompts — talkfirst.vn (<i>de-thi-ielts-writing-2026</i>)."},
+ "idea.tag.arg":{vi:"LUẬN ĐIỂM",en:"ARGUMENT"},
+ "idea.tag.counter":{vi:"PHẢN ĐỀ / MẶT KHÁC",en:"COUNTERPOINT / OTHER SIDE"},
+ "idea.lead":{vi:"Mỗi luận điểm là một chuỗi lập luận: nêu ý → giải thích → chứng minh → bảo vệ. Ý màu cam = luận điểm ủng hộ; màu xanh = phản đề / mặt khác.",en:"Each argument is a reasoning chain: claim → explain → prove → defend. Orange = supporting argument; green = counterpoint / other side."},
+ "pill.new":{vi:"ĐỀ THI THẬT",en:"REAL EXAM"},
+ "pill.file":{vi:"ĐỀ TRONG TÀI LIỆU",en:"FROM THE MATERIAL"},
+ "pill.common":{vi:"ĐỀ PHỔ BIẾN",en:"COMMON PROMPT"},
+ "pill.source":{vi:"nguồn: talkfirst.vn",en:"source: talkfirst.vn"},
+ "topic.prac.lead":{vi:"Chọn một đề → phân tích đề → lập dàn ý theo cấu trúc ở tab Tổng quan → viết bài.",en:"Choose a prompt → analyse it → outline using the structure in the Overview tab → write."},
+ "topic.prac.reminder":{vi:"✅ Viết xong? Mở <button class=\"linkbtn\" onclick=\"show('checklist')\">tab Checklist &amp; Bands</button> để tự chấm theo 4 tiêu chí và đối chiếu band 4–9.",en:"✅ Finished? Open the <button class=\"linkbtn\" onclick=\"show('checklist')\">Checklist &amp; Bands tab</button> to self-assess against the 4 criteria and compare Bands 4–9."},
+ "idea.h":{vi:"Idea development",en:"Idea development"},
+ "vocab.h":{vi:"Topic vocabulary",en:"Topic vocabulary"},
+ "prac.h":{vi:"Practice bank",en:"Practice bank"},
+ "glos.title":{vi:"Glossary — toàn bộ từ vựng theo chủ đề",en:"Glossary — all vocabulary by topic"},
+ "glos.lead1":{vi:"Tất cả từ trong tài liệu, sắp xếp theo <b>chủ đề</b> và <b>sub-topic</b> (tổng ",en:"Every word in the material, arranged by <b>topic</b> and <b>sub-topic</b> ("},
+ "glos.lead2":{vi:" mục). Gõ để lọc theo từ hoặc nghĩa (EN/VN).",en:" entries in total). Type to filter by word or meaning (EN/VN)."},
+ "glos.ph":{vi:"🔎 Tìm từ hoặc nghĩa…",en:"🔎 Search a word or meaning…"},
+ "glos.count":{vi:"từ",en:"words"},
+ "cl.title":{vi:"Checklist trước khi nộp &amp; band descriptors",en:"Pre-submission checklist &amp; band descriptors"},
+ "cl.lead":{vi:"Dùng chung cho mọi chủ đề. Sau khi viết xong, tích từng mục theo 4 tiêu chí IELTS, rồi đối chiếu bảng band 4–9 (mỗi band một tông màu; từ khoá in đậm cho thấy khác biệt giữa các band).",en:"Shared across all topics. After writing, tick each item against the 4 IELTS criteria, then compare the Band 4–9 tables (one tone per band; bold keywords show what changes between bands)."},
+ "chk.reset":{vi:"↻ Xoá tích chọn",en:"↻ Clear ticks"},
+ "chk.bands":{vi:"Bảng khác biệt band 4 → 9 (rút gọn theo British Council descriptors)",en:"How Bands 4 → 9 differ (condensed from the British Council descriptors)"},
+ "bandsrc":{vi:"Adapted from <b>IELTS Writing Task 2 Band Descriptors</b> (British Council / IDP / Cambridge Assessment English). Từ khóa được in đậm để làm nổi bật khác biệt giữa các band.",en:"Adapted from the <b>IELTS Writing Task 2 Band Descriptors</b> (British Council / IDP / Cambridge Assessment English). Keywords are bolded to highlight the differences between bands."},
+ "foot":{vi:"TOPAZ · Writing Task 2 Practice Hub — adapted from <b>Evolve Level 4</b> (Cambridge University Press) &amp; <b>Great Writing 4: Great Essays</b>, 5th ed. (National Geographic Learning / Cengage); đề thi thật từ talkfirst.vn; band descriptors theo British Council / IDP / Cambridge Assessment English.",en:"TOPAZ · Writing Task 2 Practice Hub — adapted from <b>Evolve Level 4</b> (Cambridge University Press) &amp; <b>Great Writing 4: Great Essays</b>, 5th ed. (National Geographic Learning / Cengage); real exam prompts from talkfirst.vn; band descriptors from the British Council / IDP / Cambridge Assessment English."}
+};
+function tr(k){const o=TR[k];return o?(o[LANG]||o.vi):k;}
+
 /* --- tabs --- */
 const allTabs = [{id:OVERVIEW_ID,label:"Tổng quan",no:""}]
   .concat(topics.map(t=>({id:t.id,label:t.title,no:t.n})))
   .concat([{id:"glossary",label:"📖 Glossary",no:""},{id:"checklist",label:"✅ Checklist",no:""}]);
-allTabs.forEach((t,i)=>{
-  const b=document.createElement('button');
-  b.innerHTML = (t.no?`<span class="tno">${t.no}</span>`:'')+t.label;
-  b.onclick=()=>show(t.id);
-  b.id='tab-'+t.id;
-  tabsEl.appendChild(b);
-});
+function renderTabs(){
+  tabsEl.innerHTML='';
+  allTabs.forEach(t=>{
+    const b=document.createElement('button');
+    const label = t.id===OVERVIEW_ID ? tr('tab.overview') : t.label;
+    b.innerHTML = (t.no?`<span class="tno">${t.no}</span>`:'')+label;
+    b.onclick=()=>show(t.id);
+    b.id='tab-'+t.id;
+    tabsEl.appendChild(b);
+  });
+  const active=document.getElementById('tab-'+currentView);
+  if(active)active.classList.add('active');
+}
 
 function show(id){
+  currentView=id;
   document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-'+id).classList.add('active');
+  const tb=document.getElementById('tab-'+id); if(tb)tb.classList.add('active');
   document.querySelectorAll('section.view').forEach(v=>v.classList.remove('active'));
-  document.getElementById('view-'+id).classList.add('active');
+  const vw=document.getElementById('view-'+id); if(vw)vw.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
 /* --- band table + checklist (shared) --- */
+function bandGroupHTML(title, bands, cls){
+  const rows = bandDescriptors.filter(d=>bands.includes(d.b)).map(d=>
+    `<tr data-b="${d.b}"><td class="bn">${d.b}</td>
+     <td>${d.tr}</td><td>${d.cc}</td><td>${d.lr}</td><td>${d.gra}</td></tr>`).join('');
+  return `<div class="bandgroup ${cls}"><div class="bghead">${title}</div>
+    <div class="bandwrap"><table class="band"><thead><tr>
+      <th>Band</th><th>Task Response</th><th>Coherence &amp; Cohesion</th>
+      <th>Lexical Resource</th><th>Grammatical Range &amp; Accuracy</th></tr></thead>
+    <tbody>${rows}</tbody></table></div></div>`;
+}
 function bandTableHTML(){
-  let rows = bandDescriptors.map(d=>`<tr data-b="${d.b}"><td class="bn">${d.b}</td>
-    <td class="c-tr">${d.tr}</td><td class="c-cc">${d.cc}</td><td class="c-lr">${d.lr}</td><td class="c-gra">${d.gra}</td></tr>`).join('');
-  return `<div class="bandwrap"><table class="band"><thead><tr>
-    <th>Band</th><th class="c-tr">Task Response</th><th class="c-cc">Coherence &amp; Cohesion</th>
-    <th class="c-lr">Lexical Resource</th><th class="c-gra">Grammatical Range &amp; Accuracy</th></tr></thead>
-    <tbody>${rows}</tbody></table>
-    <div class="bandsrc">Adapted from <b>IELTS Writing Task 2 Band Descriptors</b> (British Council / IDP / Cambridge Assessment English). Từ khóa được in đậm để làm nổi bật khác biệt giữa các band.</div></div>`;
+  return bandGroupHTML("Band 8–9 · Very good – Expert user", ["8","9"], "bg-hi")
+       + bandGroupHTML("Band 6–7 · Competent – Good user", ["6","7"], "bg-mid")
+       + bandGroupHTML("Band 4–5 · Limited – Modest user", ["4","5"], "bg-lo")
+       + `<div class="bandsrc" style="border:1px solid var(--line);border-radius:8px">${tr('bandsrc')}</div>`;
 }
 function checklistHTML(topicId){
-  let out = `<button class="resetbtn" onclick="resetChecks('${topicId}')">↻ Xoá tích chọn</button>`;
+  let out = `<button class="resetbtn" onclick="resetChecks('${topicId}')">${tr('chk.reset')}</button>`;
   for(const k in checklist){
     const c=checklist[k];
     out += `<div class="crit"><h4><span class="k">${k}</span> ${c.name}</h4>`;
     c.items.forEach((it,idx)=>{
       const id=`chk-${topicId}-${k}-${idx}`;
-      out+=`<div class="check"><input type="checkbox" id="${id}"><label for="${id}">${it}</label></div>`;
+      const label = (it&&typeof it==='object') ? (it[LANG]||it.vi) : it;
+      out+=`<div class="check"><input type="checkbox" id="${id}"><label for="${id}">${label}</label></div>`;
     });
     out+=`</div>`;
   }
-  out += `<div class="themetag" style="margin-top:18px">Bảng khác biệt band 4 → 9 (rút gọn theo British Council descriptors)</div>`;
+  out += `<div class="themetag" style="margin-top:18px">${tr('chk.bands')}</div>`;
   out += bandTableHTML();
   return out;
 }
@@ -1087,65 +1374,65 @@ function buildOverview(){
   const sec=document.createElement('section');
   sec.className='view'; sec.id='view-'+OVERVIEW_ID;
 
-  const types = essayTypes.map(t=>`<div class="typebox"><h4>${t.t}</h4><div>${t.d}</div>
+  const types = essayTypes.map((t,i)=>`<div class="typebox"><h4>${t.t}</h4><div>${tr('et.d'+(i+1))}</div>
     <div class="ex">“${esc(t.ex)}”</div></div>`).join('');
 
   sec.innerHTML = `
   <div class="card">
-    <h3>Cách dùng Practice Hub</h3>
-    <div class="lead">Chọn một chủ đề ở thanh tab phía trên. Mỗi chủ đề có 4 phần.</div>
+    <h3>${tr('use.title')}</h3>
+    <div class="lead">${tr('use.lead')}</div>
     <div class="grid2">
-      <div class="typebox"><h4>1 · Vocabulary</h4><div>Từ & cụm từ theo topic, lấy trực tiếp từ tài liệu TOPAZ (vocabulary in context).</div></div>
-      <div class="typebox"><h4>2 · Idea Development</h4><div>Các luận điểm tổng hợp từ bài đọc, mỗi luận điểm là một <b>chuỗi</b>: nêu ý → giải thích → chứng minh → bảo vệ.</div></div>
-      <div class="typebox"><h4>3 · Practice Bank</h4><div>Đề luyện tập: đề trong tài liệu, đề phổ biến, và <b>đề thi thật</b> (talkfirst.vn).</div></div>
-      <div class="typebox"><h4>4 · Checklist (tab riêng)</h4><div>Sau khi viết, mở tab <b>✅ Checklist</b> để tự chấm 4 tiêu chí + bảng band 4–9.</div></div>
+      <div class="typebox"><h4>1 · Vocabulary</h4><div>${tr('use.v.d')}</div></div>
+      <div class="typebox"><h4>2 · Idea Development</h4><div>${tr('use.i.d')}</div></div>
+      <div class="typebox"><h4>3 · Practice Bank</h4><div>${tr('use.p.d')}</div></div>
+      <div class="typebox"><h4>${tr('use.c.t')}</h4><div>${tr('use.c.d')}</div></div>
     </div>
   </div>
 
   <div class="card">
-    <h3>Các dạng bài Task 2</h3>
-    <div class="lead">Xác định đúng dạng đề để chọn cấu trúc phù hợp (ví dụ lấy từ phần Essay Types của tài liệu).</div>
+    <h3>${tr('types.title')}</h3>
+    <div class="lead">${tr('types.lead')}</div>
     <div class="grid2">${types}</div>
   </div>
 
   <div class="card">
-    <h3>Cấu trúc bài luận (Argument Essay)</h3>
-    <div class="lead">Bố cục 5 phần theo tài liệu “Draft an essay”. Đây là khung cho dạng argument/opinion có phản biện.</div>
+    <h3>${tr('struct.title')}</h3>
+    <div class="lead">${tr('struct.lead')}</div>
     <div class="flow">
-      <div class="f1">Introduction <small>Hook (câu dẫn) + Background/context + Thesis statement (quan điểm + bản đồ bài)</small></div>
-      <div class="f2">Body 1 — First argument <small>Topic sentence → Explanation → Illustration / example</small></div>
-      <div class="f3">Body 2 — Second argument <small>Topic sentence → Explanation → Evidence (số liệu, ví dụ)</small></div>
-      <div class="f4">Body 3 — Counterargument + Refutation <small>Nêu ý phản đối (dùng modal yếu: may/might) → bác bỏ (However, …)</small></div>
-      <div class="f5">Conclusion <small>Restate thesis (diễn đạt lại) + nêu lại quan điểm</small></div>
+      <div class="f1">${tr('flow.f1')}</div>
+      <div class="f2">${tr('flow.f2')}</div>
+      <div class="f3">${tr('flow.f3')}</div>
+      <div class="f4">${tr('flow.f4')}</div>
+      <div class="f5">${tr('flow.f5')}</div>
     </div>
-    <div class="note"><b>Lưu ý khi viết mở bài (Writing Skills):</b> viết bằng từ của mình (không chép đề), mang tính khái quát, đề cập mọi phần của câu hỏi, và tập trung đúng trọng tâm. Mỗi đoạn thân bài nên bắt đầu bằng một <b>topic sentence</b> nêu ý chính, rồi giải thích và minh hoạ.</div>
-    <div class="note"><b>Counterargument &amp; Refutation:</b> mọi ý phản đối bạn đưa ra đều cần một câu bác bỏ. Điều bắt đầu như một ý phản đối thường kết thúc thành một lý do ủng hộ quan điểm của bạn. Dùng modal yếu (<i>may, might, could</i>) để làm ý đối phương yếu đi, rồi phản bác bằng <i>However / Then again</i>.</div>
+    <div class="note">${tr('note.intro')}</div>
+    <div class="note">${tr('note.counter')}</div>
   </div>
 
   <div class="card">
-    <h3>Bài mẫu — Opinion (Agree/Disagree)</h3>
-    <div class="lead">Bước 1: đọc đề &amp; phân tích đề. Bước 2: đọc bài mẫu (màu sắc đánh dấu từng thành phần).</div>
+    <h3>${tr('sample.title')}</h3>
+    <div class="lead">${tr('sample.lead')}</div>
 
     <div class="prompt" style="border-left:4px solid var(--orange)">
       <div class="meta">
         <span class="pill type">Opinion · Agree/Disagree</span>
-        <span class="pill common">Đề mẫu — IELTS Writing Task 2 style</span>
+        <span class="pill common">${tr('sample.tag')}</span>
       </div>
       <p><b>Some people believe that all school students should be required to wear a uniform. To what extent do you agree or disagree?</b></p>
     </div>
 
-    <div class="themetag">◆ Phân tích đề (Analyzing the question)</div>
+    <div class="themetag">${tr('analyze.title')}</div>
     <div class="qanalyze">
-      <div class="row"><span class="lbl">🔑 Key words (chủ đề)</span><span><mark>school students</mark> · <mark>required to wear</mark> · <mark>a uniform</mark> — bài viết phải xoay quanh việc <b>bắt buộc đồng phục</b> ở trường.</span></div>
-      <div class="row"><span class="lbl">🎯 Task words (yêu cầu)</span><span><mark class="t">To what extent do you agree or disagree</mark> — nêu <b>rõ mức độ</b> đồng ý/không đồng ý và <b>bảo vệ quan điểm</b> đó xuyên suốt.</span></div>
-      <div class="row"><span class="lbl">🧭 Dạng bài</span><span><b>Opinion (một phía)</b> — chọn một lập trường và củng cố bằng lý do, kèm một ý phản đối + phản bác.</span></div>
-      <div class="row"><span class="lbl">✅ Lập trường của bài mẫu</span><span><b>Đồng ý hoàn toàn</b>: “School uniforms are the better choice.” → 3 lý do (đơn giản hoá cuộc sống · hành xử có trách nhiệm · tạo sự bình đẳng) + phản biện về “cá tính”.</span></div>
+      <div class="row"><span class="lbl">${tr('an.key.l')}</span><span>${tr('an.key.v')}</span></div>
+      <div class="row"><span class="lbl">${tr('an.task.l')}</span><span>${tr('an.task.v')}</span></div>
+      <div class="row"><span class="lbl">${tr('an.type.l')}</span><span>${tr('an.type.v')}</span></div>
+      <div class="row"><span class="lbl">${tr('an.stance.l')}</span><span>${tr('an.stance.v')}</span></div>
     </div>
 
     <div class="legend">
       <span><i style="background:#f6ddc9"></i>Hook</span>
       <span><i style="background:#d9e6d3"></i>Thesis / Restated thesis</span>
-      <span><i style="background:#eee2c2"></i>Topic sentence (lý do)</span>
+      <span><i style="background:#eee2c2"></i>${tr('legend.topic')}</span>
       <span><i style="background:#e3d4ea"></i>Counterargument</span>
       <span><i style="background:#cfe3e8"></i>Refutation</span>
     </div>
@@ -1161,12 +1448,12 @@ function buildOverview(){
   </div>
 
   <div class="card refcard">
-    <h3>Nguồn &amp; tài liệu tham khảo</h3>
-    <div class="lead">Nội dung được biên soạn (<i>adapted</i>) và tổng hợp từ các nguồn sau.</div>
+    <h3>${tr('refs.title')}</h3>
+    <div class="lead">${tr('refs.lead')}</div>
     <ol>
       <li><span class="tag2">VOCABULARY &amp; SKILLS</span> Ben Goldstein &amp; Ceri Jones (series editors Jack C. Richards &amp; Chuck Sandy), <b>Evolve Level 4 Student's Book</b> (CEFR B1+). Cambridge University Press &amp; Assessment.</li>
       <li><span class="tag2">ESSAY STRUCTURE &amp; MODEL</span> Keith S. Folse, April Muchmore-Vokoun &amp; Elena Vestri Solomon, <b>Great Writing 4: Great Essays</b> (5th Edition). National Geographic Learning / Cengage.</li>
-      <li><span class="tag2">PRACTICE BANK</span> Đề thi thật IELTS Writing — talkfirst.vn (<i>de-thi-ielts-writing-2026</i>).</li>
+      <li><span class="tag2">PRACTICE BANK</span> ${tr('refs.li3')}</li>
       <li><span class="tag2">BAND DESCRIPTORS</span> IELTS Writing Task 2 Band Descriptors — British Council / IDP / Cambridge Assessment English.</li>
     </ol>
   </div>`;
@@ -1181,10 +1468,10 @@ function entryHTML(e){
     <div class="vhead"><span class="vw">${esc(e.w)}</span>
       <span class="pos">${esc(e.pos)}</span>
       <span class="ipa">${esc(e.ipa)}</span>
-      <button class="vspeak" title="Nghe phát âm" onclick="speak('${wsafe}')">🔊</button></div>
+      <button class="vspeak" title="${tr('speak.title')}" onclick="speak('${wsafe}')">🔊</button></div>
     <div class="vdef"><b>EN</b>${esc(e.en)}</div>
-    <div class="vdef vi"><b>VN</b>${esc(e.vi)}</div>
-    <div class="vex">e.g. ${e.ex}</div>
+    ${LANG==='vi'?`<div class="vdef vi"><b>VN</b>${esc(e.vi)}</div>`:''}
+    <div class="vex">e.g. ${EX7[e.w]||e.ex}</div>
     ${col?`<div class="vcol"><b>COLLOCATIONS</b>${esc(col)}</div>`:''}</div>`;
 }
 function richVocabHTML(id){
@@ -1218,7 +1505,7 @@ function speak(w){
 function ideaHTML(node){
   if(node.theme){return `<div class="themetag">◆ ${esc(node.theme)}</div>`;}
   const cls = node.side==='against'?'arg against':'arg';
-  const tag = node.side==='against'?'PHẢN ĐỀ / MẶT KHÁC':'LUẬN ĐIỂM';
+  const tag = node.side==='against'?tr('idea.tag.counter'):tr('idea.tag.arg');
   return `<div class="${cls}"><div class="claim"><span class="tag">${tag}</span><span>${esc(node.claim)}</span></div>
     <ul class="chain">${node.chain.map(c=>`<li>${esc(c)}</li>`).join('')}</ul></div>`;
 }
@@ -1226,11 +1513,11 @@ function ideaHTML(node){
 /* --- practice block --- */
 function practiceHTML(p){
   const pillClass = p.tag==='new'?'new':(p.tag==='file'?'file':'common');
-  const pillTxt = p.tag==='new'?'ĐỀ THI THẬT':(p.tag==='file'?'ĐỀ TRONG TÀI LIỆU':'ĐỀ PHỔ BIẾN');
+  const pillTxt = p.tag==='new'?tr('pill.new'):(p.tag==='file'?tr('pill.file'):tr('pill.common'));
   return `<div class="prompt"><div class="meta">
     <span class="pill ${pillClass}">${pillTxt}</span>
     <span class="pill type">${esc(p.type)}</span>
-    ${p.tag==='new'?`<span class="date">nguồn: talkfirst.vn</span>`:(p.date?`<span class="date">${esc(p.date)}</span>`:'')}
+    ${p.tag==='new'?`<span class="date">${tr('pill.source')}</span>`:(p.date?`<span class="date">${esc(p.date)}</span>`:'')}
     </div><p>${esc(p.text)}</p></div>`;
 }
 
@@ -1254,12 +1541,12 @@ function buildTopic(t){
       <button data-p="prac">✍️ Practice Bank</button>
     </div>
     <div class="panel on" id="p-${t.id}-voc"><div class="card">
-      <h3>Topic vocabulary</h3>${vocab}</div></div>
+      <h3>${tr('vocab.h')}</h3>${vocab}</div></div>
     <div class="panel" id="p-${t.id}-idea"><div class="card">
-      <h3>Idea development</h3><div class="lead">Mỗi luận điểm là một chuỗi lập luận: nêu ý → giải thích → chứng minh → bảo vệ. Ý màu cam = luận điểm ủng hộ; màu xanh = phản đề / mặt khác.</div>${ideas}</div></div>
+      <h3>${tr('idea.h')}</h3><div class="lead">${tr('idea.lead')}</div>${ideas}</div></div>
     <div class="panel" id="p-${t.id}-prac"><div class="card">
-      <h3>Practice bank</h3><div class="lead">Chọn một đề → phân tích đề → lập dàn ý theo cấu trúc ở tab Tổng quan → viết bài.</div>${prac}
-      <div class="note" style="margin:14px 0 0">✅ Viết xong? Mở <button class="linkbtn" onclick="show('checklist')">tab Checklist &amp; Bands</button> để tự chấm theo 4 tiêu chí và đối chiếu band 4–9.</div></div></div>
+      <h3>${tr('prac.h')}</h3><div class="lead">${tr('topic.prac.lead')}</div>${prac}
+      <div class="note" style="margin:14px 0 0">${tr('topic.prac.reminder')}</div></div></div>
   `;
   mainEl.appendChild(sec);
 
@@ -1288,12 +1575,12 @@ function buildGlossary(){
     const groups=v.groups.map(g=>
       `<div class="ggroup"><div class="vsub">${esc(g.sub)}</div><div class="vgrid">${g.words.map(entryHTML).join('')}</div></div>`).join('');
     return `<div class="gtopic" id="g-${t.id}"><h3>${t.n} · ${t.title}</h3>
-      <div class="gcount">${cnt} từ</div>${groups}</div>`;
+      <div class="gcount">${cnt} ${tr('glos.count')}</div>${groups}</div>`;
   }).join('');
   sec.innerHTML = `<div class="card">
-    <h3>Glossary — toàn bộ từ vựng theo chủ đề</h3>
-    <div class="lead">Tất cả từ trong tài liệu, sắp xếp theo <b>chủ đề</b> và <b>sub-topic</b> (tổng ${total} mục). Gõ để lọc theo từ hoặc nghĩa (EN/VN).</div>
-    <input class="gsearch" id="gsearch" placeholder="🔎 Tìm từ hoặc nghĩa…" oninput="filterGlossary(this.value)">
+    <h3>${tr('glos.title')}</h3>
+    <div class="lead">${tr('glos.lead1')}${total}${tr('glos.lead2')}</div>
+    <input class="gsearch" id="gsearch" placeholder="${tr('glos.ph')}" oninput="filterGlossary(this.value)">
     <div class="gjump">${jump}</div>
     <div id="gbody">${body}</div></div>`;
   mainEl.appendChild(sec);
@@ -1318,20 +1605,38 @@ function buildChecklist(){
   const sec=document.createElement('section');
   sec.className='view'; sec.id='view-checklist';
   sec.innerHTML=`<div class="card">
-    <h3>Pre-submission checklist &amp; band descriptors</h3>
-    <div class="lead">Dùng chung cho mọi chủ đề. Sau khi viết xong, tích từng mục theo 4 tiêu chí IELTS, rồi đối chiếu bảng band 4–9 (mỗi band một tông màu; từ khoá in đậm cho thấy khác biệt giữa các band).</div>
+    <h3>${tr('cl.title')}</h3>
+    <div class="lead">${tr('cl.lead')}</div>
     ${checklistHTML('main')}
   </div>`;
   mainEl.appendChild(sec);
 }
 
 /* build all */
-buildOverview();
-topics.forEach(buildTopic);
-buildGlossary();
-buildChecklist();
-show(OVERVIEW_ID);
+function renderMain(){
+  mainEl.innerHTML='';
+  buildOverview();
+  topics.forEach(buildTopic);
+  buildGlossary();
+  buildChecklist();
+  const vw=document.getElementById('view-'+currentView);
+  if(vw){vw.classList.add('active');}
+  else{currentView=OVERVIEW_ID;document.getElementById('view-'+OVERVIEW_ID).classList.add('active');}
+}
+function setLang(l){
+  LANG=l;
+  document.documentElement.lang=l;
+  const bvi=document.getElementById('lang-vi'), ben=document.getElementById('lang-en');
+  if(bvi)bvi.classList.toggle('on',l==='vi');
+  if(ben)ben.classList.toggle('on',l==='en');
+  const hi=document.getElementById('headIntro'); if(hi)hi.innerHTML=tr('head.intro');
+  const ft=document.getElementById('foot'); if(ft)ft.innerHTML=tr('foot');
+  renderTabs();
+  renderMain();
+  show(currentView);
+}
+setLang('vi');
 </script>
-<div class="foot">TOPAZ · Writing Task 2 Practice Hub — adapted from <b>Evolve Level 4</b> (Cambridge University Press) &amp; <b>Great Writing 4: Great Essays</b>, 5th ed. (National Geographic Learning / Cengage); đề thi thật từ talkfirst.vn; band descriptors theo British Council / IDP / Cambridge Assessment English.</div>
+<div class="foot" id="foot"></div>
 </body>
 </html>
