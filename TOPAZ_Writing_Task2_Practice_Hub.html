@@ -1234,7 +1234,7 @@ const mainEl = document.getElementById('main');
 function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
 
 /* --- i18n --- */
-let LANG='vi';
+let LANG='en';
 let currentView=OVERVIEW_ID;
 const TR={
  "head.intro":{vi:"Luyện viết theo 8 chủ đề: mỗi chủ đề gồm <b>Vocabulary</b>, <b>Idea Development</b> (chuỗi lập luận từ bài đọc), <b>Practice Bank</b> (đề phổ biến + đề thi thật) và <b>Checklist theo 4 tiêu chí band 4–9</b>. Bắt đầu với tab Tổng quan.",
@@ -1635,7 +1635,7 @@ function setLang(l){
   renderMain();
   show(currentView);
 }
-setLang('vi');
+setLang('en');
 </script>
 <div class="foot" id="foot"></div>
 </body>
