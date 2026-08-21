@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TOPAZ · Vocab Shorts Quiz Maker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --orange:#ff7a3d; --orange2:#ff9d3d; --sage:#8fd6a6; --green:#3ddc84; --red:#ff6b6b;
+    --ink:#141319; --panel:#1e1d26; --line:#2e2d38; --muted:#a9a7b6; --paper:#ffffff;
+    --font-head:'Fraunces',Georgia,serif; --font-body:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0}
+  body{font-family:var(--font-body);background:#0c0b10;color:#fff;min-height:100vh}
+  /* ---------- Controls ---------- */
+  .controls{max-width:1080px;margin:0 auto;padding:16px 18px 6px;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end}
+  .controls .grp{display:flex;flex-direction:column;gap:5px}
+  .controls label{font-size:11px;font-weight:700;letter-spacing:.4px;color:var(--muted);text-transform:uppercase}
+  .controls select,.controls .seg{background:var(--panel);border:1px solid var(--line);color:#fff;border-radius:10px;
+    padding:9px 12px;font:inherit;font-size:14px;font-weight:600}
+  .seg{display:inline-flex;gap:2px;padding:3px}
+  .seg button{border:0;background:transparent;color:var(--muted);font:inherit;font-weight:700;font-size:13px;
+    padding:6px 11px;border-radius:8px;cursor:pointer}
+  .seg button.on{background:var(--orange);color:#111}
+  .btn{border:0;border-radius:11px;font:inherit;font-weight:800;font-size:14px;padding:11px 18px;cursor:pointer}
+  .btn.play{background:var(--green);color:#06210f}
+  .btn.rec{background:var(--orange);color:#2a1305}
+  .btn.ghost{background:var(--panel);border:1px solid var(--line);color:#fff}
+  .controls .hint{flex-basis:100%;color:var(--muted);font-size:12px;margin-top:2px;line-height:1.5}
+  .controls .hint b{color:#fff}
+  /* ---------- Record area / stage ---------- */
+  #recordArea{background:#0c0b10;display:flex;justify-content:center;align-items:flex-start;padding:8px 0 40px}
+  #wrap{margin:0 auto}
+  #stage{width:1080px;height:1920px;transform-origin:top center;position:relative;overflow:hidden;
+    border-radius:38px;background:
+      radial-gradient(130% 90% at 20% 0%, #262232 0%, #17151d 46%, #100e15 100%);
+    box-shadow:0 30px 80px rgba(0,0,0,.5);color:#fff;font-size:30px}
+  #recordArea:fullscreen{align-items:center}
+  #recordArea:fullscreen #stage{border-radius:0}
+  /* stage inner padding via safe zone */
+  .safe{position:absolute;inset:70px 64px 80px;display:flex;flex-direction:column}
+  /* top bar */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .chip{font-family:var(--font-head);font-weight:700;font-size:34px;color:#111;background:var(--orange);
+    padding:12px 26px;border-radius:40px;line-height:1}
+  .counter{font-weight:800;font-size:34px;color:var(--muted);letter-spacing:1px}
+  .score{font-weight:900;font-size:36px;color:var(--green)}
+  .brandmark{position:absolute;left:0;right:0;bottom:30px;text-align:center;font-family:var(--font-head);
+    font-weight:600;letter-spacing:5px;font-size:24px;color:#5a5768;text-transform:uppercase}
+  /* timer ring */
+  .ringwrap{display:flex;justify-content:center;margin:26px 0 6px;position:relative}
+  .ringwrap svg{transform:rotate(-90deg)}
+  .ringwrap .tnum{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+    font-family:var(--font-head);font-weight:700;font-size:96px}
+  /* prompt */
+  .qlabel{text-align:center;font-weight:800;font-size:34px;letter-spacing:.5px;color:var(--orange2);
+    text-transform:uppercase;margin-top:10px}
+  .prompt{text-align:center;font-family:var(--font-head);font-weight:700;line-height:1.15;margin:20px 0 6px}
+  .prompt.big{font-size:120px}
+  .prompt.med{font-size:66px}
+  .ipa{text-align:center;color:var(--sage);font-size:44px;font-weight:600;margin-top:6px}
+  .sub{text-align:center;color:var(--muted);font-size:34px;margin-top:14px;font-weight:500}
+  .spk{display:inline-flex;align-items:center;justify-content:center;width:96px;height:96px;border-radius:50%;
+    background:var(--panel);border:2px solid var(--line);font-size:46px;margin:22px auto 0;cursor:pointer}
+  /* options */
+  .opts{margin-top:auto;display:flex;flex-direction:column;gap:26px;padding-bottom:8px}
+  .opt{display:flex;align-items:center;gap:26px;background:var(--panel);border:3px solid var(--line);
+    border-radius:28px;padding:30px 34px;font-weight:700;font-size:52px;cursor:pointer;transition:.12s;min-height:120px}
+  .opt .key{width:78px;height:78px;flex:0 0 auto;border-radius:20px;background:#2b2a36;color:var(--orange2);
+    display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-size:44px;font-weight:700}
+  .opt .txt{flex:1;line-height:1.15}
+  .opt.small .txt{font-size:40px}
+  .opt.correct{background:rgba(61,220,132,.16);border-color:var(--green)}
+  .opt.correct .key{background:var(--green);color:#06210f}
+  .opt.wrong{background:rgba(255,107,107,.14);border-color:var(--red)}
+  .opt.wrong .key{background:var(--red);color:#2a0808}
+  .opt.dim{opacity:.4}
+  .opt .mark{margin-left:auto;font-size:52px;opacity:0}
+  .opt.correct .mark,.opt.wrong .mark{opacity:1}
+  /* intro / outro overlays */
+  .screen{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding:0 90px;background:radial-gradient(130% 90% at 50% 10%,#2a2536,#131019 70%)}
+  .screen.show{display:flex}
+  .screen .kick{font-weight:800;font-size:40px;letter-spacing:3px;color:var(--orange2);text-transform:uppercase}
+  .screen h1{font-family:var(--font-head);font-weight:700;font-size:132px;line-height:1.02;margin:22px 0}
+  .screen h1.sm{font-size:96px}
+  .screen p{font-size:44px;color:var(--muted);margin:6px 0;font-weight:500}
+  .screen .cta{margin-top:40px;background:var(--orange);color:#111;font-weight:900;font-size:46px;
+    padding:26px 50px;border-radius:60px;border:0}
+  .bigcount{font-family:var(--font-head);font-weight:700;font-size:360px;line-height:1;color:#fff}
+  .revealex{text-align:center;color:#cbc9d6;font-size:30px;font-style:italic;margin-top:14px;line-height:1.35;
+    max-width:900px;margin-left:auto;margin-right:auto;opacity:0;transition:opacity .3s}
+  .revealex.show{opacity:1}
+  .revealex b{color:#fff;font-style:normal}
+  @media (max-width:520px){ .controls{gap:8px} }
+</style>
+</head>
+<body>
+
+<div class="controls" id="controls">
+  <div class="grp"><label>Topic</label>
+    <select id="cTopic"></select></div>
+  <div class="grp"><label>Quiz type</label>
+    <div class="seg" id="cType">
+      <button data-v="word" class="on">Which word?</button>
+      <button data-v="meaning">Which meaning?</button>
+    </div></div>
+  <div class="grp"><label>Seconds / question</label>
+    <div class="seg" id="cSecs">
+      <button data-v="3">3s</button><button data-v="5" class="on">5s</button><button data-v="7">7s</button>
+    </div></div>
+  <div class="grp"><label>Questions</label>
+    <div class="seg" id="cN">
+      <button data-v="5">5</button><button data-v="6" class="on">6</button>
+      <button data-v="8">8</button><button data-v="10">10</button>
+    </div></div>
+  <div class="grp"><label>Sound</label>
+    <div class="seg" id="cSound"><button data-v="on" class="on">On</button><button data-v="off">Off</button></div></div>
+  <div class="grp"><label>&nbsp;</label>
+    <button class="btn play" id="startPlay">▶ Play</button></div>
+  <div class="grp"><label>&nbsp;</label>
+    <button class="btn rec" id="startRec">⏺ Auto (record)</button></div>
+  <div class="grp" style="min-width:250px"><label>Voice (British female preferred)</label>
+    <select id="cVoice"><option>Loading voices…</option></select></div>
+  <div class="grp"><label>&nbsp;</label>
+    <button class="btn ghost" id="testVoice">🔊 Test voice</button></div>
+  <div class="grp"><label>&nbsp;</label>
+    <button class="btn ghost" id="fs">⛶ Fullscreen</button></div>
+  <div class="hint">
+    <b>Play</b> = tap the answers (scored). <b>Auto (record)</b> = hands-free: timer + reveal + pronunciation auto-run — press <b>⛶ Fullscreen</b> then screen-record for a 9:16 Short.
+    For the most <b>natural female voice</b>, use <b>Microsoft Edge</b> and pick a voice marked ⭐ <b>Natural</b> (e.g. “Microsoft Sonia / Libby Online (Natural)”). Chrome: “Google UK English Female”. <span id="voiceName"></span>
+  </div>
+</div>
+
+<div id="recordArea">
+  <div id="wrap"><div id="stage">
+    <!-- QUESTION VIEW -->
+    <div class="safe" id="qview">
+      <div class="topbar">
+        <div class="chip" id="chip">Education</div>
+        <div class="counter" id="counter">1/6</div>
+        <div class="score" id="score">0</div>
+      </div>
+      <div class="ringwrap">
+        <svg width="240" height="240" viewBox="0 0 240 240">
+          <circle cx="120" cy="120" r="110" fill="none" stroke="#2c2b36" stroke-width="16"></circle>
+          <circle id="ring" cx="120" cy="120" r="110" fill="none" stroke="#ff7a3d" stroke-width="16"
+                  stroke-linecap="round" stroke-dasharray="691.15" stroke-dashoffset="0"></circle>
+        </svg>
+        <div class="tnum" id="tnum">5</div>
+      </div>
+      <div class="qlabel" id="qlabel">Which word means…</div>
+      <div class="prompt med" id="prompt">—</div>
+      <div class="ipa" id="ipa" style="display:none"></div>
+      <div class="sub" id="sub"></div>
+      <div style="text-align:center"><div class="spk" id="spk" style="display:none">🔊</div></div>
+      <div class="revealex" id="revealex"></div>
+      <div class="opts" id="opts"></div>
+      <div class="brandmark">HUONG STELLA · TOPAZ</div>
+    </div>
+
+    <!-- INTRO -->
+    <div class="screen" id="intro">
+      <div class="kick" id="introKick">IELTS Vocabulary Quiz</div>
+      <h1 id="introTitle">Score 6/6?</h1>
+      <p id="introSub">Guess the word before the timer ends</p>
+      <p style="margin-top:20px;color:#7d7a8c;font-size:34px">Tap to start ▶</p>
+      <div class="brandmark">HUONG STELLA · TOPAZ</div>
+    </div>
+
+    <!-- COUNT-IN -->
+    <div class="screen" id="countin"><div class="bigcount" id="bigcount">3</div></div>
+
+    <!-- OUTRO -->
+    <div class="screen" id="outro">
+      <div class="kick">How did you do?</div>
+      <h1 class="sm" id="outroTitle">Nice!</h1>
+      <p id="outroScore" style="font-size:60px;color:#fff;font-weight:800"></p>
+      <button class="cta" id="replay">↻ Play again</button>
+      <p style="margin-top:34px;font-size:38px;color:#fff">Follow for daily IELTS words 🔥</p>
+      <div class="brandmark">HUONG STELLA · TOPAZ</div>
+    </div>
+  </div></div>
+</div>
+
+<script>
+const WORDS = [{"w":"academic","ipa":"/ˌækəˈdemɪk/","en":"relating to education, study and ideas rather than practical skills","vi":"thuộc học thuật, hàn lâm","pos":"adj","topic":"Education","tk":"t1"},{"w":"vocational","ipa":"/vəʊˈkeɪʃənl/","en":"providing skills needed for a particular job","vi":"hướng nghiệp, dạy nghề","pos":"adj","topic":"Education","tk":"t1"},{"w":"module","ipa":"/ˈmɒdjuːl/","en":"a unit that forms one part of a course","vi":"học phần","pos":"n","topic":"Education","tk":"t1"},{"w":"qualified","ipa":"/ˈkwɒlɪfaɪd/","en":"having the training or skills that are needed","vi":"có trình độ, đủ tiêu chuẩn","pos":"adj","topic":"Education","tk":"t1"},{"w":"lecture","ipa":"/ˈlektʃə/","en":"a formal talk given to a large group of students","vi":"bài giảng","pos":"n","topic":"Education","tk":"t1"},{"w":"seminar","ipa":"/ˈsemɪnɑː/","en":"a small class for discussion with a teacher","vi":"buổi hội thảo / thảo luận","pos":"n","topic":"Education","tk":"t1"},{"w":"tutorial","ipa":"/tjuːˈtɔːriəl/","en":"a small-group or one-to-one teaching session","vi":"buổi phụ đạo, dạy kèm","pos":"n","topic":"Education","tk":"t1"},{"w":"distance learning","ipa":"/ˈdɪstəns ˌlɜːnɪŋ/","en":"study that is done remotely, away from a college","vi":"học từ xa","pos":"n phr","topic":"Education","tk":"t1"},{"w":"face-to-face","ipa":"/ˌfeɪs tə ˈfeɪs/","en":"happening in person, with people physically present","vi":"trực tiếp, mặt đối mặt","pos":"adj","topic":"Education","tk":"t1"},{"w":"tuition fees","ipa":"/tjuˈɪʃn fiːz/","en":"money paid for being taught","vi":"học phí","pos":"n phr","topic":"Education","tk":"t1"},{"w":"scholarship","ipa":"/ˈskɒləʃɪp/","en":"an award of money to help pay for study","vi":"học bổng","pos":"n","topic":"Education","tk":"t1"},{"w":"bursary","ipa":"/ˈbɜːsəri/","en":"a grant given to a student who needs financial help","vi":"trợ cấp học tập","pos":"n","topic":"Education","tk":"t1"},{"w":"apprenticeship","ipa":"/əˈprentɪʃɪp/","en":"a period of training on the job under a skilled worker","vi":"quá trình học việc","pos":"n","topic":"Education","tk":"t1"},{"w":"assignment","ipa":"/əˈsaɪnmənt/","en":"a task or piece of work given to a student","vi":"bài tập được giao","pos":"n","topic":"Education","tk":"t1"},{"w":"examination","ipa":"/ɪɡˌzæmɪˈneɪʃn/","en":"a formal test of knowledge under timed conditions","vi":"kỳ thi","pos":"n","topic":"Education","tk":"t1"},{"w":"dissertation","ipa":"/ˌdɪsəˈteɪʃn/","en":"a long piece of writing on a subject for a degree","vi":"luận văn","pos":"n","topic":"Education","tk":"t1"},{"w":"plagiarism","ipa":"/ˈpleɪdʒərɪzəm/","en":"copying someone's work and presenting it as your own","vi":"đạo văn","pos":"n","topic":"Education","tk":"t1"},{"w":"term","ipa":"/tɜːm/","en":"one of the three periods a school year is divided into","vi":"học kỳ (trong 3 kỳ)","pos":"n","topic":"Education","tk":"t1"},{"w":"semester","ipa":"/sɪˈmestə/","en":"one of the two periods a school year is divided into","vi":"học kỳ (trong 2 kỳ)","pos":"n","topic":"Education","tk":"t1"},{"w":"journal","ipa":"/ˈdʒɜːnl/","en":"an academic magazine publishing research papers","vi":"tạp chí học thuật","pos":"n","topic":"Education","tk":"t1"},{"w":"lecturer","ipa":"/ˈlektʃərə/","en":"a person who teaches at a university","vi":"giảng viên","pos":"n","topic":"Education","tk":"t1"},{"w":"tutor","ipa":"/ˈtjuːtə/","en":"a teacher responsible for a student's academic welfare","vi":"cố vấn học tập, gia sư","pos":"n","topic":"Education","tk":"t1"},{"w":"virtual university","ipa":"/ˈvɜːtʃuəl/","en":"a university that operates entirely online","vi":"đại học ảo (trực tuyến)","pos":"n phr","topic":"Education","tk":"t1"},{"w":"credible alternative","ipa":"/ˈkredəbl/","en":"a believable and reliable other option","vi":"lựa chọn thay thế đáng tin cậy","pos":"n phr","topic":"Education","tk":"t1"},{"w":"motivation","ipa":"/ˌməʊtɪˈveɪʃn/","en":"the willingness and drive to do something","vi":"động lực","pos":"n","topic":"Education","tk":"t1"},{"w":"interaction","ipa":"/ˌɪntərˈækʃn/","en":"communication or contact between people","vi":"sự tương tác","pos":"n","topic":"Education","tk":"t1"},{"w":"premium","ipa":"/ˈpriːmiəm/","en":"a regular payment made for an insurance policy","vi":"phí bảo hiểm","pos":"n","topic":"Healthcare","tk":"t2"},{"w":"burden","ipa":"/ˈbɜːdn/","en":"a heavy or difficult responsibility","vi":"gánh nặng","pos":"n","topic":"Healthcare","tk":"t2"},{"w":"deduct","ipa":"/dɪˈdʌkt/","en":"to take away an amount from a total","vi":"khấu trừ","pos":"v","topic":"Healthcare","tk":"t2"},{"w":"consultation","ipa":"/ˌkɒnslˈteɪʃn/","en":"a meeting with a doctor to get advice or treatment","vi":"buổi khám / tư vấn","pos":"n","topic":"Healthcare","tk":"t2"},{"w":"safety net","ipa":"/ˈseɪfti net/","en":"a system that protects people in difficulty","vi":"mạng lưới an sinh","pos":"n phr","topic":"Healthcare","tk":"t2"},{"w":"labour costs","ipa":"/ˈleɪbə kɒsts/","en":"the money spent on employing people","vi":"chi phí nhân công","pos":"n phr","topic":"Healthcare","tk":"t2"},{"w":"regardless","ipa":"/rɪˈɡɑːdləs/","en":"despite something; without being affected by it","vi":"bất kể","pos":"adv","topic":"Healthcare","tk":"t2"},{"w":"treatment","ipa":"/ˈtriːtmənt/","en":"medical care given to a patient for an illness","vi":"sự điều trị","pos":"n","topic":"Healthcare","tk":"t2"},{"w":"disease epidemic","ipa":"/ˌepɪˈdemɪk/","en":"an illness that spreads to many people at the same time","vi":"dịch bệnh","pos":"n phr","topic":"Healthcare","tk":"t2"},{"w":"sedentary lifestyle","ipa":"/ˈsedntri/","en":"a way of living that involves little physical activity","vi":"lối sống ít vận động","pos":"n phr","topic":"Healthcare","tk":"t2"},{"w":"patent","ipa":"/ˈpeɪtnt/","en":"the legal right to be the only maker of an invention","vi":"bằng sáng chế","pos":"n","topic":"Healthcare","tk":"t2"},{"w":"underfunding","ipa":"/ˌʌndəˈfʌndɪŋ/","en":"a lack of the money that is needed for something","vi":"tình trạng thiếu kinh phí","pos":"n","topic":"Healthcare","tk":"t2"},{"w":"preventable illness","ipa":"/prɪˈventəbl/","en":"a disease that could be avoided, often through lifestyle","vi":"bệnh có thể phòng ngừa","pos":"n phr","topic":"Healthcare","tk":"t2"},{"w":"cosmetic surgery","ipa":"/kɒzˈmetɪk/","en":"a medical operation to improve someone's appearance","vi":"phẫu thuật thẩm mỹ","pos":"n phr","topic":"Healthcare","tk":"t2"},{"w":"drug dependency","ipa":"/dɪˈpendənsi/","en":"the state of being unable to function without a drug","vi":"sự lệ thuộc thuốc","pos":"n phr","topic":"Healthcare","tk":"t2"},{"w":"life expectancy","ipa":"/ɪkˈspektənsi/","en":"the number of years a person is expected to live","vi":"tuổi thọ trung bình","pos":"n phr","topic":"Healthcare","tk":"t2"},{"w":"adverse","ipa":"/ˈædvɜːs/","en":"having a harmful or unfavourable effect","vi":"bất lợi, có hại","pos":"adj","topic":"Healthcare","tk":"t2"},{"w":"adequate","ipa":"/ˈædɪkwət/","en":"enough or good enough for a purpose","vi":"đầy đủ, thoả đáng","pos":"adj","topic":"Healthcare","tk":"t2"},{"w":"conventional","ipa":"/kənˈvenʃənl/","en":"traditional and ordinary; widely accepted","vi":"thông thường, truyền thống","pos":"adj","topic":"Healthcare","tk":"t2"},{"w":"precise","ipa":"/prɪˈsaɪs/","en":"exact, accurate and clearly stated","vi":"chính xác","pos":"adj","topic":"Healthcare","tk":"t2"},{"w":"professional","ipa":"/prəˈfeʃənl/","en":"having the qualities of trained, skilled people","vi":"chuyên nghiệp","pos":"adj","topic":"Healthcare","tk":"t2"},{"w":"however","ipa":"/haʊˈevə/","en":"used to introduce a contrasting idea","vi":"tuy nhiên","pos":"adv","topic":"Healthcare","tk":"t2"},{"w":"nevertheless","ipa":"/ˌnevəðəˈles/","en":"in spite of what has just been said","vi":"tuy vậy, dù thế","pos":"adv","topic":"Healthcare","tk":"t2"},{"w":"despite","ipa":"/dɪˈspaɪt/","en":"without being affected by something","vi":"mặc dù","pos":"prep","topic":"Healthcare","tk":"t2"},{"w":"risk-taker","ipa":"/ˈrɪsk ˌteɪkə/","en":"a person who is willing to take chances","vi":"người ưa mạo hiểm","pos":"n","topic":"Risk","tk":"t3"},{"w":"risk-averse","ipa":"/ˈrɪsk əˌvɜːs/","en":"disliking risk and preferring safety","vi":"e ngại rủi ro","pos":"adj","topic":"Risk","tk":"t3"},{"w":"adrenalin","ipa":"/əˈdrenəlɪn/","en":"a hormone released when you are excited or afraid","vi":"a-đrê-na-lin (hoóc-môn)","pos":"n","topic":"Risk","tk":"t3"},{"w":"endorphins","ipa":"/enˈdɔːfɪnz/","en":"natural chemicals that make you feel good","vi":"endorphin (chất tạo hưng phấn)","pos":"n","topic":"Risk","tk":"t3"},{"w":"alert","ipa":"/əˈlɜːt/","en":"quick to notice and react to things","vi":"tỉnh táo, cảnh giác","pos":"adj","topic":"Risk","tk":"t3"},{"w":"ban","ipa":"/bæn/","en":"to forbid something officially","vi":"cấm","pos":"v","topic":"Risk","tk":"t3"},{"w":"curb","ipa":"/kɜːb/","en":"to control or limit something","vi":"kiềm chế, hạn chế","pos":"v","topic":"Risk","tk":"t3"},{"w":"restrict","ipa":"/rɪˈstrɪkt/","en":"to limit the size, amount or freedom of something","vi":"hạn chế","pos":"v","topic":"Risk","tk":"t3"},{"w":"legalize","ipa":"/ˈliːɡəlaɪz/","en":"to make something legal","vi":"hợp pháp hoá","pos":"v","topic":"Risk","tk":"t3"},{"w":"authorize","ipa":"/ˈɔːθəraɪz/","en":"to give official permission for something","vi":"cho phép, uỷ quyền","pos":"v","topic":"Risk","tk":"t3"},{"w":"grant","ipa":"/ɡrɑːnt/","en":"to agree to give or allow something formally","vi":"cấp, ban cho","pos":"v","topic":"Risk","tk":"t3"},{"w":"legislation","ipa":"/ˌledʒɪsˈleɪʃn/","en":"a law or set of laws","vi":"pháp luật, đạo luật","pos":"n","topic":"Risk","tk":"t3"},{"w":"regulations","ipa":"/ˌreɡjuˈleɪʃnz/","en":"official rules that control how something is done","vi":"quy định","pos":"n","topic":"Risk","tk":"t3"},{"w":"prevention","ipa":"/prɪˈvenʃn/","en":"the act of stopping something from happening","vi":"sự phòng ngừa","pos":"n","topic":"Risk","tk":"t3"},{"w":"objection","ipa":"/əbˈdʒekʃn/","en":"a reason for disagreeing with something","vi":"sự phản đối","pos":"n","topic":"Risk","tk":"t3"},{"w":"consequently","ipa":"/ˈkɒnsɪkwəntli/","en":"as a result of something","vi":"do đó, vì vậy","pos":"adv","topic":"Risk","tk":"t3"},{"w":"provided that","ipa":"/prəˈvaɪdɪd/","en":"only if a particular condition is met","vi":"miễn là, với điều kiện","pos":"conj phr","topic":"Risk","tk":"t3"},{"w":"as long as","ipa":"/əz ˈlɒŋ əz/","en":"on condition that","vi":"chừng nào, miễn là","pos":"conj phr","topic":"Risk","tk":"t3"},{"w":"dam","ipa":"/dæm/","en":"a barrier built to hold back water","vi":"đập (nước)","pos":"n","topic":"Environment","tk":"t4"},{"w":"levee","ipa":"/ˈlevi/","en":"an earth wall built to prevent a river flooding","vi":"đê","pos":"n","topic":"Environment","tk":"t4"},{"w":"flood barrier","ipa":"/flʌd ˈbæriə/","en":"a structure built to stop flooding","vi":"rào/đập chắn lũ","pos":"n phr","topic":"Environment","tk":"t4"},{"w":"sandbagging","ipa":"/ˈsæn(d)bæɡɪŋ/","en":"the use of bags of sand to hold back water","vi":"chắn nước bằng bao cát","pos":"n","topic":"Environment","tk":"t4"},{"w":"tsunami","ipa":"/tsuːˈnɑːmi/","en":"a very large, destructive sea wave","vi":"sóng thần","pos":"n","topic":"Environment","tk":"t4"},{"w":"drought","ipa":"/draʊt/","en":"a long period with little or no rain","vi":"hạn hán","pos":"n","topic":"Environment","tk":"t4"},{"w":"erosion","ipa":"/ɪˈrəʊʒn/","en":"the gradual wearing away of soil or rock","vi":"sự xói mòn","pos":"n","topic":"Environment","tk":"t4"},{"w":"global warming","ipa":"/ˌɡləʊbl ˈwɔːmɪŋ/","en":"the gradual rise in the earth's temperature","vi":"sự nóng lên toàn cầu","pos":"n phr","topic":"Environment","tk":"t4"},{"w":"greenhouse gases","ipa":"/ˈɡriːnhaʊs ˌɡæsɪz/","en":"gases that trap heat in the atmosphere","vi":"khí nhà kính","pos":"n phr","topic":"Environment","tk":"t4"},{"w":"fossil fuels","ipa":"/ˈfɒsl ˌfjuːəlz/","en":"fuels such as coal, oil and gas from ancient remains","vi":"nhiên liệu hoá thạch","pos":"n phr","topic":"Environment","tk":"t4"},{"w":"renewable energy","ipa":"/rɪˈnjuːəbl/","en":"energy from sources that do not run out","vi":"năng lượng tái tạo","pos":"n phr","topic":"Environment","tk":"t4"},{"w":"deforestation","ipa":"/ˌdiːˌfɒrɪˈsteɪʃn/","en":"the cutting down of forests over a large area","vi":"nạn phá rừng","pos":"n","topic":"Environment","tk":"t4"},{"w":"biodiversity","ipa":"/ˌbaɪəʊdaɪˈvɜːsəti/","en":"the variety of plant and animal life in an area","vi":"đa dạng sinh học","pos":"n","topic":"Environment","tk":"t4"},{"w":"logging","ipa":"/ˈlɒɡɪŋ/","en":"the activity of cutting down trees for wood","vi":"khai thác gỗ","pos":"n","topic":"Environment","tk":"t4"},{"w":"subsistence farming","ipa":"/səbˈsɪstəns/","en":"farming that produces only enough for the farmer's family","vi":"canh tác tự cung tự cấp","pos":"n phr","topic":"Environment","tk":"t4"},{"w":"livestock","ipa":"/ˈlaɪvstɒk/","en":"animals kept on a farm","vi":"gia súc, vật nuôi","pos":"n","topic":"Environment","tk":"t4"},{"w":"habitat","ipa":"/ˈhæbɪtæt/","en":"the natural home of an animal or plant","vi":"môi trường sống","pos":"n","topic":"Environment","tk":"t4"},{"w":"ecosystem","ipa":"/ˈiːkəʊsɪstəm/","en":"all the living things in an area and their environment","vi":"hệ sinh thái","pos":"n","topic":"Environment","tk":"t4"},{"w":"mitigation","ipa":"/ˌmɪtɪˈɡeɪʃn/","en":"the act of making something less severe","vi":"sự giảm nhẹ (thiệt hại)","pos":"n","topic":"Environment","tk":"t4"},{"w":"desalination","ipa":"/ˌdiːˌsælɪˈneɪʃn/","en":"the process of removing salt from sea water","vi":"quá trình khử mặn","pos":"n","topic":"Environment","tk":"t4"},{"w":"prolonged","ipa":"/prəˈlɒŋd/","en":"continuing for a long time","vi":"kéo dài","pos":"adj","topic":"Environment","tk":"t4"},{"w":"architect","ipa":"/ˈɑːkɪtekt/","en":"a person who designs buildings","vi":"kiến trúc sư","pos":"n","topic":"Architecture","tk":"t5"},{"w":"marble","ipa":"/ˈmɑːbl/","en":"a hard, smooth stone used in fine building","vi":"đá cẩm thạch","pos":"n","topic":"Architecture","tk":"t5"},{"w":"tile","ipa":"/taɪl/","en":"a flat piece of baked clay used to cover surfaces","vi":"gạch / ngói ốp","pos":"n","topic":"Architecture","tk":"t5"},{"w":"insulation","ipa":"/ˌɪnsjuˈleɪʃn/","en":"material used to keep heat inside a building","vi":"vật liệu cách nhiệt","pos":"n","topic":"Architecture","tk":"t5"},{"w":"solar panels","ipa":"/ˈsəʊlə ˌpænlz/","en":"devices that turn sunlight into electricity","vi":"tấm pin mặt trời","pos":"n phr","topic":"Architecture","tk":"t5"},{"w":"durable","ipa":"/ˈdjʊərəbl/","en":"tough and able to last a long time","vi":"bền, lâu hỏng","pos":"adj","topic":"Architecture","tk":"t5"},{"w":"affordable","ipa":"/əˈfɔːdəbl/","en":"cheap enough for people to be able to buy","vi":"vừa túi tiền","pos":"adj","topic":"Architecture","tk":"t5"},{"w":"compromise","ipa":"/ˈkɒmprəmaɪz/","en":"an agreement reached by each side giving up something","vi":"sự thoả hiệp","pos":"n","topic":"Architecture","tk":"t5"},{"w":"structural engineer","ipa":"/ˈstrʌktʃərəl/","en":"a person whose job is to help build an architect's design","vi":"kỹ sư kết cấu","pos":"n phr","topic":"Architecture","tk":"t5"},{"w":"conservation","ipa":"/ˌkɒnsəˈveɪʃn/","en":"the protection of old buildings or the natural world","vi":"sự bảo tồn","pos":"n","topic":"Architecture","tk":"t5"},{"w":"skyscraper","ipa":"/ˈskaɪskreɪpə/","en":"a very tall modern building","vi":"toà nhà chọc trời","pos":"n","topic":"Architecture","tk":"t5"},{"w":"outskirts","ipa":"/ˈaʊtskɜːts/","en":"the outer areas of a town or city","vi":"vùng ngoại ô","pos":"n","topic":"Architecture","tk":"t5"},{"w":"green belt","ipa":"/ˈɡriːn belt/","en":"an area of protected countryside around a city","vi":"vành đai xanh","pos":"n phr","topic":"Architecture","tk":"t5"},{"w":"urban sprawl","ipa":"/ˈɜːbən sprɔːl/","en":"the uncontrolled spread of a city into the countryside","vi":"sự bành trướng đô thị","pos":"n phr","topic":"Architecture","tk":"t5"},{"w":"amenities","ipa":"/əˈmiːnətiz/","en":"useful features or public facilities in a place","vi":"tiện ích công cộng","pos":"n","topic":"Architecture","tk":"t5"},{"w":"functional","ipa":"/ˈfʌŋkʃənl/","en":"designed to be practical and useful","vi":"mang tính công năng","pos":"adj","topic":"Architecture","tk":"t5"},{"w":"aesthetic","ipa":"/iːsˈθetɪk/","en":"concerned with beauty and appearance","vi":"thuộc về thẩm mỹ","pos":"adj","topic":"Architecture","tk":"t5"},{"w":"efficient","ipa":"/ɪˈfɪʃnt/","en":"working well without wasting energy or resources","vi":"hiệu quả","pos":"adj","topic":"Architecture","tk":"t5"},{"w":"petrol","ipa":"/ˈpetrəl/","en":"a liquid fuel made from petroleum, used in cars","vi":"xăng","pos":"n","topic":"Energy","tk":"t6"},{"w":"diesel","ipa":"/ˈdiːzl/","en":"a type of heavy oil used as fuel","vi":"dầu diesel","pos":"n","topic":"Energy","tk":"t6"},{"w":"hydroelectricity","ipa":"/ˌhaɪdrəʊɪlekˈtrɪsəti/","en":"electricity produced from the power of moving water","vi":"thuỷ điện","pos":"n","topic":"Energy","tk":"t6"},{"w":"solar power","ipa":"/ˈsəʊlə paʊə/","en":"energy obtained from the sun","vi":"điện / năng lượng mặt trời","pos":"n phr","topic":"Energy","tk":"t6"},{"w":"wind turbine","ipa":"/ˈwɪnd ˌtɜːbaɪn/","en":"a tall machine that generates electricity from wind","vi":"tua-bin gió","pos":"n phr","topic":"Energy","tk":"t6"},{"w":"biofuel","ipa":"/ˈbaɪəʊfjuːəl/","en":"fuel made from plants or animal waste","vi":"nhiên liệu sinh học","pos":"n","topic":"Energy","tk":"t6"},{"w":"biomass","ipa":"/ˈbaɪəʊmæs/","en":"organic material burned to produce energy","vi":"sinh khối","pos":"n","topic":"Energy","tk":"t6"},{"w":"geothermal","ipa":"/ˌdʒiːəʊˈθɜːml/","en":"relating to heat from inside the earth","vi":"địa nhiệt","pos":"adj","topic":"Energy","tk":"t6"},{"w":"inexhaustible","ipa":"/ˌɪnɪɡˈzɔːstəbl/","en":"existing in such large amounts that it never runs out","vi":"vô tận, không cạn kiệt","pos":"adj","topic":"Energy","tk":"t6"},{"w":"generate","ipa":"/ˈdʒenəreɪt/","en":"to produce energy, power or results","vi":"tạo ra, sản sinh","pos":"v","topic":"Energy","tk":"t6"},{"w":"consult","ipa":"/kənˈsʌlt/","en":"to look at something to get information","vi":"tra cứu, tham khảo","pos":"v","topic":"Energy","tk":"t6"},{"w":"contest","ipa":"/kənˈtest/","en":"to formally oppose or disagree with something","vi":"phản đối, tranh cãi","pos":"v","topic":"Energy","tk":"t6"},{"w":"diminish","ipa":"/dɪˈmɪnɪʃ/","en":"to become or make smaller or weaker","vi":"suy giảm","pos":"v","topic":"Energy","tk":"t6"},{"w":"utilize","ipa":"/ˈjuːtəlaɪz/","en":"to make practical use of something","vi":"sử dụng, tận dụng","pos":"v","topic":"Energy","tk":"t6"},{"w":"omit","ipa":"/əˈmɪt/","en":"to leave something out","vi":"bỏ sót, lược bỏ","pos":"v","topic":"Energy","tk":"t6"},{"w":"secure","ipa":"/sɪˈkjʊə/","en":"to succeed in getting something, often with effort","vi":"giành được, bảo đảm","pos":"v","topic":"Energy","tk":"t6"},{"w":"calligraphy","ipa":"/kəˈlɪɡrəfi/","en":"the art of beautiful, decorative handwriting","vi":"thư pháp","pos":"n","topic":"Art & Design","tk":"t7"},{"w":"pottery","ipa":"/ˈpɒtəri/","en":"objects made from baked clay","vi":"đồ gốm","pos":"n","topic":"Art & Design","tk":"t7"},{"w":"sculpture","ipa":"/ˈskʌlptʃə/","en":"art made by shaping solid materials","vi":"điêu khắc","pos":"n","topic":"Art & Design","tk":"t7"},{"w":"weaving","ipa":"/ˈwiːvɪŋ/","en":"the craft of making cloth by crossing threads","vi":"nghề dệt","pos":"n","topic":"Art & Design","tk":"t7"},{"w":"fine art","ipa":"/ˌfaɪn ˈɑːt/","en":"art created mainly for its beauty or ideas","vi":"mỹ thuật","pos":"n phr","topic":"Art & Design","tk":"t7"},{"w":"applied art","ipa":"/əˌplaɪd ˈɑːt/","en":"art that is functional as well as beautiful","vi":"nghệ thuật ứng dụng","pos":"n phr","topic":"Art & Design","tk":"t7"},{"w":"aesthetic","ipa":"/iːsˈθetɪk/","en":"relating to beauty and the appreciation of it","vi":"thuộc về thẩm mỹ","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"mechanical","ipa":"/məˈkænɪkl/","en":"produced by a machine rather than by hand","vi":"mang tính máy móc","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"analogous","ipa":"/əˈnæləɡəs/","en":"similar in some way; comparable","vi":"tương tự, giống nhau","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"objective","ipa":"/əbˈdʒektɪv/","en":"based on facts, not on feelings or opinions","vi":"khách quan","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"banal","ipa":"/bəˈnɑːl/","en":"boring and ordinary; lacking originality","vi":"tầm thường, nhàm chán","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"cynical","ipa":"/ˈsɪnɪkl/","en":"believing people act only for selfish reasons","vi":"hoài nghi, mỉa mai","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"abstract","ipa":"/ˈæbstrækt/","en":"based on ideas and shapes, not real objects","vi":"trừu tượng","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"figurative","ipa":"/ˈfɪɡərətɪv/","en":"showing people or things in a realistic way","vi":"tả thực, hình tượng","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"expressive","ipa":"/ɪkˈspresɪv/","en":"clearly showing thoughts or feelings","vi":"giàu cảm xúc, biểu cảm","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"avant-garde","ipa":"/ˌævɒ̃ˈɡɑːd/","en":"very new, modern and experimental","vi":"tiên phong, cách tân","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"monumental","ipa":"/ˌmɒnjuˈmentl/","en":"extremely large or impressive","vi":"hoành tráng, đồ sộ","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"moving","ipa":"/ˈmuːvɪŋ/","en":"causing strong feelings of sadness or sympathy","vi":"cảm động, xúc động","pos":"adj","topic":"Art & Design","tk":"t7"},{"w":"retirement age","ipa":"/rɪˈtaɪəmənt eɪdʒ/","en":"the age at which people usually stop working","vi":"tuổi nghỉ hưu","pos":"n phr","topic":"Ageing","tk":"t8"},{"w":"pension","ipa":"/ˈpenʃn/","en":"money paid regularly to a person after they retire","vi":"lương hưu","pos":"n","topic":"Ageing","tk":"t8"},{"w":"pension scheme","ipa":"/ˈpenʃn skiːm/","en":"an official plan for saving money for retirement","vi":"quỹ / chương trình hưu trí","pos":"n phr","topic":"Ageing","tk":"t8"},{"w":"compulsory","ipa":"/kəmˈpʌlsəri/","en":"required by law or a rule","vi":"bắt buộc","pos":"adj","topic":"Ageing","tk":"t8"},{"w":"age-related discrimination","ipa":"/dɪˌskrɪmɪˈneɪʃn/","en":"unfair treatment of people because of their age","vi":"phân biệt đối xử theo tuổi","pos":"n phr","topic":"Ageing","tk":"t8"},{"w":"life expectancy","ipa":"/ˌlaɪf ɪkˈspektənsi/","en":"the number of years a person is likely to live","vi":"tuổi thọ","pos":"n phr","topic":"Ageing","tk":"t8"},{"w":"ageing population","ipa":"/ˈeɪdʒɪŋ/","en":"a population in which the average age is rising","vi":"dân số già hoá","pos":"n phr","topic":"Ageing","tk":"t8"},{"w":"youth bulge","ipa":"/ˈjuːθ bʌldʒ/","en":"a large share of young people in a population","vi":"sự bùng nổ dân số trẻ","pos":"n phr","topic":"Ageing","tk":"t8"},{"w":"population pyramid","ipa":"/ˈpɪrəmɪd/","en":"a diagram showing the age structure of a population","vi":"tháp dân số","pos":"n phr","topic":"Ageing","tk":"t8"},{"w":"median age","ipa":"/ˈmiːdiən eɪdʒ/","en":"the age at which half a population is older, half younger","vi":"tuổi trung vị","pos":"n phr","topic":"Ageing","tk":"t8"},{"w":"demographic","ipa":"/ˌdeməˈɡræfɪk/","en":"relating to the statistics of human populations","vi":"thuộc nhân khẩu học","pos":"adj","topic":"Ageing","tk":"t8"},{"w":"GDP","ipa":"/ˌdʒiː diː ˈpiː/","en":"the total value of goods and services a country produces","vi":"tổng sản phẩm quốc nội","pos":"n (abbr)","topic":"Ageing","tk":"t8"},{"w":"is likely to","ipa":"/ˈlaɪkli/","en":"will probably happen","vi":"có khả năng, có thể","pos":"phr","topic":"Ageing","tk":"t8"},{"w":"is projected to","ipa":"/prəˈdʒektɪd/","en":"is forecast or estimated to happen","vi":"được dự báo là","pos":"phr","topic":"Ageing","tk":"t8"},{"w":"is set to","ipa":"/set/","en":"is ready or certain to happen soon","vi":"chuẩn bị, sắp","pos":"phr","topic":"Ageing","tk":"t8"},{"w":"allocate","ipa":"/ˈæləkeɪt/","en":"to give resources to a particular purpose","vi":"phân bổ","pos":"v","topic":"Ageing","tk":"t8"}];
+
+/* ---------- helpers ---------- */
+const $=id=>document.getElementById(id);
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.random()*(i+1)|0;[a[i],a[j]]=[a[j],a[i]];}return a;};
+const trimTxt=(s,n=52)=>{s=s.trim();if(s.length<=n)return s;let c=s.slice(0,n);const sp=c.lastIndexOf(' ');return (sp>20?c.slice(0,sp):c)+'…';};
+const cap=s=>s.charAt(0).toUpperCase()+s.slice(1);
+
+/* ---------- state ---------- */
+let cfg={topic:'All',type:'word',secs:5,n:6,sound:true};
+let deck=[],qi=0,score=0,mode='play',timer=null,tickT=null,answered=false,secleft=0;
+
+/* ---------- topic dropdown ---------- */
+const topics=[...new Set(WORDS.map(w=>w.topic))];
+(function(){
+  const sel=$('cTopic');
+  sel.innerHTML='<option value="All">All topics (mixed)</option>'+topics.map(t=>`<option value="${t}">${t}</option>`).join('');
+  sel.onchange=()=>cfg.topic=sel.value;
+})();
+function seg(id,key,cast){ const el=$(id); el.querySelectorAll('button').forEach(b=>{ b.onclick=()=>{
+  el.querySelectorAll('button').forEach(x=>x.classList.remove('on')); b.classList.add('on');
+  cfg[key]=cast?cast(b.dataset.v):b.dataset.v; if(key==='sound')cfg.sound=(b.dataset.v==='on');
+}; }); }
+seg('cType','type'); seg('cSecs','secs',Number); seg('cN','n',Number); seg('cSound','sound');
+
+/* ---------- audio (WebAudio tick / ding) ---------- */
+let AC=null; function ac(){ if(!AC){try{AC=new (window.AudioContext||window.webkitAudioContext)();}catch(e){}} return AC; }
+function beep(freq,dur,type='sine',vol=.18){ if(!cfg.sound)return; const c=ac(); if(!c)return;
+  const o=c.createOscillator(),g=c.createGain(); o.type=type; o.frequency.value=freq;
+  o.connect(g); g.connect(c.destination); g.gain.setValueAtTime(vol,c.currentTime);
+  g.gain.exponentialRampToValueAtTime(.0001,c.currentTime+dur); o.start(); o.stop(c.currentTime+dur); }
+const tick=()=>beep(880,.05,'square',.08);
+const ding=()=>{beep(880,.12,'sine',.2);setTimeout(()=>beep(1320,.18,'sine',.2),90);};
+const buzz=()=>beep(160,.25,'sawtooth',.12);
+
+/* ---------- Voice: prefer natural British FEMALE ---------- */
+let gbVoice=null, userPickedVoice=false;
+const RE_GB=/en[-_]GB|United Kingdom|UK English|\(GB\)/i;
+const RE_NATURAL=/Natural|Neural|Online|Google|Siri|Premium|Enhanced/i;
+const RE_FEMALE=/female|\bwoman\b|Sonia|Libby|Maisie|Kate|Serena|Amy|Emma|Hazel|Susan|Fiona|Stephanie|Aria|Jenny|Zira|Samantha|Martha|Google UK English Female/i;
+const RE_MALE=/male|\bman\b|Daniel|George|Ryan|Arthur|Brian|Oliver|Google UK English Male|David|Mark|Alex/i;
+function allEngVoices(){ return ((window.speechSynthesis&&speechSynthesis.getVoices())||[]).filter(v=>/^en/i.test(v.lang)); }
+function scoreVoice(v){ const n=v.name||''; let s=0;
+  if(RE_GB.test(n)||RE_GB.test(v.lang))s+=10;
+  if(RE_NATURAL.test(n))s+=9;
+  if(RE_FEMALE.test(n))s+=7; else if(RE_MALE.test(n))s-=4;
+  if(/^en[-_]US/i.test(v.lang))s+=1;          // decent fallback
+  if(/^en[-_]AU/i.test(v.lang))s+=2;          // Aussie ~ closer to UK than US
+  return s;
+}
+function pickVoice(){ const vs=allEngVoices(); if(!vs.length)return null;
+  return vs.slice().sort((a,b)=>scoreVoice(b)-scoreVoice(a))[0]; }
+function fillVoices(){
+  const sel=$('cVoice'); const vs=allEngVoices();
+  if(!vs.length){ sel.innerHTML='<option value="">Default (browser) voice</option>'; return; }
+  const sorted=vs.slice().sort((a,b)=>scoreVoice(b)-scoreVoice(a));
+  sel.innerHTML=sorted.map(v=>{
+    const nat=RE_NATURAL.test(v.name)?' ⭐ Natural':''; const fem=RE_FEMALE.test(v.name)?' ♀':'';
+    return `<option value="${v.name}">${v.name} · ${v.lang}${nat}${fem}</option>`;
+  }).join('');
+  if(gbVoice) sel.value=gbVoice.name;
+  sel.onchange=()=>{ const v=allEngVoices().find(x=>x.name===sel.value); if(v){gbVoice=v;userPickedVoice=true;showVoice();say(gbVoice.name.split(/[ (]/)[0]+' speaking. Hello!');} };
+}
+function refreshVoices(){ if(!userPickedVoice)gbVoice=pickVoice(); fillVoices(); showVoice(); }
+if('speechSynthesis' in window){ gbVoice=pickVoice(); speechSynthesis.onvoiceschanged=refreshVoices; setTimeout(refreshVoices,120); setTimeout(refreshVoices,600); }
+function showVoice(){ $('voiceName').textContent = gbVoice? ('Now using: '+gbVoice.name) : 'No extra voices found — using the browser default.'; }
+showVoice();
+function say(w,rate=.9){ if(!('speechSynthesis' in window))return; const u=new SpeechSynthesisUtterance(w);
+  u.lang=(gbVoice&&gbVoice.lang)||'en-GB'; u.rate=rate; u.pitch=1.08;   // slightly higher = softer, more feminine & natural
+  if(!gbVoice&&!userPickedVoice)gbVoice=pickVoice(); if(gbVoice)u.voice=gbVoice;
+  speechSynthesis.cancel(); speechSynthesis.speak(u); }
+$('testVoice').onclick=()=>say('Hello! This is the voice for your vocabulary quiz.');
+$('spk').onclick=()=>{const it=deck[qi]; if(it)say(it.w);};
+
+/* ---------- build deck ---------- */
+function buildDeck(){
+  let pool = cfg.topic==='All'? WORDS : WORDS.filter(w=>w.topic===cfg.topic);
+  if(pool.length<4) pool=WORDS;
+  const chosen=shuffle(pool).slice(0,cfg.n);
+  return chosen.map(item=>{
+    const sameTopic=WORDS.filter(w=>w.topic===item.topic && w.w!==item.w);
+    const distractPool = shuffle(sameTopic.length>=2?sameTopic:WORDS.filter(w=>w.w!==item.w));
+    if(cfg.type==='word'){
+      const ds=distractPool.slice(0,2).map(d=>d.w);
+      return {kind:'word', chip:item.topic, label:'Which word means…', prompt:item.en, sub:item.vi,
+        options:shuffle([item.w,...ds]), answer:item.w, w:item.w, ipa:item.ipa, pos:item.pos};
+    } else {
+      const ds=distractPool.slice(0,2).map(d=>trimTxt(d.en));
+      return {kind:'meaning', chip:item.topic, label:'What does it mean?', prompt:item.w, ipa:item.ipa,
+        options:shuffle([trimTxt(item.en),...ds]), answer:trimTxt(item.en), w:item.w, pos:item.pos, sub:item.vi};
+    }
+  });
+}
+
+/* ---------- render ---------- */
+const RING=691.15;
+function renderQ(){
+  answered=false;
+  const it=deck[qi];
+  $('chip').textContent=it.chip;
+  $('counter').textContent=(qi+1)+'/'+deck.length;
+  $('score').style.display = mode==='play'?'block':'none';
+  $('score').textContent=score;
+  $('qlabel').textContent=it.label;
+  const P=$('prompt');
+  if(it.kind==='word'){ P.className='prompt med'; P.textContent=cap(it.prompt); $('ipa').style.display='none'; $('sub').textContent=''; $('spk').style.display='none'; }
+  else { P.className='prompt big'; P.textContent=it.w; $('ipa').style.display='block'; $('ipa').textContent=it.ipa; $('sub').textContent=''; $('spk').style.display='none'; }
+  $('revealex').classList.remove('show'); $('revealex').innerHTML='';
+  // options
+  const keys=['A','B','C'];
+  $('opts').innerHTML = it.options.map((o,i)=>
+    `<div class="opt ${it.kind==='meaning'?'small':''}" data-o="${encodeURIComponent(o)}">
+       <div class="key">${keys[i]}</div><div class="txt">${it.kind==='word'?cap(o):o}</div><div class="mark">✓</div></div>`).join('');
+  $('opts').querySelectorAll('.opt').forEach(el=>{
+    el.onclick=()=>{ if(mode!=='play'||answered)return; pick(decodeURIComponent(el.dataset.o)); };
+  });
+  // timer
+  secleft=cfg.secs; $('tnum').textContent=secleft; setRing(1);
+  clearInterval(timer); clearInterval(tickT);
+  const start=performance.now(), total=cfg.secs*1000;
+  timer=setInterval(()=>{
+    const el=performance.now()-start, frac=Math.max(0,1-el/total);
+    setRing(frac);
+    const s=Math.ceil(frac*cfg.secs);
+    if(s!==secleft){ secleft=s; $('tnum').textContent=Math.max(s,0); if(s<=3&&s>0)tick(); }
+    if(frac<=0){ clearInterval(timer); if(!answered) reveal(null); }
+  },50);
+}
+function setRing(frac){ $('ring').style.strokeDashoffset = RING*(1-frac);
+  $('ring').style.stroke = frac>.5?'#ff9d3d':(frac>.25?'#ff7a3d':'#ff5a5a'); }
+
+function pick(choice){
+  answered=true; clearInterval(timer);
+  const it=deck[qi]; const correct = choice===it.answer;
+  if(correct){ score++; $('score').textContent=score; }
+  reveal(choice);
+}
+function reveal(choice){
+  answered=true; clearInterval(timer); $('tnum').textContent='0';
+  const it=deck[qi];
+  $('opts').querySelectorAll('.opt').forEach(el=>{
+    const o=decodeURIComponent(el.dataset.o);
+    if(o===it.answer){ el.classList.add('correct'); }
+    else if(choice&&o===choice){ el.classList.add('wrong'); el.querySelector('.mark').textContent='✕'; }
+    else el.classList.add('dim');
+  });
+  // show ipa + example, speak in British
+  if(it.kind==='word'){ $('ipa').style.display='block'; $('ipa').textContent=it.ipa; }
+  $('sub').textContent = it.kind==='word'? (it.sub||'') : (it.sub||'');
+  const ex=$('revealex'); ex.innerHTML=`<b>${cap(it.w)}</b> ${it.ipa} — “${it.kind==='word'?trimTxt(it.prompt,80):trimTxt(it.answer,80)}”`;
+  ex.classList.add('show');
+  (choice===it.answer||mode!=='play') ? ding() : buzz();
+  say(it.w); setTimeout(()=>say(it.w),950);
+  const hold = mode==='play'?2600:2800;
+  setTimeout(next,hold);
+}
+function next(){ qi++; if(qi>=deck.length) return finish(); renderQ(); }
+
+/* ---------- flow ---------- */
+function showView(v){ ['qview','intro','countin','outro'].forEach(x=>$(x).classList.toggle('show', x===v && x!=='qview'));
+  $('qview').style.display = v==='qview'?'flex':'none'; }
+function start(m){
+  mode=m; ac(); deck=buildDeck(); qi=0; score=0;
+  $('introTitle').textContent = 'Score '+cfg.n+'/'+cfg.n+'?';
+  if(m==='play'){ showView('qview'); renderQ(); }   // start immediately, tap to answer
+  else { countIn(3); }                               // hands-free: 3-2-1 then run
+}
+function countIn(k){ showView('countin'); $('bigcount').textContent=k; beep(660,.12,'sine',.15);
+  if(k<=1){ setTimeout(()=>{ showView('qview'); renderQ(); }, 700); }
+  else setTimeout(()=>countIn(k-1),750); }
+$('intro').onclick=()=>start('play');
+function finish(){
+  clearInterval(timer);
+  showView('outro');
+  if(mode==='play'){ $('outroTitle').textContent = score===deck.length?'Perfect! 🏆':(score>=deck.length*0.6?'Nice! 👏':'Keep going! 💪');
+    $('outroScore').textContent='You scored '+score+' / '+deck.length; }
+  else { $('outroTitle').textContent='How many did you get?'; $('outroScore').textContent='Comment your score ⬇️'; }
+}
+$('replay').onclick=()=>start(mode);
+$('startPlay').onclick=()=>start('play');
+$('startRec').onclick=()=>start('auto');
+
+/* ---------- fit / fullscreen ---------- */
+const stage=$('stage'), wrap=$('wrap'), rec=$('recordArea');
+function fit(){
+  const fsEl=document.fullscreenElement;
+  const availH=(fsEl?window.innerHeight:window.innerHeight-160);
+  const availW=window.innerWidth-(fsEl?0:16);
+  const s=Math.min(availW/1080, availH/1920);
+  stage.style.transform='scale('+s+')';
+  wrap.style.width=(1080*s)+'px'; wrap.style.height=(1920*s)+'px';
+}
+window.addEventListener('resize',fit);
+document.addEventListener('fullscreenchange',fit);
+$('fs').onclick=()=>{ if(!document.fullscreenElement) rec.requestFullscreen&&rec.requestFullscreen(); else document.exitFullscreen(); };
+fit();
+showView('intro');
+</script>
+</body>
+</html>
